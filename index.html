@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Shop - Home Template</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-900">
+    
+  <header class="relative z-40 border-b border-slate-300 bg-slate-200/95 backdrop-blur">
+  <div class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-6 lg:px-8">
+    <a href="index.html" class="shrink-0">
+      <img src="./assets/images/logos/logo.svg" alt="Kopmas Shop" class="h-10 w-auto" />
+    </a>
+
+    <nav class="hidden items-center gap-1 rounded-full border border-slate-300 bg-white p-2 shadow-sm md:flex">
+      <a data-nav-link href="index.html" class="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-700">Home</a>
+      <a data-nav-link href="halaman1.html" class="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-700">
+        Kategori
+        <img src="./assets/images/icons/arrow-down-grey.svg" alt="dropdown" class="h-4 w-4" />
+      </a>
+      <a data-nav-link href="halaman2.html" class="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-700">
+        Produk
+        <img src="./assets/images/icons/arrow-down-grey.svg" alt="dropdown" class="h-4 w-4" />
+      </a>
+      <a data-nav-link href="halaman4.html" class="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-700">Keranjang</a>
+      <a data-nav-link href="halaman5.html" class="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-blue-700">Checkout</a>
+      <a data-nav-link href="halaman3.html" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-blue-700 ring-1 ring-slate-200">Showcase</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button data-mobile-toggle class="inline-flex rounded-xl border border-slate-300 bg-white p-2 md:hidden">
+        <img src="./assets/images/icons/menu-grey.svg" alt="menu" class="h-6 w-6" />
+      </button>
+      <a href="#contact" class="hidden rounded-full bg-blue-600 px-7 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-sm transition hover:bg-blue-700 md:inline-flex">Kontak Kami</a>
+    </div>
+  </div>
+
+  <nav data-mobile-menu class="mx-4 mb-4 hidden flex-col gap-1 rounded-2xl border border-slate-300 bg-white p-3 md:hidden">
+    <a data-nav-link href="index.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Home</a>
+    <a data-nav-link href="halaman1.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Kategori</a>
+    <a data-nav-link href="halaman2.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Produk</a>
+    <a data-nav-link href="halaman3.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Showcase</a>
+    <a data-nav-link href="halaman4.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Keranjang</a>
+    <a data-nav-link href="halaman5.html" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-700">Checkout</a>
+    <a href="#contact" class="mt-2 rounded-xl bg-blue-600 px-4 py-2 text-center text-sm font-bold text-white">Kontak Kami</a>
+  </nav>
+</header>
+
+  <main class="container mx-auto px-6 mb-20 space-y-10">
+    <!-- Hero Peek Carousel -->
+    <section id="hero-slideshow" class="relative mt-6">
+      <!-- Clipping wrapper -->
+      <div id="hero-clip" class="overflow-hidden">
+        <div id="hero-track" class="flex items-stretch transition-transform duration-500 ease-in-out" style="gap:24px">
+          <a href="halaman2.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
+            <img src="./assets/images/thumbnails/Slide 1.png" alt="Promo 1"
+              class="w-full h-full object-cover select-none pointer-events-none" style="aspect-ratio:773/360">
+          </a>
+          <a href="halaman1.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
+            <img src="./assets/images/thumbnails/Slide 2.png" alt="Promo 2"
+              class="w-full h-full object-cover select-none pointer-events-none" style="aspect-ratio:773/360">
+          </a>
+        </div>
+      </div>
+
+      <!-- Prev Button -->
+      <button id="hero-prev"
+        class="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-700 shadow-lg transition duration-200 hover:scale-110">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </button>
+
+      <!-- Next Button -->
+      <button id="hero-next"
+        class="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-700 shadow-lg transition duration-200 hover:scale-110">
+        <i class="fa-solid fa-chevron-right text-sm"></i>
+      </button>
+    </section>
+
+    <section class="space-y-4">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-extrabold md:text-3xl">Kategori</h2>
+        <a href="halaman1.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Lihat Semua</a>
+      </div>
+
+      <div data-category-showcase class="space-y-4">
+        <div class="rounded-2xl border border-slate-200 bg-white md:hidden">
+          <div class="hide-scrollbar overflow-x-auto">
+            <div data-cat-mobile-grid class="grid grid-flow-col grid-rows-2 gap-0"></div>
+          </div>
+        </div>
+
+        <div class="relative hidden md:block">
+          <div class="hide-scrollbar overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+            <div data-cat-desktop-track class="w-full"></div>
+          </div>
+
+          <button type="button" data-cat-prev
+            class="absolute -left-6 top-1/2 z-10 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-500 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition hover:text-blue-700">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button type="button" data-cat-next
+            class="absolute -right-6 top-1/2 z-10 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white text-slate-500 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition hover:text-blue-700">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <div data-cat-pagination class="mt-4 hidden items-center justify-center gap-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-extrabold md:text-3xl">Rekomendasi</h2>
+        <a href="halaman1.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Semua Produk</a>
+      </div>
+      <div class="grid gap-3 grid-cols-2 lg:grid-cols-6">
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/airpod.png" alt="Airpods" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Airpods Gen Z 2025 / Wireless Earbuds Premium TWS</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>1.850.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">2.300.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Mlati, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">1.2rb terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/macbook.png" alt="Macbook" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Macbook Pro M2 / Apple Laptop 13" 8GB 256GB Silver</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>18.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">22.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">16%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.9</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Depok, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">520 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/iphone.png" alt="iPhone" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pro 256GB / iphone 15 pro max / apple</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>22.300.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">26.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">14%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.9</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Ngaglik, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">870 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/headphone-white.png" alt="Headphone" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Noise Cancelling / Wireless Over Ear ANC</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>3.420.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">4.200.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">19%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Godean, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">390 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Samsung Galaxy S24 / galaxy s24 ultra 256GB</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>14.999.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">17.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">12%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">640 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Xiaomi 14 Ultra / xiaomi 14 5G Snapdragon 8 Gen 3</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>16.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">19.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">13%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Kalasan, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">210 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/headphone-pink.png" alt="Headphone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Rose Gold / Wireless Bluetooth Wanita</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>2.150.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">2.600.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">17%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">175 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/headphone-beige.png" alt="Headphone Beige" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Premium Beige / Wireless Earphone Stylish</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>1.750.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">2.100.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">17%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.5</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Gamping, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">98 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook Pro" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Macbook Pro M3 Max / Apple Laptop 16" M3 Pro Chip</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>32.000.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">38.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">16%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">5.0</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Ngemplak, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">55 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Tombol Lihat Produk Lainnya -->
+      <div class="flex justify-center pt-2">
+        <a href="halaman1.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white px-8 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-500 hover:text-blue-600 hover:shadow-md">
+          Lihat Produk Lainnya
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </a>
+      </div>
+
+    <section class="space-y-6">
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-2xl font-extrabold md:text-3xl">Trusted Stores</h2>
+        <a href="halaman3.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Semua Toko</a>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <img src="./assets/images/photos/photo-1.png" alt="Store" class="h-44 w-full object-cover">
+          <div class="space-y-3 p-5">
+            <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+              <img src="./assets/images/icons/verify-star.svg" alt="verified" class="h-4 w-4"> Verified
+            </div>
+            <h3 class="text-xl font-bold">Blue Gadget Center</h3>
+            <p class="text-sm text-slate-600">Bandung • 220 produk</p>
+            <a href="halaman3.html" class="inline-flex rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white">Kunjungi Toko</a>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <img src="./assets/images/photos/photo-2.png" alt="Store" class="h-44 w-full object-cover">
+          <div class="space-y-3 p-5">
+            <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+              <img src="./assets/images/icons/verify-star.svg" alt="verified" class="h-4 w-4"> Verified
+            </div>
+            <h3 class="text-xl font-bold">Laptop Corner</h3>
+            <p class="text-sm text-slate-600">Jakarta • 143 produk</p>
+            <a href="halaman3.html" class="inline-flex rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white">Kunjungi Toko</a>
+          </div>
+        </article>
+        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <img src="./assets/images/photos/photo-3.png" alt="Store" class="h-44 w-full object-cover">
+          <div class="space-y-3 p-5">
+            <div class="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+              <img src="./assets/images/icons/verify-star.svg" alt="verified" class="h-4 w-4"> Verified
+            </div>
+            <h3 class="text-xl font-bold">Audio Warehouse</h3>
+            <p class="text-sm text-slate-600">Surabaya • 89 produk</p>
+            <a href="halaman3.html" class="inline-flex rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white">Kunjungi Toko</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#050b1d] to-[#050b1d] text-slate-400 pt-24 pb-10">
+
+  <!-- top glow line -->
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0166F3]/50 to-transparent"></div>
+
+  <!-- soft border top (biar mirip frame di screenshot) -->
+  <div class="absolute top-10 left-0 w-full h-px bg-slate-800/40"></div>
+
+  <!-- blur blobs -->
+  <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[110px] pointer-events-none"></div>
+  <div class="absolute top-1/2 right-0 w-72 h-72 bg-cyan-600/10 rounded-full blur-[90px] pointer-events-none"></div>
+
+  <!-- silhouette / line art -->
+  <div class="absolute bottom-24 left-0 w-full opacity-25 pointer-events-none">
+    <img
+      src="https://spinotek.com/images/bg_footer.png"
+      alt="Background Silhouette"
+      loading="lazy"
+      class="w-full h-auto min-h-[280px] object-cover object-bottom"
+    />
+  </div>
+
+  <!-- middle horizontal line (yang kelihatan di gambar) -->
+  <div class="absolute bottom-24 left-0 w-full h-px bg-slate-800/40"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+
+      <!-- Brand -->
+      <div class="lg:col-span-4 space-y-8">
+        <div class="space-y-6">
+          <a href="/" class="flex items-center gap-2 group" wire:navigate="">
+            <img
+              src="assets/images/logos/logokopmas.png"
+              alt="Kopmasshop"
+              class="h-10 w-auto object-contain brightness-0 invert opacity-90 transition-opacity group-hover:opacity-100"
+            />
+          </a>
+
+          <div class="max-w-sm space-y-4">
+            <h4 class="text-xl font-black text-white leading-tight tracking-tight">
+              Empowering UMKM, <br />
+              <span class="text-[#0166F3]">Growing Sleman.</span>
+            </h4>
+
+            <p class="text-slate-500 text-sm md:text-base leading-relaxed font-medium italic border-l-2 border-[#0166F3]/30 pl-4">
+              "Platform online resmi Koperasi Pemasaran UMKM Kabupaten Sleman untuk memasarkan produk unggulan UMKM lokal secara mudah, aman, dan terpercaya."
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <a
+            href="https://www.instagram.com/spinotekcorp/"
+            target="_blank"
+            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.25)] hover:text-pink-500 hover:text-white"
+          >
+            <i class="fab fa-instagram text-lg"></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/company/spinotek-corp/"
+            target="_blank"
+            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:text-blue-500 hover:text-white"
+          >
+            <i class="fab fa-linkedin-in text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Layanan -->
+      <div class="lg:col-span-2">
+        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
+          Layanan
+          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-[#0166F3] rounded-full"></span>
+        </h4>
+
+        <ul class="space-y-3">
+          <li>
+            <a href="https://spinotek.com/services/web-development" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Web Development
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/services/mobile-apps" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Mobile Applications
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/services/ai-solutions" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              AI &amp; Automation
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/article" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Artikel &amp; Berita
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="lg:col-span-2">
+        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
+          Useful Links
+          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-[#0166F3] rounded-full"></span>
+        </h4>
+
+        <ul class="space-y-3">
+          <li>
+            <a href="https://spinotek.com/about" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Tentang
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/article" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Artikel
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/contact" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Kontak
+            </a>
+          </li>
+          <li>
+            <a href="https://spinotek.com/portfolio" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              Portfolio Proyek
+            </a>
+          </li>
+          <li>
+            <a href="#faq" wire:navigate=""
+               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
+              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
+              FAQ
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Hubungi Kami -->
+      <div class="lg:col-span-4">
+        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
+          Hubungi Kami
+          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-cyan-500 rounded-full"></span>
+        </h4>
+
+        <!-- floating glass card like screenshot -->
+        <div class="bg-slate-900/30 border border-slate-800/50 p-7 rounded-3xl space-y-6 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <div class="flex items-start gap-4 group">
+            <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center text-[#0166F3] shrink-0 transition-all group-hover:bg-[#0166F3] group-hover:text-white">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <span class="text-sm leading-relaxed text-slate-400 group-hover:text-slate-200 transition-colors">
+              Jl. Cangkring Indah 1 No.17, Karangsari, Wedomartani, Kec. Ngemplak, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55584
+            </span>
+          </div>
+
+          <a href="https://wa.me/6282387441716" target="_blank" class="flex items-center gap-4 group transition-all hover:translate-x-1">
+            <div class="w-11 h-11 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0 transition-all group-hover:bg-green-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(34,197,94,0.35)]">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Official WhatsApp</span>
+              <span class="text-base text-slate-200 group-hover:text-green-400 transition-colors tracking-tight">
+                6282164599911
+              </span>
+            </div>
+          </a>
+
+          <a href="mailto:info@kopmassleman.com" class="flex items-center gap-4 group transition-all hover:translate-x-1">
+            <div class="w-11 h-11 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0 transition-all group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Email Inquiry</span>
+              <span class="text-base text-slate-200 group-hover:text-indigo-400 transition-colors tracking-tight">
+                info@spinotek.com
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom row (small, center baseline) -->
+    <div class="pt-6 border-t border-slate-900/80 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="text-slate-600 text-xs md:text-sm font-bold tracking-wide">
+        © 2026 <span class="text-slate-400">Kopmas Shop</span>. All rights reserved.
+      </p>
+
+      <div class="flex gap-6">
+        <a href="#!" class="text-[10px] md:text-xs font-black tracking-widest text-slate-600 hover:text-white transition-colors">
+          PRIVACY POLICY
+        </a>
+        <a href="#!" class="text-[10px] md:text-xs font-black tracking-widest text-slate-600 hover:text-white transition-colors">
+          TERMS OF SERVICE
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<script src="./nav.js" defer></script>
+</body>
+</html>
+</html>
+
+
