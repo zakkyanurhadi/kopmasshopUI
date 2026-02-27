@@ -73,6 +73,11 @@
     <div class="container mx-auto flex flex-col gap-4 lg:gap-6 px-6">
       <!-- Main Navbar Row -->
       <div class="navbar-main flex items-center justify-between gap-3 lg:gap-6 w-full">
+        <!-- Mobile Menu Toggle (Left Side) -->
+        <button data-mobile-menu-toggle type="button" class="md:hidden flex size-10 rounded-lg glass-btn items-center justify-center shrink-0">
+          <i class="fas fa-bars text-slate-600 text-lg"></i>
+        </button>
+
         <!-- Logo -->
         <a href="index.html" class="shrink-0 hidden md:flex items-center">
           <img src="./assets/images/logos/logokopmas.png" alt="Kopmas Shop" class="logo h-10 lg:h-12 w-auto" />
@@ -94,20 +99,20 @@
           </button>
           
           <!-- Cart -->
-          <a href="halaman4.html" class="hidden lg:flex size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
-            <i class="fas fa-shopping-cart text-slate-600"></i>
+          <a href="halaman4.html" class="flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
+            <i class="fas fa-shopping-cart text-slate-600 text-base md:text-lg"></i>
           </a>
 
-          <!-- Sign In Button -->
+          <!-- Profile Icon (Mobile) / Sign In Button (Tablet+) -->
+          <div class="md:hidden flex size-10 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition cursor-pointer">
+            <i class="fas fa-user text-slate-600 text-base"></i>
+          </div>
+
+          <!-- Sign In Button Desktop -->
           <a href="#" class="hidden md:flex gap-2 items-center justify-center px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg md:rounded-xl text-white text-xs md:text-sm font-semibold transition">
             <i class="fas fa-user text-sm"></i>
             <span class="hidden lg:inline">Masuk</span>
           </a>
-
-          <!-- Mobile Menu Toggle -->
-          <button data-mobile-menu-toggle type="button" class="md:hidden flex size-10 rounded-lg glass-btn items-center justify-center">
-            <i class="fas fa-bars text-slate-600 text-lg"></i>
-          </button>
         </div>
       </div>
 
