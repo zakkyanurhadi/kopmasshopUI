@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Product Edit - Kopmas Shop</title>
+  <title>Seller Withdrawal List - Kopmas Shop</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,21 +35,26 @@
   </style>
 </head>
 <body class="bg-custom-background text-custom-black">
-  <div id="admin-app" data-page-title="Product Edit" data-role="admin">
+  <div id="admin-app" data-page-title="Withdrawal List" data-role="seller">
 
         <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
-      <h2 class="font-bold text-xl">Edit Product</h2>
-      <form class="flex flex-col gap-4">
-        <div class="flex flex-col gap-2">
-          <label class="font-semibold text-custom-grey">Product Name</label>
-          <input class="h-14 w-full rounded-2xl border border-custom-stroke px-5 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" value="iPhone 15 Pro">
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="font-semibold text-custom-grey">Price</label>
-          <input class="h-14 w-full rounded-2xl border border-custom-stroke px-5 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" value="19999000">
-        </div>
-        <button type="button" class="flex h-14 w-fit items-center rounded-full bg-custom-blue px-8 font-semibold text-white hover:ring-2 ring-custom-blue transition-300">Update Product</button>
-      </form>
+      <div class="flex items-center justify-between">
+        <h2 class="font-bold text-xl">Withdrawal List</h2>
+        <a href="withdrawal-create.html" class="flex h-12 items-center rounded-full bg-custom-blue px-6 font-semibold text-white hover:ring-2 ring-custom-blue transition-300">+ New Withdrawal</a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left">
+          <thead><tr class="border-b border-custom-stroke">
+            <th class="py-3 px-4 font-semibold text-custom-grey">No</th>
+            <th class="py-3 px-4 font-semibold text-custom-grey">Amount</th>
+            <th class="py-3 px-4 font-semibold text-custom-grey">Status</th>
+            <th class="py-3 px-4 font-semibold text-custom-grey">Action</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-custom-stroke"><td class="py-3 px-4">1</td><td class="py-3 px-4 font-semibold">Rp 5.000.000</td><td class="py-3 px-4"><span class="rounded-full bg-yellow-100 px-3 py-1 text-sm font-semibold text-yellow-700">Pending</span></td><td class="py-3 px-4"><a href="withdrawal-detail.html" class="font-semibold text-custom-blue hover:underline">Detail</a></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>

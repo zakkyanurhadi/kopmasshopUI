@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   if (!headerHost && !footerHost) return;
 
   try {
-    const response = await fetch(window.location.pathname.includes('/admin/') ? '../index.html' : 'index.html');
+    var isSubFolder = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/seller/');
+    const response = await fetch(isSubFolder ? '../index.html' : 'index.html');
     const html = await response.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
@@ -54,8 +55,8 @@ function remapPrototypeLinks() {
 }
 
 function adjustRelativePaths() {
-  const isAdminPage = window.location.pathname.includes('/admin/');
-  if (!isAdminPage) return;
+  var isSubFolder = window.location.pathname.includes('/admin/') || window.location.pathname.includes('/seller/');
+  if (!isSubFolder) return;
 
   document.querySelectorAll('[data-shared-header] a, [data-shared-footer] a, [data-shared-header] img, [data-shared-footer] img').forEach(function (el) {
     const attr = el.tagName.toLowerCase() === 'img' ? 'src' : 'href';

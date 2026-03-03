@@ -1,1 +1,54 @@
-<!doctype html><html lang="id"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Admin Category Edit</title><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>body{font-family:'Poppins',ui-sans-serif,system-ui}#navbar-wrapper{background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.2)}.navbar-secondary{max-height:50px;overflow:hidden;opacity:1}.navbar-secondary.sec-hidden{max-height:0;opacity:0;padding-bottom:0!important;margin-bottom:-8px}</style></head><body class="bg-slate-50"><div data-shared-header></div><div class="h-32 lg:h-40"></div><main class="container mx-auto px-6 py-8"><h1 class="text-3xl font-extrabold">Category Edit</h1><form class="mt-5 rounded-2xl border bg-white p-5"><input class="h-11 w-full rounded-xl border px-4" value="Elektronik"><button class="mt-4 rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white">Update</button></form></main><div data-shared-footer></div><script src="../layout-shared.js" defer></script></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Category Edit - Kopmas Shop</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Lexend Deca', ui-sans-serif, system-ui; margin: 0; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .transition-300 { transition: all 300ms ease; }
+    .bg-custom-background { background-color: #f3f5f9; }
+    .bg-custom-blue { background-color: #1053d5; }
+    .bg-custom-blue-10 { background-color: rgba(16, 83, 213, 0.1); }
+    .bg-custom-black { background-color: #292d32; }
+    .bg-custom-icon-background { background-color: #f3f3f3; }
+    .bg-custom-stroke { background-color: #e8e8e8; }
+    .text-custom-blue { color: #1053d5; }
+    .text-custom-grey { color: #6a7686; }
+    .text-custom-black { color: #292d32; }
+    .border-custom-stroke { border-color: #e8e8e8; }
+    .ring-custom-blue { --tw-ring-color: #1053d5; }
+    .sidebar-item.active { background-color: rgba(16, 83, 213, 0.1); }
+    .sidebar-item.active .sidebar-label { color: #1053d5; }
+    .sidebar-item.active .icon-default { opacity: 0; }
+    .sidebar-item.active .icon-active { opacity: 1; }
+    .sidebar-item.active .active-bar { display: flex; }
+    .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
+    .branch-line:last-child { height: 55%; }
+    .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+  </style>
+</head>
+<body class="bg-custom-background text-custom-black">
+  <div id="admin-app" data-page-title="Category Edit" data-role="admin">
+
+        <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
+      <h2 class="font-bold text-xl">Edit Category</h2>
+      <form class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <label class="font-semibold text-custom-grey">Category Name</label>
+          <input class="h-14 w-full rounded-2xl border border-custom-stroke px-5 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" value="Elektronik">
+        </div>
+        <button type="button" class="flex h-14 w-fit items-center rounded-full bg-custom-blue px-8 font-semibold text-white hover:ring-2 ring-custom-blue transition-300">Update Category</button>
+      </form>
+    </div>
+
+  </div>
+  <script src="../admin-layout.js" defer></script>
+</body>
+</html>
