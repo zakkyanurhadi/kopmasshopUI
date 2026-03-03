@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kopmas Shop - Home Template</title>
+  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
@@ -33,8 +34,18 @@
       height: 32px;
     }
     
-    #navbar-wrapper.scrolled .navbar-secondary {
-      display: none;
+    .navbar-secondary {
+      max-height: 50px;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.35s ease, padding 0.35s ease;
+      opacity: 1;
+    }
+    
+    .navbar-secondary.sec-hidden {
+      max-height: 0;
+      opacity: 0;
+      padding-bottom: 0 !important;
+      margin-bottom: -8px;
     }
     
     .navbar-main {
@@ -122,10 +133,6 @@
           <i class="fas fa-home text-base"></i>
           <span class="text-sm font-semibold">Beranda</span>
         </a>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-bolt text-base"></i>
-          <span class="text-sm font-semibold">Flash Sale</span>
-        </button>
         <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
           <i class="fas fa-box text-base"></i>
           <span class="text-sm font-semibold">Lacak Pesanan</span>
@@ -447,6 +454,486 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.8</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Pakem, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">312 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>19.500.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">23.000.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">15%</span>
+            </div>
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.7</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Berbah, Sleman</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">289 terjual</span></div>
+          </div>
+        </a>
+
+        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+          <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
+          <div class="p-2.5 space-y-1">
+            <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
+            <div class="flex items-baseline gap-1 flex-nowrap overflow-hidden">
+              <p class="text-sm font-bold shrink-0" style="color:#155dfc">
+                <span class="text-[10px]">Rp</span>450.000
+              </p>
+              <span class="text-[10px] text-slate-400 line-through truncate">560.000</span>
+              <span class="text-[9px] font-bold px-1 rounded shrink-0" style="background:#ffe9e9; color:#ee4d2d">20%</span>
+            </div>
+
+            <div class="flex items-center gap-1"><span class="text-yellow-400 text-[10px]">★</span><span class="text-[10px] text-slate-500">4.6</span></div>
+            <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
+          </div>
+        </a>
 
       </div>
 
@@ -501,6 +988,60 @@
     </section>
   </main>
 
+<!-- Floating Widget -->
+<div class="fixed bottom-8 right-8 z-[100] flex flex-col items-end group font-sans">
+
+  <!-- Tooltip -->
+  <div
+    class="mb-4 px-4 py-2 bg-slate-900/90 text-white text-[10px] font-black uppercase tracking-widest rounded-xl shadow-2xl
+           opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300
+           pointer-events-none flex items-center gap-2 border border-white/10 backdrop-blur-md"
+  >
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+    </span>
+    Chat Admin Kopmasshop
+  </div>
+
+  <!-- WhatsApp Button -->
+  <a
+    href="https://wa.me/62XXXXXXXXXXX?text=Halo%20Kopmasshop%2C%20saya%20mau%20tanya%20produk%20dan%20stoknya."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat Kopmasshop via WhatsApp"
+    class="relative flex items-center justify-center w-16 h-16 transition-all duration-500 hover:scale-110 active:scale-95"
+  >
+    <!-- Ping ring -->
+    <div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20 group-hover:opacity-40 transition-opacity"></div>
+
+    <!-- Main button -->
+    <div
+      class="relative w-16 h-16 bg-gradient-to-tr from-green-700 to-emerald-400 rounded-[1.5rem]
+             shadow-[0_20px_50px_rgba(16,185,129,0.45)] flex items-center justify-center overflow-hidden
+             transition-all duration-500 group-hover:rounded-full group-hover:shadow-[0_20px_60px_rgba(16,185,129,0.65)]
+             border border-white/20"
+    >
+      <!-- Shine overlay -->
+      <div class="absolute inset-0 bg-gradient-to-tr from-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+      <!-- Icon -->
+      <i class="fab fa-whatsapp text-white text-3xl transition-transform duration-700 group-hover:rotate-[360deg]"></i>
+    </div>
+
+    <!-- Badge -->
+    <div class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 border-2 border-white rounded-full flex items-center justify-center animate-bounce group-hover:animate-none shadow-lg">
+      <span class="text-[8px] font-black text-white italic">!</span>
+    </div>
+  </a>
+
+  <!-- Optional: mini label bawah (bisa dihapus) -->
+  <div class="mt-3 text-[10px] text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    Support cepat via WhatsApp
+  </div>
+
+</div>
+<!-- ===== End Kopmasshop Widget ===== -->
   <footer class="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#050b1d] to-[#050b1d] text-slate-400 pt-24 pb-10">
 
   <!-- top glow line -->
@@ -554,7 +1095,7 @@
 
         <div class="flex gap-3">
           <a
-            href="https://www.instagram.com/spinotekcorp/"
+            href="https://www.instagram.com/kopmasshop/"
             target="_blank"
             class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.25)] hover:text-pink-500 hover:text-white"
           >
@@ -562,12 +1103,12 @@
           </a>
 
           <a
-            href="https://www.linkedin.com/company/spinotek-corp/"
+            href="https://www.facebook.com/kopmasshop"
             target="_blank"
-            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:text-blue-500 hover:text-white"
+            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-blue-600 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:text-blue-600 hover:text-white"
           >
-            <i class="fab fa-linkedin-in text-lg"></i>
-          </a>
+            <i class="fab fa-facebook-f text-lg"></i>
+          </a>  
         </div>
       </div>
 
@@ -693,7 +1234,7 @@
             <div class="flex flex-col">
               <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Email Inquiry</span>
               <span class="text-base text-slate-200 group-hover:text-indigo-400 transition-colors tracking-tight">
-                info@spinotek.com
+                info@kopmasshop.com
               </span>
             </div>
           </a>
@@ -728,7 +1269,9 @@
   const mobileMenu = document.querySelector('[data-mobile-menu]');
   let lastScroll = 0;
 
-  // Scroll event untuk trigger shrink
+  const navSecondary = document.querySelector('.navbar-secondary');
+
+  // Scroll event: shrink navbar + show/hide secondary nav
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
     
@@ -736,6 +1279,15 @@
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+
+    // Secondary nav: hide on scroll down, show on scroll up
+    if (navSecondary) {
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        navSecondary.classList.add('sec-hidden');
+      } else {
+        navSecondary.classList.remove('sec-hidden');
+      }
     }
     
     lastScroll = currentScroll;
