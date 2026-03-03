@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kopmas Shop - Store Detail</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+    #navbar-wrapper { background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.2); transition: all .3s ease; }
+    #navbar-wrapper.scrolled { background: rgba(255,255,255,.85); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+    .navbar-secondary { max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .35s ease, padding .35s ease; opacity: 1; }
+    .navbar-secondary.sec-hidden { max-height: 0; opacity: 0; padding-bottom: 0 !important; margin-bottom: -8px; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div data-shared-header></div>
+  <div class="h-32 lg:h-40"></div>
+  <main class="container mx-auto px-6 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="mb-6 flex items-center gap-2 text-sm font-medium text-slate-500">
+      <a href="index.html" class="hover:text-blue-600 transition-colors">Home</a>
+      <i class="fas fa-chevron-right text-[10px] text-slate-300"></i>
+      <span class="text-slate-900 font-semibold">Blue Gadget Center</span>
+    </nav>
+
+    <!-- Store Banner -->
+    <section class="rounded-3xl border border-slate-200 bg-white overflow-hidden">
+      <!-- Cover -->
+      <div class="h-40 md:h-52 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 relative">
+        <div class="absolute inset-0 bg-[url('./assets/images/backgrounds/login-slide-2.webp')] bg-cover bg-center opacity-20"></div>
+      </div>
+      <!-- Store Info -->
+      <div class="p-5 md:p-8 -mt-12 relative">
+        <div class="flex flex-col md:flex-row md:items-end gap-4">
+          <img src="./assets/images/photos/photo-1.png" alt="Store" class="h-24 w-24 rounded-2xl object-cover ring-4 ring-white shadow-lg">
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h1 class="text-2xl font-extrabold">Blue Gadget Center</h1>
+              <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-600"><i class="fas fa-check-circle"></i> Verified</span>
+            </div>
+            <p class="text-sm text-slate-500 mt-1"><i class="fas fa-map-marker-alt text-blue-500 mr-1"></i>Ngaglik, Sleman, Yogyakarta</p>
+            <p class="text-sm text-slate-500 mt-0.5"><i class="fas fa-clock text-slate-400 mr-1"></i>Online 2 jam lalu</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="h-10 rounded-xl border border-blue-600 px-5 text-sm font-bold text-blue-600 hover:bg-blue-50 transition"><i class="fas fa-plus mr-1"></i> Ikuti</button>
+            <button class="h-10 rounded-xl border border-slate-300 px-5 text-sm font-bold text-slate-600 hover:bg-slate-50 transition"><i class="fas fa-comment-dots mr-1"></i> Chat</button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="rounded-xl bg-slate-50 p-4 text-center">
+            <p class="text-2xl font-extrabold text-blue-700">4.9</p>
+            <p class="text-xs font-semibold text-slate-500 mt-1"><i class="fas fa-star text-amber-400 mr-0.5"></i> Rating</p>
+          </div>
+          <div class="rounded-xl bg-slate-50 p-4 text-center">
+            <p class="text-2xl font-extrabold text-blue-700">1.2rb</p>
+            <p class="text-xs font-semibold text-slate-500 mt-1">Pengikut</p>
+          </div>
+          <div class="rounded-xl bg-slate-50 p-4 text-center">
+            <p class="text-2xl font-extrabold text-blue-700">56</p>
+            <p class="text-xs font-semibold text-slate-500 mt-1">Produk</p>
+          </div>
+          <div class="rounded-xl bg-slate-50 p-4 text-center">
+            <p class="text-2xl font-extrabold text-blue-700">99%</p>
+            <p class="text-xs font-semibold text-slate-500 mt-1">Chat dibalas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <div class="mt-8 flex items-center gap-3 overflow-x-auto pb-1">
+      <button class="shrink-0 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-bold text-white">Semua Produk</button>
+      <button class="shrink-0 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50 transition">Terlaris</button>
+      <button class="shrink-0 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50 transition">Terbaru</button>
+      <button class="shrink-0 rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50 transition">Harga Terendah</button>
+    </div>
+
+    <!-- Store Products -->
+    <section class="mt-6">
+      <div class="grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Macbook Pro M2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 18.500.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.8</span><span class="text-slate-400">| 1.2rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/airpod.png" alt="Airpods" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Airpods Pro Gen 2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 3.499.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.7</span><span class="text-slate-400">| 890 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/iphone.png" alt="iPhone" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">iPhone 15 Pro 256GB</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 19.999.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.9</span><span class="text-slate-400">| 5.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/headphone-gold.png" alt="Headphone" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Headphone Gold Pro</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 2.750.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.6</span><span class="text-slate-400">| 567 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Samsung S Ultra</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 21.500.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.8</span><span class="text-slate-400">| 3.4rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Xiaomi Ultra 14</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 10.200.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.5</span><span class="text-slate-400">| 2.3rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/macbook-side.png" alt="Macbook Side" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Macbook Air M2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 14.700.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.7</span><span class="text-slate-400">| 980 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/headphone-beige.png" alt="Headphone" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Headphone Beige</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 1.890.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.4</span><span class="text-slate-400">| 234 terjual</span></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+  <div data-shared-footer></div>
+  <script src="./layout-shared.js" defer></script>
+</body>
+</html>

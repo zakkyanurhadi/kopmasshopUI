@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var mobileCard = function (item) {
       return (
-        '<a href="halaman1.html" class="flex h-[150px] w-[140px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
+        '<a href="halaman_kategori.html" class="flex h-[150px] w-[140px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
           '<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">' +
             '<img src="' + item.image + '" alt="' + item.name + '" class="h-11 w-11 object-contain">' +
           '</div>' +
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var desktopCard = function (item) {
       return (
-        '<a href="halaman1.html" class="flex h-[150px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
+        '<a href="halaman_kategori.html" class="flex h-[150px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
           '<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">' +
             '<img src="' + item.image + '" alt="' + item.name + '" class="h-11 w-11 object-contain">' +
           '</div>' +

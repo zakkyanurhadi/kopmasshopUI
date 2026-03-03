@@ -4,553 +4,185 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kopmas Shop - Browse Category</title>
-
-  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Poppins', ui-sans-serif, system-ui; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    
-    /* Glassmorphism Navbar */
-    #navbar-wrapper {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-    
-    #navbar-wrapper.scrolled {
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    }
-    
-    #navbar-wrapper.scrolled .navbar-main {
-      padding: 0.75rem 0;
-    }
-    
-    #navbar-wrapper.scrolled .navbar-main .logo {
-      height: 32px;
-    }
-    
-    #navbar-wrapper.scrolled .navbar-secondary {
-      display: none;
-    }
-    
-    .navbar-main {
-      transition: padding 0.3s ease;
-      gap: 1.5rem;
-    }
-    
-    .logo {
-      transition: height 0.3s ease;
-    }
-    
-    .glass-btn {
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-    
-    .glass-btn:hover {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-    
-    .search-input:focus-within {
-      box-shadow: 0 0 0 3px rgba(16, 83, 213, 0.1);
-    }
+    #navbar-wrapper { background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.2); transition: all .3s ease; }
+    #navbar-wrapper.scrolled { background: rgba(255,255,255,.85); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+    .navbar-secondary { max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .35s ease, padding .35s ease; opacity: 1; }
+    .navbar-secondary.sec-hidden { max-height: 0; opacity: 0; padding-bottom: 0 !important; margin-bottom: -8px; }
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-slate-50 text-slate-900">
-    
-  <!-- Modern Glassmorphism Navbar -->
-  <header id="navbar-wrapper" class="fixed top-0 w-full border-b border-slate-300/20 py-4 lg:py-6 z-40">
-    <div class="container mx-auto flex flex-col gap-4 lg:gap-6 px-6">
-      <!-- Main Navbar Row -->
-      <div class="navbar-main flex items-center justify-between gap-3 lg:gap-6 w-full">
-        <!-- Mobile Menu Toggle (Left Side) -->
-        <button data-mobile-menu-toggle type="button" class="md:hidden flex size-10 rounded-lg glass-btn items-center justify-center shrink-0">
-          <i class="fas fa-bars text-slate-600 text-lg"></i>
-        </button>
-
-        <!-- Logo -->
-        <a href="index.html" class="shrink-0 hidden md:flex items-center">
-          <img src="./assets/images/logos/logokopmas.png" alt="Kopmas Shop" class="logo h-10 lg:h-12 w-auto" />
-        </a>
-
-        <!-- Search Bar -->
-        <form class="flex flex-1 max-w-2xl md:max-w-2xl">
-          <label class="search-input w-full flex items-center h-10 lg:h-12 rounded-2xl px-3 md:px-4 lg:px-6 gap-2 glass-btn">
-            <i class="fas fa-search text-slate-500 text-sm md:text-base"></i>
-            <input type="text" class="appearance-none w-full placeholder:text-slate-400 text-xs md:text-sm font-medium focus:outline-none bg-transparent" placeholder="Cari..." />
-          </label>
-        </form>
-
-        <!-- Right Icons & Actions -->
-        <div class="flex items-center gap-2 lg:gap-4 shrink-0">
-          <!-- Notification -->
-          <button type="button" class="hidden lg:flex size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
-            <i class="fas fa-bell text-slate-600"></i>
-          </button>
-          
-          <!-- Cart -->
-          <a href="halaman4.html" class="flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
-            <i class="fas fa-shopping-cart text-slate-600 text-base md:text-lg"></i>
-          </a>
-
-          <!-- Profile Icon (Mobile) / Sign In Button (Tablet+) -->
-          <div class="md:hidden flex size-10 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition cursor-pointer">
-            <i class="fas fa-user text-slate-600 text-base"></i>
-          </div>
-
-          <!-- Sign In Button Desktop -->
-          <a href="#" class="hidden md:flex gap-2 items-center justify-center px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg md:rounded-xl text-white text-xs md:text-sm font-semibold transition">
-            <i class="fas fa-user text-sm"></i>
-            <span class="hidden lg:inline">Masuk</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Secondary Nav Links -->
-      <nav class="navbar-secondary hidden lg:flex items-center gap-6 flex-wrap pb-2">
-        <a href="index.html" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-home text-base"></i>
-          <span class="text-sm font-semibold">Beranda</span>
-        </a>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-bolt text-base"></i>
-          <span class="text-sm font-semibold">Flash Sale</span>
-        </button>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-box text-base"></i>
-          <span class="text-sm font-semibold">Lacak Pesanan</span>
-        </button>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-undo text-base"></i>
-          <span class="text-sm font-semibold">Retur & Refund</span>
-        </button>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-question-circle text-base"></i>
-          <span class="text-sm font-semibold">Tentang Kami</span>
-        </button>
-        <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
-          <i class="fas fa-headset text-base"></i>
-          <span class="text-sm font-semibold">Layanan Pelanggan</span>
-        </button>
-      </nav>
-
-      <!-- Mobile Menu -->
-      <nav data-mobile-menu class="hidden md:hidden flex-col gap-2 pt-2 pb-4 border-t border-slate-200/30">
-        <a href="index.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-home"></i>
-          <span class="text-sm font-medium">Beranda</span>
-        </a>
-        <a href="halaman1.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-list"></i>
-          <span class="text-sm font-medium">Kategori</span>
-        </a>
-        <a href="halaman2.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-bag-shopping"></i>
-          <span class="text-sm font-medium">Produk</span>
-        </a>
-        <a href="halaman3.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-star"></i>
-          <span class="text-sm font-medium">Showcase</span>
-        </a>
-        <a href="halaman4.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="text-sm font-medium">Keranjang</span>
-        </a>
-        <a href="halaman5.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
-          <i class="fas fa-credit-card"></i>
-          <span class="text-sm font-medium">Checkout</span>
-        </a>
-        <div class="pt-2 mt-2 border-t border-slate-200/30">
-          <a href="#contact" class="flex items-center justify-center gap-2 w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-semibold transition">
-            <i class="fas fa-phone"></i>
-            Kontak Kami
-          </a>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Spacer untuk navbar fixed -->
+  <div data-shared-header></div>
   <div class="h-32 lg:h-40"></div>
+  <main class="container mx-auto px-6 py-10">
 
+    <!-- Breadcrumb -->
+    <nav class="mb-6 flex items-center gap-2 text-sm font-medium text-slate-500">
+      <a href="index.html" class="hover:text-blue-600 transition-colors">Home</a>
+      <i class="fas fa-chevron-right text-[10px] text-slate-300"></i>
+      <span class="text-slate-900 font-semibold">Kategori</span>
+    </nav>
 
-  <main class="container mx-auto px-6 mb-20 space-y-10">
-    <section class="rounded-3xl border border-slate-200 bg-white p-6 md:p-8">
-      <div class="mb-4 flex flex-wrap items-center gap-2 text-sm font-medium text-slate-500">
-        <a href="index.html" class="hover:text-blue-700">Home</a>
-        <span>/</span>
-        <span class="text-blue-700">Browse Category</span>
+    <!-- Hero Banner -->
+    <section class="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-extrabold md:text-3xl">Jelajahi Kategori</h1>
+          <p class="mt-2 text-sm text-slate-500 max-w-lg">Temukan ribuan produk UMKM unggulan dari berbagai kategori terpercaya di Kopmas Shop.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="flex items-center h-11 rounded-xl border border-slate-200 px-4 gap-2 bg-white min-w-[220px]">
+            <i class="fas fa-search text-slate-400 text-sm"></i>
+            <input type="text" placeholder="Cari kategori..." class="w-full text-sm outline-none bg-transparent">
+          </div>
+        </div>
       </div>
-      <h1 class="text-2xl font-extrabold md:text-3xl">Explore Kategori Gadget</h1>
-      <p class="mt-2 text-sm text-slate-600">Template statis dari komponen `BrowseCategory` dan `ProductCard`.</p>
-      <div class="mt-5 flex flex-wrap gap-2">
-        <button class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Just Released</button>
-        <button class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">Smartphone</button>
-        <button class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">Laptop</button>
-        <button class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">Audio</button>
-        <button class="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">Aksesori</button>
+    </section>
+
+    <!-- Category Cards -->
+    <section class="mb-10">
+      <h2 class="text-xl font-extrabold mb-5">Semua Kategori</h2>
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-3 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fas fa-mobile-alt text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Handphone</p>
+          <p class="text-xs text-slate-500 mt-1">230 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 mb-3 group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fas fa-laptop text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Komputer & Laptop</p>
+          <p class="text-xs text-slate-500 mt-1">98 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 mb-3 group-hover:bg-amber-600 group-hover:text-white transition"><i class="fas fa-headphones text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Audio</p>
+          <p class="text-xs text-slate-500 mt-1">66 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 mb-3 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fas fa-bolt text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Elektronik</p>
+          <p class="text-xs text-slate-500 mt-1">120 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-pink-50 text-pink-600 mb-3 group-hover:bg-pink-600 group-hover:text-white transition"><i class="fas fa-tshirt text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Fashion</p>
+          <p class="text-xs text-slate-500 mt-1">345 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 mb-3 group-hover:bg-cyan-600 group-hover:text-white transition"><i class="fas fa-utensils text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Makanan & Minuman</p>
+          <p class="text-xs text-slate-500 mt-1">189 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 mb-3 group-hover:bg-orange-600 group-hover:text-white transition"><i class="fas fa-couch text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Rumah Tangga</p>
+          <p class="text-xs text-slate-500 mt-1">78 produk</p>
+        </a>
+        <a href="halaman_kategori.html" class="group rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-lg hover:border-blue-200 transition-all">
+          <div class="flex size-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 mb-3 group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fas fa-gamepad text-xl"></i></div>
+          <p class="font-bold group-hover:text-blue-600 transition">Gaming</p>
+          <p class="text-xs text-slate-500 mt-1">54 produk</p>
+        </a>
       </div>
     </section>
 
-    <section class="space-y-6">
-      <h2 class="text-2xl font-extrabold">Produk Populer</h2>
-      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Laptop</span>
-            <h3 class="truncate text-lg font-bold">Macbook Pro M2</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 18.500.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/iphone-2.png" alt="iPhone" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Smartphone</span>
-            <h3 class="truncate text-lg font-bold">iPhone 15 Pro Max</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 23.900.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/airpod.png" alt="Airpods" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Audio</span>
-            <h3 class="truncate text-lg font-bold">Airpods Gen Z</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 1.850.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/headphone-gold.png" alt="Headphone" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Audio</span>
-            <h3 class="truncate text-lg font-bold">Headphone Gold Pro</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 2.750.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Smartphone</span>
-            <h3 class="truncate text-lg font-bold">Xiaomi Ultra 14</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 10.200.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Smartphone</span>
-            <h3 class="truncate text-lg font-bold">Samsung S Ultra</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 21.500.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/macbook-side.png" alt="Macbook Side" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Laptop</span>
-            <h3 class="truncate text-lg font-bold">Macbook Air Side</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 14.700.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
-        <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <img src="./assets/images/thumbnails/iphone.png" alt="iphone" class="h-44 w-full bg-slate-100 object-contain p-4">
-          <div class="space-y-3 p-4">
-            <span class="inline-flex rounded-lg bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700">Smartphone</span>
-            <h3 class="truncate text-lg font-bold">iPhone 14 Pro</h3>
-            <p class="text-lg font-extrabold text-blue-700">Rp 17.800.000</p>
-            <a href="halaman2.html" class="block rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-semibold text-white">Detail Produk</a>
-          </div>
-        </article>
+    <!-- Popular Products in Category -->
+    <section>
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-xl font-extrabold">Produk Populer</h2>
+        <div class="flex items-center gap-2">
+          <button class="rounded-xl bg-slate-900 px-4 py-2 text-xs font-bold text-white">Terbaru</button>
+          <button class="rounded-xl border border-slate-200 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">Terlaris</button>
+          <button class="rounded-xl border border-slate-200 px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">Harga</button>
+        </div>
       </div>
-
-      <div class="text-center">
-        <button class="rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white">Load More</button>
+      <div class="grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"><span class="absolute top-3 left-3 rounded-lg bg-red-500 px-2 py-0.5 text-[10px] font-bold text-white">-12%</span></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Laptop</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Macbook Pro M2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 18.500.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.8</span><span class="text-slate-400">| 1.2rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/iphone.png" alt="iPhone" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Smartphone</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">iPhone 15 Pro Max</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 23.900.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.9</span><span class="text-slate-400">| 5.1rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/airpod.png" alt="Airpods" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Audio</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Airpods Pro Gen 2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 3.499.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.7</span><span class="text-slate-400">| 890 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/headphone-gold.png" alt="Headphone" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Audio</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Headphone Gold Pro</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 2.750.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.6</span><span class="text-slate-400">| 567 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"><span class="absolute top-3 left-3 rounded-lg bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white">Best Seller</span></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Smartphone</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Xiaomi Ultra 14</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 10.200.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.5</span><span class="text-slate-400">| 2.3rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Smartphone</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Samsung S Ultra</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 21.500.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.8</span><span class="text-slate-400">| 3.4rb terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/macbook-side.png" alt="Macbook Air" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Laptop</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Macbook Air M2</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 14.700.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.7</span><span class="text-slate-400">| 980 terjual</span></div>
+          </div>
+        </a>
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
+          <div class="relative bg-slate-50 p-4"><img src="./assets/images/thumbnails/iphone-2.png" alt="iPhone 14" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="p-4 space-y-1.5">
+            <span class="inline-block rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-blue-700">Smartphone</span>
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">iPhone 14 Pro</p>
+            <p class="text-sm font-extrabold text-blue-700">Rp 17.800.000</p>
+            <div class="flex items-center gap-2 text-xs"><span class="flex items-center gap-1 text-amber-400"><i class="fas fa-star"></i> 4.9</span><span class="text-slate-400">| 4.5rb terjual</span></div>
+          </div>
+        </a>
+      </div>
+      <div class="mt-8 text-center">
+        <button class="rounded-xl bg-slate-900 px-8 py-3 text-sm font-bold text-white hover:bg-slate-800 transition">Muat Lebih Banyak</button>
       </div>
     </section>
+
   </main>
-
-  <footer class="relative overflow-hidden bg-gradient-to-b from-slate-950 via-[#050b1d] to-[#050b1d] text-slate-400 pt-24 pb-10">
-
-  <!-- top glow line -->
-  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#0166F3]/50 to-transparent"></div>
-
-  <!-- soft border top (biar mirip frame di screenshot) -->
-  <div class="absolute top-10 left-0 w-full h-px bg-slate-800/40"></div>
-
-  <!-- blur blobs -->
-  <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[110px] pointer-events-none"></div>
-  <div class="absolute top-1/2 right-0 w-72 h-72 bg-cyan-600/10 rounded-full blur-[90px] pointer-events-none"></div>
-
-  <!-- silhouette / line art -->
-  <div class="absolute bottom-24 left-0 w-full opacity-25 pointer-events-none">
-    <img
-      src="https://spinotek.com/images/bg_footer.png"
-      alt="Background Silhouette"
-      loading="lazy"
-      class="w-full h-auto min-h-[280px] object-cover object-bottom"
-    />
-  </div>
-
-  <!-- middle horizontal line (yang kelihatan di gambar) -->
-  <div class="absolute bottom-24 left-0 w-full h-px bg-slate-800/40"></div>
-
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
-
-      <!-- Brand -->
-      <div class="lg:col-span-4 space-y-8">
-        <div class="space-y-6">
-          <a href="/" class="flex items-center gap-2 group" wire:navigate="">
-            <img
-              src="assets/images/logos/logokopmas.png"
-              alt="Kopmasshop"
-              class="h-10 w-auto object-contain brightness-0 invert opacity-90 transition-opacity group-hover:opacity-100"
-            />
-          </a>
-
-          <div class="max-w-sm space-y-4">
-            <h4 class="text-xl font-black text-white leading-tight tracking-tight">
-              Empowering UMKM, <br />
-              <span class="text-[#0166F3]">Growing Sleman.</span>
-            </h4>
-
-            <p class="text-slate-500 text-sm md:text-base leading-relaxed font-medium italic border-l-2 border-[#0166F3]/30 pl-4">
-              "Platform online resmi Koperasi Pemasaran UMKM Kabupaten Sleman untuk memasarkan produk unggulan UMKM lokal secara mudah, aman, dan terpercaya."
-            </p>
-          </div>
-        </div>
-
-        <div class="flex gap-3">
-          <a
-            href="https://www.instagram.com/spinotekcorp/"
-            target="_blank"
-            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.25)] hover:text-pink-500 hover:text-white"
-          >
-            <i class="fab fa-instagram text-lg"></i>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/company/spinotek-corp/"
-            target="_blank"
-            class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:text-blue-500 hover:text-white"
-          >
-            <i class="fab fa-linkedin-in text-lg"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Layanan -->
-      <div class="lg:col-span-2">
-        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
-          Layanan
-          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-[#0166F3] rounded-full"></span>
-        </h4>
-
-        <ul class="space-y-3">
-          <li>
-            <a href="https://spinotek.com/services/web-development" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Web Development
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/services/mobile-apps" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Mobile Applications
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/services/ai-solutions" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              AI &amp; Automation
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/article" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Artikel &amp; Berita
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Useful Links -->
-      <div class="lg:col-span-2">
-        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
-          Useful Links
-          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-[#0166F3] rounded-full"></span>
-        </h4>
-
-        <ul class="space-y-3">
-          <li>
-            <a href="https://spinotek.com/about" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Tentang
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/article" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Artikel
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/contact" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Kontak
-            </a>
-          </li>
-          <li>
-            <a href="https://spinotek.com/portfolio" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              Portfolio Proyek
-            </a>
-          </li>
-          <li>
-            <a href="#faq" wire:navigate=""
-               class="text-slate-500 hover:text-[#0166F3] font-bold transition-colors duration-300 flex items-center group">
-              <span class="w-0 group-hover:w-3 h-px bg-[#0166F3] mr-0 group-hover:mr-2 transition-all duration-300"></span>
-              FAQ
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Hubungi Kami -->
-      <div class="lg:col-span-4">
-        <h4 class="text-white font-black text-sm mb-8 relative inline-block uppercase tracking-widest">
-          Hubungi Kami
-          <span class="absolute -bottom-2 left-0 w-8 h-1 bg-cyan-500 rounded-full"></span>
-        </h4>
-
-        <!-- floating glass card like screenshot -->
-        <div class="bg-slate-900/30 border border-slate-800/50 p-7 rounded-3xl space-y-6 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
-          <div class="flex items-start gap-4 group">
-            <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center text-[#0166F3] shrink-0 transition-all group-hover:bg-[#0166F3] group-hover:text-white">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <span class="text-sm leading-relaxed text-slate-400 group-hover:text-slate-200 transition-colors">
-              Jl. Cangkring Indah 1 No.17, Karangsari, Wedomartani, Kec. Ngemplak, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55584
-            </span>
-          </div>
-
-          <a href="https://wa.me/6282387441716" target="_blank" class="flex items-center gap-4 group transition-all hover:translate-x-1">
-            <div class="w-11 h-11 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500 shrink-0 transition-all group-hover:bg-green-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(34,197,94,0.35)]">
-              <i class="fab fa-whatsapp text-xl"></i>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Official WhatsApp</span>
-              <span class="text-base text-slate-200 group-hover:text-green-400 transition-colors tracking-tight">
-                6282164599911
-              </span>
-            </div>
-          </a>
-
-          <a href="mailto:info@kopmassleman.com" class="flex items-center gap-4 group transition-all hover:translate-x-1">
-            <div class="w-11 h-11 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0 transition-all group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em] mb-1">Email Inquiry</span>
-              <span class="text-base text-slate-200 group-hover:text-indigo-400 transition-colors tracking-tight">
-                info@spinotek.com
-              </span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom row (small, center baseline) -->
-    <div class="pt-6 border-t border-slate-900/80 flex flex-col md:flex-row justify-between items-center gap-6">
-      <p class="text-slate-600 text-xs md:text-sm font-bold tracking-wide">
-        © 2026 <span class="text-slate-400">Kopmas Shop</span>. All rights reserved.
-      </p>
-
-      <div class="flex gap-6">
-        <a href="#!" class="text-[10px] md:text-xs font-black tracking-widest text-slate-600 hover:text-white transition-colors">
-          PRIVACY POLICY
-        </a>
-        <a href="#!" class="text-[10px] md:text-xs font-black tracking-widest text-slate-600 hover:text-white transition-colors">
-          TERMS OF SERVICE
-        </a>
-      </div>
-    </div>
-
-  </div>
-</footer>
-<script src="./nav.js" defer></script>
-<script>
-  // Navbar Scroll Shrink Effect
-  const navbar = document.getElementById('navbar-wrapper');
-  const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
-  const mobileMenu = document.querySelector('[data-mobile-menu]');
-  let lastScroll = 0;
-
-  // Scroll event untuk trigger shrink
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-    
-    lastScroll = currentScroll;
-  });
-
-  // Mobile menu toggle
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
-      if (mobileMenu) {
-        mobileMenu.classList.toggle('hidden');
-      }
-    });
-  }
-
-  // Close mobile menu when clicking on a link
-  const mobileMenuLinks = document.querySelectorAll('[data-mobile-menu] a');
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (mobileMenu) {
-        mobileMenu.classList.add('hidden');
-      }
-    });
-  });
-</script>
+  <div data-shared-footer></div>
+  <script src="./layout-shared.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-

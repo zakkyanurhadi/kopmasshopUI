@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kopmas Shop - Home Template</title>
-  
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     body { font-family: 'Poppins', ui-sans-serif, system-ui; }
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
-    
+
     /* Glassmorphism Navbar */
     #navbar-wrapper {
       background: rgba(255, 255, 255, 0.7);
@@ -20,55 +20,55 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
     }
-    
+
     #navbar-wrapper.scrolled {
       background: rgba(255, 255, 255, 0.85);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
-    
+
     #navbar-wrapper.scrolled .navbar-main {
       padding: 0.75rem 0;
     }
-    
+
     #navbar-wrapper.scrolled .navbar-main .logo {
       height: 32px;
     }
-    
+
     .navbar-secondary {
       max-height: 50px;
       overflow: hidden;
       transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.35s ease, padding 0.35s ease;
       opacity: 1;
     }
-    
+
     .navbar-secondary.sec-hidden {
       max-height: 0;
       opacity: 0;
       padding-bottom: 0 !important;
       margin-bottom: -8px;
     }
-    
+
     .navbar-main {
       transition: padding 0.3s ease;
       gap: 1.5rem;
     }
-    
+
     .logo {
       transition: height 0.3s ease;
     }
-    
+
     .glass-btn {
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       transition: all 0.3s ease;
     }
-    
+
     .glass-btn:hover {
       background: rgba(255, 255, 255, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    
+
     .search-input:focus-within {
       box-shadow: 0 0 0 3px rgba(16, 83, 213, 0.1);
     }
@@ -78,7 +78,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="bg-slate-50 text-slate-900">
-    
+
   <!-- Modern Glassmorphism Navbar -->
   <header id="navbar-wrapper" class="fixed top-0 w-full border-b border-slate-300/20 py-4 lg:py-6 z-40">
     <div class="container mx-auto flex flex-col gap-4 lg:gap-6 px-6">
@@ -108,9 +108,9 @@
           <button type="button" class="hidden lg:flex size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
             <i class="fas fa-bell text-slate-600"></i>
           </button>
-          
+
           <!-- Cart -->
-          <a href="halaman4.html" class="flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
+          <a href="halaman_cart.html" class="flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
             <i class="fas fa-shopping-cart text-slate-600 text-base md:text-lg"></i>
           </a>
 
@@ -120,14 +120,14 @@
           </div>
 
           <!-- Sign In Button Desktop -->
-          <a href="#" class="hidden md:flex gap-2 items-center justify-center px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg md:rounded-xl text-white text-xs md:text-sm font-semibold transition">
+          <a href="login.html" class="hidden md:flex gap-2 items-center justify-center px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg md:rounded-xl text-white text-xs md:text-sm font-semibold transition">
             <i class="fas fa-user text-sm"></i>
             <span class="hidden lg:inline">Sign In/Register</span>
           </a>
         </div>
       </div>
 
-   
+
       <nav class="navbar-secondary hidden lg:flex items-center gap-6 flex-wrap pb-2">
         <a href="index.html" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
           <i class="fas fa-home text-base"></i>
@@ -146,19 +146,19 @@
           <i class="fas fa-home"></i>
           <span class="text-sm font-medium">Beranda</span>
         </a>
-        <a href="halaman1.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
+        <a href="halaman_kategori.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
           <i class="fas fa-list"></i>
           <span class="text-sm font-medium">Kategori</span>
         </a>
-        <a href="halaman2.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
+        <a href="halaman_product_detail.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
           <i class="fas fa-bag-shopping"></i>
           <span class="text-sm font-medium">Produk</span>
         </a>
-        <a href="halaman3.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
+        <a href="hal" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
           <i class="fas fa-star"></i>
           <span class="text-sm font-medium">Showcase</span>
         </a>
-        <a href="halaman4.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
+        <a href="halaman_cart.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100/50 transition">
           <i class="fas fa-shopping-cart"></i>
           <span class="text-sm font-medium">Keranjang</span>
         </a>
@@ -188,11 +188,11 @@
       <!-- Clipping wrapper -->
       <div id="hero-clip" class="overflow-hidden">
         <div id="hero-track" class="flex items-stretch transition-transform duration-500 ease-in-out" style="gap:24px">
-          <a href="halaman2.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
+          <a href="halaman_product_detail.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
             <img src="./assets/images/thumbnails/Slide 1.png" alt="Promo 1"
               class="w-full h-full object-cover select-none pointer-events-none" style="aspect-ratio:773/360">
           </a>
-          <a href="halaman1.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
+          <a href="halaman_kategori.html" class="hero-slide flex-shrink-0 overflow-hidden rounded-3xl">
             <img src="./assets/images/thumbnails/Slide 2.png" alt="Promo 2"
               class="w-full h-full object-cover select-none pointer-events-none" style="aspect-ratio:773/360">
           </a>
@@ -215,7 +215,7 @@
     <section class="space-y-4">
       <div class="flex items-center justify-between gap-4">
         <h2 class="text-2xl font-extrabold md:text-3xl">Kategori</h2>
-        <a href="halaman1.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Lihat Semua</a>
+        <a href="halaman_kategori.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Lihat Semua</a>
       </div>
 
       <div data-category-showcase class="space-y-4">
@@ -247,11 +247,11 @@
     <section class="space-y-6">
       <div class="flex items-center justify-between gap-4">
         <h2 class="text-2xl font-extrabold md:text-3xl">Rekomendasi</h2>
-        <a href="halaman1.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Semua Produk</a>
+        <a href="halaman_kategori.html" class="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Semua Produk</a>
       </div>
       <div class="grid gap-3 grid-cols-2 lg:grid-cols-6">
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/airpod.png" alt="Airpods" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Airpods Gen Z 2025 / Wireless Earbuds Premium TWS</h3>
@@ -267,7 +267,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/macbook.png" alt="Macbook" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Macbook Pro M2 / Apple Laptop 13" 8GB 256GB Silver</h3>
@@ -283,7 +283,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/iphone.png" alt="iPhone" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pro 256GB / iphone 15 pro max / apple</h3>
@@ -299,7 +299,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/headphone-white.png" alt="Headphone" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Noise Cancelling / Wireless Over Ear ANC</h3>
@@ -315,7 +315,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Samsung Galaxy S24 / galaxy s24 ultra 256GB</h3>
@@ -331,7 +331,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Xiaomi 14 Ultra / xiaomi 14 5G Snapdragon 8 Gen 3</h3>
@@ -347,7 +347,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/headphone-pink.png" alt="Headphone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Rose Gold / Wireless Bluetooth Wanita</h3>
@@ -363,7 +363,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/headphone-beige.png" alt="Headphone Beige" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Headphone Premium Beige / Wireless Earphone Stylish</h3>
@@ -379,7 +379,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook Pro" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Macbook Pro M3 Max / Apple Laptop 16" M3 Pro Chip</h3>
@@ -395,7 +395,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -411,7 +411,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -427,7 +427,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -443,7 +443,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -459,7 +459,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -475,7 +475,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -491,7 +491,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -507,7 +507,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -523,7 +523,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -539,7 +539,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -555,7 +555,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -571,7 +571,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -587,7 +587,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -603,7 +603,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -619,7 +619,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -635,7 +635,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -651,7 +651,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -667,7 +667,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -683,7 +683,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -699,7 +699,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -715,7 +715,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -731,7 +731,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -747,7 +747,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -763,7 +763,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -779,7 +779,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -795,7 +795,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -811,7 +811,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -827,7 +827,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -843,7 +843,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -859,7 +859,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -875,7 +875,7 @@
             <div class="flex items-center gap-1"><svg class="w-2.5 h-2.5 text-slate-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[10px] text-slate-400 truncate">Sleman, DIY</span><span class="text-[10px] text-slate-400 ml-auto shrink-0">2.1rb terjual</span></div>
           </div>
         </a>
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-green.png" alt="iPhone Green" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Green 128GB / iphone 15 plus green mint</h3>
@@ -891,7 +891,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/ip-pink.png" alt="iPhone Pink" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">iPhone 15 Pink 128GB / iphone 15 pink salmon</h3>
@@ -907,7 +907,7 @@
           </div>
         </a>
 
-        <a href="halaman2.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
+        <a href="halaman_product_detail.html" class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:shadow-md hover:-translate-y-0.5">
           <img src="./assets/images/thumbnails/backpack-1.png" alt="Backpack" class="h-32 w-full bg-slate-50 object-contain p-3">
           <div class="p-2.5 space-y-1">
             <h3 class="text-xs font-medium text-slate-800 leading-snug line-clamp-2">Tas Ransel Pria Urban / Backpack Anti Air Laptop 14"</h3>
@@ -928,7 +928,7 @@
 
       <!-- Tombol Lihat Produk Lainnya -->
       <div class="flex justify-center pt-2">
-        <a href="halaman1.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white px-8 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-500 hover:text-blue-600 hover:shadow-md">
+        <a href="halaman_kategori.html" class="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white px-8 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-500 hover:text-blue-600 hover:shadow-md">
           Lihat Produk Lainnya
           <i class="fa-solid fa-chevron-right text-xs"></i>
         </a>
@@ -1209,7 +1209,7 @@
             class="w-10 h-10 rounded-xl bg-slate-900/60 border border-slate-800/70 flex items-center justify-center text-slate-500 transition-all duration-300 hover:border-blue-600 hover:shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:text-blue-600 hover:text-white"
           >
             <i class="fab fa-facebook-f text-lg"></i>
-          </a>  
+          </a>
         </div>
       </div>
 
@@ -1375,7 +1375,7 @@
   // Scroll event: shrink navbar + show/hide secondary nav
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
-    
+
     if (currentScroll > 50) {
       navbar.classList.add('scrolled');
     } else {
@@ -1390,7 +1390,7 @@
         navSecondary.classList.remove('sec-hidden');
       }
     }
-    
+
     lastScroll = currentScroll;
   });
 

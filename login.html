@@ -1,0 +1,270 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kopmas Shop - Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+    .slide-item { opacity: 0; transition: opacity .5s ease; }
+    .slide-item.active { opacity: 1; }
+
+    /* --- Custom Input with Floating Label --- */
+    .input-group { position: relative; }
+    .input-icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      display: flex; align-items: center; z-index: 2;
+      transition: all .3s ease;
+    }
+    .input-icon img { width: 22px; height: 22px; transition: filter .3s ease; }
+    .input-placeholder {
+      position: absolute; left: 48px; top: 50%; transform: translateY(-50%);
+      font-size: 14px; color: #6A7686; pointer-events: none;
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+      transform-origin: left center;
+    }
+    .custom-input {
+      width: 100%; height: 56px; border: 2px solid #E2E8F0; border-radius: 16px;
+      padding: 16px 48px 0 48px; font-size: 14px; font-weight: 600;
+      background: #F8FAFC; outline: none;
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+    }
+    .custom-input:hover {
+      border-color: #CBD5E1; background: #F1F5F9;
+      box-shadow: 0 4px 16px rgba(30,64,175,.06);
+    }
+    .custom-input:focus {
+      border-color: #2563eb; background: #fff;
+      box-shadow: 0 0 0 4px rgba(37,99,235,.1), 0 4px 20px rgba(37,99,235,.08);
+    }
+    /* Floating up */
+    .input-group:focus-within .input-placeholder,
+    .input-group.has-value .input-placeholder {
+      top: 10px; transform: translateY(0) scale(.75);
+      color: #2563eb; font-weight: 600;
+    }
+    .input-group:focus-within .input-icon img {
+      filter: brightness(0) saturate(100%) invert(26%) sepia(89%) saturate(1583%) hue-rotate(213deg) brightness(97%) contrast(98%);
+    }
+    .custom-input.pass-input { padding-right: 48px; letter-spacing: .3em; }
+
+    /* Eye toggle */
+    .eye-toggle {
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 2;
+      color: #94A3B8; transition: color .2s ease;
+    }
+    .eye-toggle:hover { color: #2563eb; }
+
+    /* Custom checkbox */
+    .custom-check { position: relative; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .custom-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .check-box { width: 22px; height: 22px; position: relative; flex-shrink: 0; }
+    .check-box .unchecked,
+    .check-box .checked { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .25s ease; }
+    .check-box .checked { opacity: 0; }
+    .custom-check input:checked ~ .check-box .unchecked { opacity: 0; }
+    .custom-check input:checked ~ .check-box .checked { opacity: 1; }
+    .custom-check input:checked ~ .check-label { color: #2563eb; }
+    .check-label { font-size: 14px; font-weight: 600; color: #6A7686; transition: color .25s ease; }
+
+    .transition-300 { transition: all .3s ease; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 text-slate-900 min-h-screen flex items-center justify-center">
+  <main class="mx-auto max-w-[1500px] w-full px-4 py-6 lg:py-8">
+    <section class="overflow-hidden rounded-3xl border border-slate-200/60 bg-white shadow-2xl shadow-slate-400/20 md:grid md:grid-cols-[1fr_1.1fr] min-h-[720px]">
+      <div class="relative hidden md:block rounded-l-3xl overflow-hidden">
+        <div class="absolute inset-0">
+          <img data-slide class="slide-item active absolute inset-0 h-full w-full object-cover" src="./assets/images/backgrounds/login-slide-1.webp" alt="Slide 1">
+          <img data-slide class="slide-item absolute inset-0 h-full w-full object-cover" src="./assets/images/backgrounds/login-slide-2.webp" alt="Slide 2">
+          <img data-slide class="slide-item absolute inset-0 h-full w-full object-cover" src="./assets/images/backgrounds/login-slide-3.webp" alt="Slide 3">
+          <img data-slide class="slide-item absolute inset-0 h-full w-full object-cover" src="./assets/images/backgrounds/login-slide-4.webp" alt="Slide 4">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/35 to-transparent"></div>
+
+        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div data-stars class="mb-3 text-lg tracking-wide text-amber-400">★★★★★</div>
+          <p data-quote class="text-[32px] leading-tight font-bold max-w-[560px]">“Since taking my business online, everything has become smoother, faster, and easier to manage.”</p>
+          <p data-author class="mt-8 text-2xl font-semibold">Daisy Hakura</p>
+          <p data-role class="mt-1 text-sm text-slate-200">Happy Seller</p>
+        </div>
+
+        <div class="absolute bottom-12 right-8 flex items-center gap-3">
+          <button type="button" data-prev class="flex size-11 items-center justify-center rounded-full border border-white/70 text-white hover:bg-white/15 transition">
+            <i class="fas fa-chevron-left text-sm"></i>
+          </button>
+          <button type="button" data-next class="flex size-11 items-center justify-center rounded-full border border-white/70 text-white hover:bg-white/15 transition">
+            <i class="fas fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="relative p-6 md:p-10 lg:p-14 flex flex-col justify-center bg-gradient-to-br from-[#f8f9fb] to-[#eef1f5] rounded-r-3xl">
+        <a href="index.html" class="absolute top-5 right-5 inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-100 transition">
+          <i class="fas fa-arrow-left text-[10px]"></i>
+          Kembali
+        </a>
+
+        <div class="mb-4 flex items-center justify-center">
+          <img src="./assets/images/logos/logokopmas.png" alt="Kopmas" class="h-12 w-auto">
+        </div>
+
+
+        <div class="flex flex-col gap-[30px]">
+          <div class="flex flex-col gap-3 text-center">
+            <p class="font-bold text-2xl capitalize">Hey&#x1F64C;&#x1F3FB;, Welcome Back!</p>
+            <p class="font-medium text-[#6A7686]">Login to your account to continue!</p>
+          </div>
+
+          <form class="flex flex-col gap-4 w-full" action="#">
+            <!-- Email -->
+            <div class="flex flex-col gap-3">
+              <p class="font-semibold text-[#6A7686]">Email Address</p>
+              <div class="input-group">
+                <div class="input-icon">
+                  <img src="data:image/svg+xml,%3csvg%20width='24'%20height='25'%20viewBox='0%200%2024%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M17%2021H7C4%2021%202%2019.5%202%2016V9C2%205.5%204%204%207%204H17C20%204%2022%205.5%2022%209V16C22%2019.5%2020%2021%2017%2021Z'%20stroke='%236A7686'%20stroke-width='2'%20stroke-miterlimit='10'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M17%209.5L13.87%2012C12.84%2012.82%2011.15%2012.82%2010.12%2012L7%209.5'%20stroke='%236A7686'%20stroke-width='2'%20stroke-miterlimit='10'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="icon">
+                </div>
+                <p class="input-placeholder">Enter Your Email</p>
+                <input type="email" value="zakkya.nurhadi@gmail.com" class="custom-input" placeholder="">
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="flex flex-col gap-3">
+              <p class="font-semibold text-[#6A7686]">Password</p>
+              <div class="input-group">
+                <div class="input-icon">
+                  <img src="data:image/svg+xml,%3csvg%20width='24'%20height='25'%20viewBox='0%200%2024%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M19.7897%2015.4298C17.7297%2017.4798%2014.7797%2018.1098%2012.1897%2017.2998L7.47966%2021.9998C7.13966%2022.3498%206.46966%2022.5598%205.98966%2022.4898L3.80966%2022.1898C3.08966%2022.0898%202.41966%2021.4098%202.30966%2020.6898L2.00966%2018.5098C1.93966%2018.0298%202.16966%2017.3598%202.49966%2017.0198L7.19966%2012.3198C6.39966%209.71982%207.01966%206.76982%209.07966%204.71982C12.0297%201.76982%2016.8197%201.76982%2019.7797%204.71982C22.7397%207.66982%2022.7397%2012.4798%2019.7897%2015.4298Z'%20stroke='%236A7686'%20stroke-width='2'%20stroke-miterlimit='10'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M6.88965%2017.9902L9.18965%2020.2902'%20stroke='%236A7686'%20stroke-width='2'%20stroke-miterlimit='10'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cpath%20d='M14.5%2011.5C15.3284%2011.5%2016%2010.8284%2016%2010C16%209.17157%2015.3284%208.5%2014.5%208.5C13.6716%208.5%2013%209.17157%2013%2010C13%2010.8284%2013.6716%2011.5%2014.5%2011.5Z'%20stroke='%236A7686'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="icon">
+                </div>
+                <p class="input-placeholder">Enter Your Password</p>
+                <input id="loginPassword" type="password" value="password123" class="custom-input pass-input" placeholder="">
+                <button id="togglePassword" type="button" class="eye-toggle" aria-label="Toggle password visibility">
+                  <i id="togglePasswordIcon" class="far fa-eye text-lg"></i>
+                </button>
+              </div>
+
+              <!-- Remember & Reset -->
+              <div class="flex items-center justify-between mt-1">
+                <label class="custom-check">
+                  <input type="checkbox">
+                  <div class="check-box">
+                    <img class="unchecked" src="data:image/svg+xml,%3csvg%20width='24'%20height='25'%20viewBox='0%200%2024%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20x='3'%20y='4'%20width='18'%20height='18'%20rx='3'%20stroke='%236A7686'%20stroke-width='2'/%3e%3c/svg%3e" alt="">
+                    <img class="checked" src="data:image/svg+xml,%3csvg%20width='24'%20height='25'%20viewBox='0%200%2024%2025'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3crect%20x='3'%20y='4'%20width='18'%20height='18'%20rx='3'%20fill='%232563eb'%20stroke='%232563eb'%20stroke-width='2'/%3e%3cpath%20d='M7%2013.1734L10.2581%2016.5L17%209.5'%20stroke='white'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/svg%3e" alt="">
+                  </div>
+                  <span class="check-label">Remember me</span>
+                </label>
+                <a href="#" class="font-semibold text-[#6A7686] hover:text-blue-600 hover:underline transition-300">Reset Password</a>
+              </div>
+            </div>
+
+            <button type="submit" class="h-14 w-full rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 text-base font-bold text-white hover:from-blue-700 hover:to-blue-800 hover:shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5 active:scale-[.98] transition-all duration-200 mt-2">Sign In</button>
+          </form>
+
+          <p class="text-center text-sm font-semibold text-[#6A7686]">Don't have account? <a href="register.html" class="font-extrabold text-blue-600 hover:underline transition-300">Create Account</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const slides = document.querySelectorAll('[data-slide]');
+    const prevBtn = document.querySelector('[data-prev]');
+    const nextBtn = document.querySelector('[data-next]');
+    const quoteEl = document.querySelector('[data-quote]');
+    const authorEl = document.querySelector('[data-author]');
+    const roleEl = document.querySelector('[data-role]');
+    const passwordInput = document.getElementById('loginPassword');
+    const togglePasswordBtn = document.getElementById('togglePassword');
+    const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+    const slideContents = [
+      {
+        quote: '“Since taking my business online, everything has become smoother, faster, and easier to manage.”',
+        author: 'Daisy Hakura',
+        role: 'Happy Seller'
+      },
+      {
+        quote: '“Produk saya jadi lebih mudah ditemukan pelanggan dari berbagai daerah.”',
+        author: 'Rina Maharani',
+        role: 'UMKM Owner'
+      },
+      {
+        quote: '“Transaksi lebih rapi, proses penjualan lebih cepat, dan dashboard sangat membantu.”',
+        author: 'Arif Wibowo',
+        role: 'Store Partner'
+      },
+      {
+        quote: '“Kopmas Shop membuat operasional toko online saya jauh lebih efisien setiap hari.”',
+        author: 'Nina Prameswari',
+        role: 'Top Seller'
+      }
+    ];
+
+    let currentSlide = 0;
+    let slideTimer;
+
+    function renderSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      quoteEl.textContent = slideContents[index].quote;
+      authorEl.textContent = slideContents[index].author;
+      roleEl.textContent = slideContents[index].role;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      renderSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      renderSlide(currentSlide);
+    }
+
+    function restartAutoSlide() {
+      clearInterval(slideTimer);
+      slideTimer = setInterval(nextSlide, 4500);
+    }
+
+    if (nextBtn && prevBtn && slides.length) {
+      nextBtn.addEventListener('click', function () {
+        nextSlide();
+        restartAutoSlide();
+      });
+
+      prevBtn.addEventListener('click', function () {
+        prevSlide();
+        restartAutoSlide();
+      });
+
+      restartAutoSlide();
+    }
+
+    if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+      togglePasswordBtn.addEventListener('click', function () {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        togglePasswordIcon.className = isPassword ? 'far fa-eye-slash text-lg' : 'far fa-eye text-lg';
+      });
+    }
+
+    // Floating label: detect if input has value
+    document.querySelectorAll('.custom-input').forEach(function(input) {
+      function check() {
+        input.closest('.input-group').classList.toggle('has-value', input.value.trim().length > 0);
+      }
+      input.addEventListener('input', check);
+      input.addEventListener('focus', check);
+      input.addEventListener('blur', check);
+      check(); // initial check
+    });
+  </script>
+</body>
+</html>
