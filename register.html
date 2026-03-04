@@ -206,10 +206,17 @@
             .input-placeholder {
                 left: 65px;
                 font-size: 0.8125rem;
+                top: 22px;
             }
 
             .group:has(:placeholder-shown) .input-placeholder {
                 font-size: 0.875rem;
+                top: 32px;
+            }
+
+            .group:focus-within .input-placeholder {
+                top: 22px;
+                font-size: 0.8125rem;
             }
 
             .input-icon {
@@ -462,7 +469,8 @@
                                             class="flex size-6 shrink-0" alt="icon">
                                     </div>
                                     <p class="input-placeholder">Enter Your Password</p>
-                                    <input id="buyerPassword" type="password" class="custom-input has-eye tracking-[0.3em]" placeholder="">
+                                    <input id="buyerPassword" type="password" class="custom-input has-eye tracking-[0.3em]" placeholder=""
+                                        oninput="checkBuyerPasswordStrength(this.value)">
                                     <button type="button" class="eye-toggle" onclick="togglePassword('buyerPassword', this)">
                                         <svg class="eye-open size-5" viewBox="0 0 24 24" fill="none">
                                             <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42 12 8.42C13.98 8.42 15.58 10.02 15.58 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -478,6 +486,77 @@
                                         </svg>
                                     </button>
                                 </label>
+                            </div>
+
+                            <!-- Buyer Password Strength Indicator -->
+                            <div id="buyerPasswordStrength" class="flex flex-col gap-2 hidden">
+                                <div class="flex gap-1.5">
+                                    <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bBar1"></div>
+                                    <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bBar2"></div>
+                                    <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bBar3"></div>
+                                    <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bBar4"></div>
+                                </div>
+                                <p class="text-xs font-semibold transition-300" id="bStrengthText">Sangat Lemah</p>
+                                <div class="flex flex-col gap-1 mt-1">
+                                    <div class="flex items-center gap-2">
+                                        <svg id="bChkLen" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey">Minimal 8 karakter</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg id="bChkUpper" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey">Huruf besar (A-Z)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg id="bChkLower" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey">Huruf kecil (a-z)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg id="bChkNum" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey">Angka (0-9)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <svg id="bChkSpec" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey">Karakter spesial (!@#$%^&*)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buyer Confirm Password -->
+                        <div class="flex flex-col gap-3">
+                            <p class="font-semibold text-custom-grey">Konfirmasi Password</p>
+                            <div class="group/errorState flex flex-col gap-2">
+                                <label class="group relative">
+                                    <div class="input-icon">
+                                        <img src="assets/images/icons/key-grey.svg"
+                                            class="flex size-6 shrink-0" alt="icon">
+                                    </div>
+                                    <p class="input-placeholder">Ulangi Password</p>
+                                    <input id="buyerConfirmPassword" type="password"
+                                        class="custom-input has-eye tracking-[0.3em]" placeholder=""
+                                        oninput="checkBuyerPasswordMatch()">
+                                    <button type="button" class="eye-toggle" onclick="togglePassword('buyerConfirmPassword', this)">
+                                        <svg class="eye-open size-5" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42 12 8.42C13.98 8.42 15.58 10.02 15.58 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C18.82 5.79999 15.53 3.71999 12 3.71999C8.47 3.71999 5.18 5.79999 2.89 9.39999C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <svg class="eye-closed size-5 hidden" viewBox="0 0 24 24" fill="none">
+                                            <path d="M14.53 9.47L9.47 14.53C8.82 13.88 8.42 12.99 8.42 12C8.42 10.02 10.02 8.42 12 8.42C12.99 8.42 13.88 8.82 14.53 9.47Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M17.82 5.77C16.07 4.45 14.07 3.73 12 3.73C8.47 3.73 5.18 5.81 2.89 9.41C1.99 10.82 1.99 13.19 2.89 14.6C3.68 15.84 4.6 16.91 5.6 17.77" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.42 19.53C9.56 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.88 20.42 8.39 20.05 7.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.51 12.7C15.25 14.11 14.1 15.26 12.69 15.52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9.47 14.53L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M22 2L14.53 9.47" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </label>
+                            </div>
+                            <!-- Buyer Match indicator -->
+                            <div id="buyerMatchInfo" class="hidden">
+                                <div class="flex items-center gap-2">
+                                    <svg id="bChkMatch" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                    <span class="text-xs font-medium text-custom-grey" id="bMatchLabel">Password cocok</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -833,7 +912,73 @@
             });
         }
 
-        // ==================== Password Strength ====================
+        // ==================== Buyer Password Strength ====================
+        function checkBuyerPasswordStrength(pw) {
+            const el = document.getElementById('buyerPasswordStrength');
+            if (!pw.length) { el.classList.add('hidden'); return; }
+            el.classList.remove('hidden');
+
+            const c = {
+                len: pw.length >= 8,
+                upper: /[A-Z]/.test(pw),
+                lower: /[a-z]/.test(pw),
+                num: /[0-9]/.test(pw),
+                spec: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pw),
+            };
+
+            setChk('bChkLen', c.len);
+            setChk('bChkUpper', c.upper);
+            setChk('bChkLower', c.lower);
+            setChk('bChkNum', c.num);
+            setChk('bChkSpec', c.spec);
+
+            const score = Object.values(c).filter(Boolean).length;
+            const bars = ['bBar1', 'bBar2', 'bBar3', 'bBar4'];
+            const st = document.getElementById('bStrengthText');
+
+            bars.forEach(b => { document.getElementById(b).className = 'h-1.5 flex-1 rounded-full bg-custom-stroke transition-300'; });
+
+            const levels = [
+                { max: 1, bars: 1, color: 'bg-custom-red', text: 'Sangat Lemah', tcolor: 'text-custom-red' },
+                { max: 2, bars: 2, color: 'bg-custom-orange', text: 'Lemah', tcolor: 'text-custom-orange' },
+                { max: 3, bars: 3, color: 'bg-custom-yellow', text: 'Sedang', tcolor: 'text-custom-yellow' },
+                { max: 4, bars: 3, color: 'bg-custom-green', text: 'Kuat', tcolor: 'text-custom-green' },
+                { max: 5, bars: 4, color: 'bg-custom-green', text: 'Sangat Kuat', tcolor: 'text-custom-green' },
+            ];
+            const lvl = levels.find(l => score <= l.max) || levels[4];
+            for (let i = 0; i < lvl.bars; i++) document.getElementById(bars[i]).classList.replace('bg-custom-stroke', lvl.color);
+            st.textContent = lvl.text;
+            st.className = 'text-xs font-semibold transition-300 ' + lvl.tcolor;
+
+            checkBuyerPasswordMatch();
+        }
+
+        // ==================== Buyer Password Match ====================
+        function checkBuyerPasswordMatch() {
+            const pw = document.getElementById('buyerPassword').value;
+            const cf = document.getElementById('buyerConfirmPassword').value;
+            const info = document.getElementById('buyerMatchInfo');
+            const icon = document.getElementById('bChkMatch');
+            const label = document.getElementById('bMatchLabel');
+
+            if (!cf.length) { info.classList.add('hidden'); return; }
+            info.classList.remove('hidden');
+
+            const ok = pw === cf && pw.length > 0;
+            icon.classList.remove('text-custom-stroke', 'text-custom-green', 'text-custom-red');
+            label.classList.remove('text-custom-grey', 'text-custom-red');
+            if (ok) {
+                icon.classList.add('text-custom-green');
+                label.textContent = 'Password cocok';
+                label.classList.add('text-custom-grey');
+            } else {
+                icon.classList.add('text-custom-red');
+                label.textContent = 'Password tidak cocok';
+                label.classList.add('text-custom-red');
+            }
+        }
+
+        // ==================== Seller Password Strength ====================
         function checkPasswordStrength(pw) {
             const el = document.getElementById('passwordStrength');
             if (!pw.length) { el.classList.add('hidden'); updateSellerBtn(); return; }

@@ -206,10 +206,17 @@
             .input-placeholder {
                 left: 65px;
                 font-size: 0.8125rem;
+                top: 22px;
             }
 
             .group:has(:placeholder-shown) .input-placeholder {
                 font-size: 0.875rem;
+                top: 32px;
+            }
+
+            .group:focus-within .input-placeholder {
+                top: 22px;
+                font-size: 0.8125rem;
             }
 
             .input-icon {
