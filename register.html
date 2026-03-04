@@ -1,62 +1,980 @@
-<!doctype html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kopmas Shop - Register</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
-    #navbar-wrapper { background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.2); transition: all .3s ease; }
-    #navbar-wrapper.scrolled { background: rgba(255,255,255,.85); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
-    .navbar-secondary { max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .35s ease, padding .35s ease; opacity: 1; }
-    .navbar-secondary.sec-hidden { max-height: 0; opacity: 0; padding-bottom: 0 !important; margin-bottom: -8px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - KopmasShop</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-background': '#F3F5F9',
+                        'custom-black': '#292D32',
+                        'custom-blue': '#1053D5',
+                        'custom-green': '#00A48A',
+                        'custom-grey': '#6A7686',
+                        'custom-red': '#FF133D',
+                        'custom-orange': '#FF7020',
+                        'custom-yellow': '#FED833',
+                        'custom-stroke': '#E8E8E8',
+                        'custom-border': '#E8E8E8',
+                        'custom-lime-green': '#CBEE5A',
+                        'custom-lime-green-char': '#DEFF6E',
+                        'custom-icon-background': '#F3F3F3',
+                    },
+                    fontFamily: {
+                        sans: ['"Lexend Deca"', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: "Lexend Deca", sans-serif;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            min-height: 100vh;
+            color: #292D32;
+        }
+
+        .transition-300 {
+            transition: all 300ms ease-in-out;
+        }
+
+        .custom-input {
+            height: 76px;
+            width: 100%;
+            appearance: none;
+            border-radius: 18px;
+            border-width: 1.5px;
+            border-style: solid;
+            border-color: #E8E8E8;
+            padding-left: 5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 14.5px;
+            padding-top: 34.5px;
+            font-weight: 600;
+            transition: all 300ms ease-in-out;
+            outline: none;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .custom-input.has-eye {
+            padding-right: 3.5rem;
+        }
+
+        .eye-toggle {
+            position: absolute;
+            top: 50%;
+            right: 1.25rem;
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            color: #6A7686;
+            background: none;
+            border: none;
+        }
+
+        .eye-toggle:hover {
+            color: #292D32;
+        }
+
+        .custom-input:placeholder-shown {
+            padding-top: 14.5px;
+        }
+
+        .custom-input:focus {
+            border-color: #292D32;
+        }
+
+        .group\/errorState.invalid .custom-input {
+            border-width: 2px;
+            border-color: #FF133D;
+        }
+
+        .input-placeholder {
+            position: absolute;
+            left: 81px;
+            top: 25px;
+            transform: translateY(-50%);
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 600;
+            color: #6A7686;
+            transition: all 300ms ease-in-out;
+            pointer-events: none;
+        }
+
+        .group:focus-within .input-placeholder {
+            top: 25px;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 600;
+            color: #6A7686;
+        }
+
+        .group:has(:placeholder-shown) .input-placeholder {
+            top: 38px;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            font-weight: 700;
+            color: #292D32;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            left: 1.5rem;
+            display: flex;
+            height: 28px;
+            transform: translateY(-50%);
+            align-items: center;
+            border-right-width: 1.5px;
+            border-right-style: solid;
+            border-color: #E8E8E8;
+            padding-right: 1rem;
+        }
+
+        .input-error {
+            display: none;
+            font-size: 0.875rem;
+            line-height: 1;
+            font-weight: 600;
+            color: #FF133D;
+        }
+
+        .group\/errorState.invalid .input-error {
+            display: block;
+        }
+
+        .gradient-black-transparent {
+            background: linear-gradient(180deg, rgba(14, 22, 38, 0) 0%, rgba(14, 22, 38, 0.75) 50%, #0E1626 100%);
+        }
+
+        .blue-gradient {
+            background: linear-gradient(336.99deg, #0A3A89 0%, #1053D5 100%);
+        }
+
+        .hide-scrollbar {
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ==================== Mobile Responsive ==================== */
+        @media (max-width: 1024px) {
+            .sidebar-carousel {
+                display: none !important;
+            }
+            .form-container {
+                min-height: 100vh;
+                padding: 20px 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .custom-input {
+                height: 64px;
+                border-radius: 14px;
+                padding-left: 4rem;
+                font-size: 0.875rem;
+            }
+
+            .input-placeholder {
+                left: 65px;
+                font-size: 0.8125rem;
+            }
+
+            .group:has(:placeholder-shown) .input-placeholder {
+                font-size: 0.875rem;
+            }
+
+            .input-icon {
+                left: 1rem;
+            }
+
+            .form-card {
+                padding: 1.25rem !important;
+                gap: 1.5rem !important;
+            }
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <div data-shared-header></div>
-  <div class="h-32 lg:h-40"></div>
-  <main class="container mx-auto px-6 py-10">
-    <section class="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-      <img src="./assets/images/logos/logokopmas.png" alt="Kopmas" class="mx-auto h-9">
-      <div class="mt-8 space-y-2 text-center">
-        <h1 class="text-2xl font-extrabold">Hey 🙌🏻, Welcome Aboard!</h1>
-        <p class="text-sm text-slate-500">Create account to continue.</p>
-      </div>
 
-      <form class="mt-8 space-y-4">
-        <div class="grid gap-4 md:grid-cols-2">
-          <label class="block">
-            <span class="mb-2 block text-sm font-semibold text-slate-600">Complete Name</span>
-            <input type="text" placeholder="Enter your full name" class="h-12 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-          </label>
-          <label class="block">
-            <span class="mb-2 block text-sm font-semibold text-slate-600">Email Address</span>
-            <input type="email" placeholder="Enter your email" class="h-12 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-          </label>
-        </div>
-        <label class="block">
-          <span class="mb-2 block text-sm font-semibold text-slate-600">Password</span>
-          <input type="password" placeholder="Create password" class="h-12 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-        </label>
-        <div>
-          <p class="mb-2 text-sm font-semibold text-slate-600">Account Type</p>
-          <div class="grid gap-3 md:grid-cols-2">
-            <label class="flex h-12 items-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold"><input type="radio" name="role"> Seller</label>
-            <label class="flex h-12 items-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-semibold"><input type="radio" name="role"> Buyer</label>
-          </div>
-        </div>
-        <button type="submit" class="h-12 w-full rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700">Create Account</button>
-      </form>
+<body>
+    <main class="flex flex-1 min-h-screen items-center min-w-0 bg-custom-background">
+        <!-- Sidebar Carousel -->
+        <div class="sidebar-carousel h-screen max-w-[660px] w-[calc(100%-620px)] shrink-0 overflow-hidden relative">
+            <div class="swiper !fixed top-0 flex max-w-[660px] w-[calc(100%-620px)] h-screen overflow-hidden"
+                id="authSwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide relative flex w-full h-full overflow-hidden">
+                        <img src="../src/assets/images/backgrounds/login-slide-1.webp"
+                            class="w-full h-full object-cover object-top" alt="thumbnail">
+                        <div
+                            class="absolute bottom-0 flex flex-col w-full h-fit px-[30px] pt-10 pb-[35px] text-white gradient-black-transparent">
+                            <div class="flex items-center gap-0.5">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                            </div>
+                            <p class="font-medium text-[26px] mt-3">"Moving my business online truly made 🎯 growth
+                                and daily management much simpler, more efficient, and hassle-free."</p>
+                            <div class="w-fit mt-[30px]">
+                                <p class="font-semibold text-xl leading-[30px]">Jasmine Putri</p>
+                                <p class="mt-1">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
 
-      <p class="mt-5 text-center text-sm text-slate-500">Sudah punya akun? <a href="login.html" class="font-semibold text-blue-600">Sign In</a></p>
-    </section>
-  </main>
-  <div data-shared-footer></div>
-  <script src="./layout-shared.js" defer></script>
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide relative flex w-full h-full overflow-hidden">
+                        <img src="../src/assets/images/backgrounds/login-slide-2.webp"
+                            class="w-full h-full object-cover object-top" alt="thumbnail">
+                        <div
+                            class="absolute bottom-0 flex flex-col w-full h-fit px-[30px] pt-10 pb-[35px] text-white gradient-black-transparent">
+                            <div class="flex items-center gap-0.5">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                            </div>
+                            <p class="font-medium text-[26px] mt-3">"Since taking my business online,
+                                everything—from growth to daily operations—has become smoother, faster, and way
+                                easier to manage."</p>
+                            <div class="w-fit mt-[30px]">
+                                <p class="font-semibold text-xl leading-[30px]">Daisy Hakura</p>
+                                <p class="mt-1">Happy Seller</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide relative flex w-full h-full overflow-hidden">
+                        <img src="../src/assets/images/backgrounds/login-slide-3.webp"
+                            class="w-full h-full object-cover object-top" alt="thumbnail">
+                        <div
+                            class="absolute bottom-0 flex flex-col w-full h-fit px-[30px] pt-10 pb-[35px] text-white gradient-black-transparent">
+                            <div class="flex items-center gap-0.5">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                            </div>
+                            <p class="font-medium text-[26px] mt-3">"Ever since I started shopping online at Bluee,
+                                everything's been way easier—finding stuff, checking prices, even buying it's
+                                super quick!"</p>
+                            <div class="w-fit mt-[30px]">
+                                <p class="font-semibold text-xl leading-[30px]">Daisy Hakura</p>
+                                <p class="mt-1">Happy Seller</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide relative flex w-full h-full overflow-hidden">
+                        <img src="../src/assets/images/backgrounds/login-slide-4.webp"
+                            class="w-full h-full object-cover object-top" alt="thumbnail">
+                        <div
+                            class="absolute bottom-0 flex flex-col w-full h-fit px-[30px] pt-10 pb-[35px] text-white gradient-black-transparent">
+                            <div class="flex items-center gap-0.5">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                                <img src="../src/assets/images/icons/Star-rounded.svg"
+                                    class="flex size-8 shrink-0 p-1" alt="star">
+                            </div>
+                            <p class="font-medium text-[26px] mt-3">"Going digital with my business was a game
+                                changer 🎯 It simplified growth, streamlined daily tasks, and cut out the chaos."
+                            </p>
+                            <div class="w-fit mt-[30px]">
+                                <p class="font-semibold text-xl leading-[30px]">Robert Lupin</p>
+                                <p class="mt-1">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Navigation -->
+                <div
+                    class="flex items-center absolute w-[78px] h-9 gap-[6px] bottom-10 left-auto right-[30px] z-10">
+                    <div class="swiper-button-prev after:!content-[''] flex !size-9 shrink-0 !relative !left-auto !top-auto !right-auto"
+                        tabindex="0" role="button" aria-label="Previous slide">
+                        <img src="../src/assets/images/icons/arrow-circle-left-white.svg" class="flex size-9"
+                            alt="prev">
+                    </div>
+                    <div class="swiper-button-next after:!content-[''] flex !size-9 shrink-0 !relative !left-auto !top-auto !right-auto"
+                        tabindex="0" role="button" aria-label="Next slide">
+                        <img src="../src/assets/images/icons/arrow-circle-right-white.svg" class="flex size-9"
+                            alt="next">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="form-container flex w-full min-h-screen p-[30px] items-center justify-center overflow-y-auto">
+            <div class="form-card flex flex-col w-full max-w-[560px] h-fit shrink-0 rounded-3xl gap-8 p-6 bg-white">
+                <a href="index.html"><img src="../src/assets/images/logos/logokopmas.png" class="h-[37px] mx-auto" alt="logo"></a>
+
+                <div class="flex flex-col gap-3 text-center">
+                    <p class="font-bold text-2xl capitalize">Hey 🙌🏻, Welcome Aboard!</p>
+                    <p class="font-medium text-custom-grey">Create Account to continue!</p>
+                </div>
+
+                <!-- ==================== Tab Switcher ==================== -->
+                <div class="flex flex-col gap-2">
+                    <p class="font-semibold text-custom-grey text-sm">Apakah Anda</p>
+                    <div class="grid grid-cols-2 gap-3 p-1.5 rounded-2xl bg-custom-background">
+                        <button type="button" onclick="switchTab('buyer')" id="tabBuyer"
+                            class="flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-white text-custom-black shadow-sm">
+                            <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.81 2L5.19 5.63" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.19 2L18.81 5.63" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 7.85C2 6 2.99 5.85 4.22 5.85H19.78C21.01 5.85 22 6 22 7.85C22 10 21.01 9.85 19.78 9.85H4.22C2.99 9.85 2 10 2 7.85Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9.76 14V17.55" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M14.36 14V17.55" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M3.5 10L4.91 18.64C5.23 20.58 6 22 8.86 22H14.89C18 22 18.46 20.64 18.82 18.76L20.5 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Buyer
+                        </button>
+                        <button type="button" onclick="switchTab('seller')" id="tabSeller"
+                            class="flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-transparent text-custom-grey">
+                            <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.01 11.22V15.71C3.01 20.2 4.81 22 9.3 22H14.69C19.18 22 20.98 20.2 20.98 15.71V11.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 12C13.83 12 15.18 10.51 15 8.68L14.34 2H9.67L9 8.68C8.82 10.51 10.17 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18.31 12C20.33 12 21.81 10.36 21.61 8.35L21.33 5.6C20.97 3 19.97 2 17.35 2H14.3L15 9.01C15.17 10.66 16.66 12 18.31 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5.64 12C7.29 12 8.78 10.66 8.94 9.01L9.16 6.8L9.64 2H6.59C3.97 2 2.97 3 2.61 5.6L2.34 8.35C2.14 10.36 3.62 12 5.64 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 17C10.33 17 9.5 17.83 9.5 19.5V22H14.5V19.5C14.5 17.83 13.67 17 12 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Seller
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ==================== BUYER PANEL ==================== -->
+                <div id="panelBuyer" class="flex flex-col gap-8">
+                    <div class="flex flex-col gap-4 w-full">
+                        <!-- Google OAuth -->
+                        <button type="button" onclick="handleGoogleSignUp()"
+                            class="flex items-center justify-center gap-3 h-14 w-full rounded-full border-[1.5px] border-custom-stroke font-semibold text-custom-black hover:bg-custom-background transition-300">
+                            <svg class="size-5 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                            </svg>
+                            Sign up with Google
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="flex items-center gap-4">
+                            <div class="flex-1 h-[1.5px] bg-custom-stroke"></div>
+                            <span class="text-sm font-medium text-custom-grey">atau</span>
+                            <div class="flex-1 h-[1.5px] bg-custom-stroke"></div>
+                        </div>
+
+                        <!-- Complete Name -->
+                        <div class="flex flex-col gap-3">
+                            <p class="font-semibold text-custom-grey">Complete Name</p>
+                            <div class="group/errorState flex flex-col gap-2">
+                                <label class="group relative">
+                                    <div class="input-icon">
+                                        <img src="../src/assets/images/icons/profile-circle-grey.svg"
+                                            class="flex size-6 shrink-0" alt="icon">
+                                    </div>
+                                    <p class="input-placeholder">Enter Your Full Name</p>
+                                    <input type="text" class="custom-input" placeholder="">
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="flex flex-col gap-3">
+                            <p class="font-semibold text-custom-grey">Email Address</p>
+                            <div class="group/errorState flex flex-col gap-2">
+                                <label class="group relative">
+                                    <div class="input-icon">
+                                        <img src="../src/assets/images/icons/sms-grey.svg"
+                                            class="flex size-6 shrink-0" alt="icon">
+                                    </div>
+                                    <p class="input-placeholder">Enter Your Email</p>
+                                    <input type="email" class="custom-input" placeholder="">
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="flex flex-col gap-3">
+                            <p class="font-semibold text-custom-grey">Password</p>
+                            <div class="group/errorState flex flex-col gap-2">
+                                <label class="group relative">
+                                    <div class="input-icon">
+                                        <img src="../src/assets/images/icons/key-grey.svg"
+                                            class="flex size-6 shrink-0" alt="icon">
+                                    </div>
+                                    <p class="input-placeholder">Enter Your Password</p>
+                                    <input id="buyerPassword" type="password" class="custom-input has-eye tracking-[0.3em]" placeholder="">
+                                    <button type="button" class="eye-toggle" onclick="togglePassword('buyerPassword', this)">
+                                        <svg class="eye-open size-5" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42 12 8.42C13.98 8.42 15.58 10.02 15.58 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C18.82 5.79999 15.53 3.71999 12 3.71999C8.47 3.71999 5.18 5.79999 2.89 9.39999C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <svg class="eye-closed size-5 hidden" viewBox="0 0 24 24" fill="none">
+                                            <path d="M14.53 9.47L9.47 14.53C8.82 13.88 8.42 12.99 8.42 12C8.42 10.02 10.02 8.42 12 8.42C12.99 8.42 13.88 8.82 14.53 9.47Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M17.82 5.77C16.07 4.45 14.07 3.73 12 3.73C8.47 3.73 5.18 5.81 2.89 9.41C1.99 10.82 1.99 13.19 2.89 14.6C3.68 15.84 4.6 16.91 5.6 17.77" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.42 19.53C9.56 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.88 20.42 8.39 20.05 7.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.51 12.7C15.25 14.11 14.1 15.26 12.69 15.52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9.47 14.53L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M22 2L14.53 9.47" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buyer Submit -->
+                    <div class="flex flex-col gap-3">
+                        <button type="submit"
+                            class="flex items-center justify-center h-14 rounded-full py-4 px-6 gap-[10px] bg-custom-blue font-semibold capitalize text-white disabled:opacity-70 disabled:cursor-not-allowed transition-all">
+                            <span>Create Account</span>
+                        </button>
+                        <p class="font-medium text-custom-grey text-center">
+                            Already have account?
+                            <a href="login.html"
+                                class="font-semibold text-custom-blue hover:underline transition-300">Sign In</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ==================== SELLER PANEL ==================== -->
+                <form id="sellerForm" class="hidden flex-col gap-8" onsubmit="return handleSellerSubmit(event)">
+                    <div class="flex flex-col gap-4 w-full">
+
+                        <!-- Step 1: Supplier Check Fields -->
+                        <div id="seller-step1" class="flex flex-col gap-4 w-full">
+                            <!-- ID Supplier -->
+                            <div class="flex flex-col gap-3">
+                                <p class="font-semibold text-custom-grey">ID Supplier</p>
+                                <div class="group/errorState flex flex-col gap-2" id="idSupplierGroup">
+                                    <label class="group relative">
+                                        <div class="input-icon">
+                                            <svg class="flex size-6 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M22 7.55C22 8.21 21.46 8.75 20.8 8.75H3.2C2.54 8.75 2 8.21 2 7.55V7.54C2 4.48 4.48 2 7.54 2H16.46C19.52 2 22 4.48 22 7.54V7.55Z" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12.05V16.46C2 19.52 4.48 22 7.54 22H16.46C19.52 22 22 19.52 22 16.46V12.05" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 2V8.75" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 2V8.75" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14H12" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17.5H16" stroke="#6A7686" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        </div>
+                                        <p class="input-placeholder">contoh: SUP-001</p>
+                                        <input type="text" id="idSupplier" class="custom-input" placeholder="">
+                                    </label>
+                                    <span class="input-error" id="idSupplierError"></span>
+                                </div>
+                            </div>
+
+                            <!-- Nama Toko -->
+                            <div class="flex flex-col gap-3">
+                                <p class="font-semibold text-custom-grey">Nama Toko</p>
+                                <div class="group/errorState flex flex-col gap-2" id="namaTokoGroup">
+                                    <label class="group relative">
+                                        <div class="input-icon">
+                                            <img src="../src/assets/images/icons/shop-grey.svg"
+                                                class="flex size-6 shrink-0" alt="icon">
+                                        </div>
+                                        <p class="input-placeholder">contoh: Toko Sembako Maju</p>
+                                        <input type="text" id="namaToko" class="custom-input" placeholder="">
+                                    </label>
+                                    <span class="input-error" id="namaTokoError"></span>
+                                </div>
+                            </div>
+
+                            <!-- No. WA -->
+                            <div class="flex flex-col gap-3">
+                                <p class="font-semibold text-custom-grey">No. WA</p>
+                                <div class="group/errorState flex flex-col gap-2" id="noWaGroup">
+                                    <label class="group relative">
+                                        <div class="input-icon">
+                                            <svg class="flex size-6 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M21.97 18.33C21.97 18.69 21.89 19.06 21.72 19.42C21.55 19.78 21.33 20.12 21.04 20.44C20.55 20.98 20.01 21.37 19.4 21.62C18.8 21.87 18.15 22 17.45 22C16.43 22 15.34 21.76 14.19 21.27C13.04 20.78 11.89 20.12 10.75 19.29C9.6 18.45 8.51 17.52 7.47 16.49C6.44 15.45 5.51 14.36 4.68 13.22C3.86 12.08 3.2 10.94 2.72 9.81C2.24 8.67 2 7.58 2 6.54C2 5.86 2.12 5.21 2.36 4.61C2.6 4 2.98 3.44 3.51 2.94C4.15 2.31 4.85 2 5.59 2C5.87 2 6.15 2.06 6.4 2.18C6.66 2.3 6.89 2.48 7.07 2.74L9.39 6.01C9.57 6.26 9.7 6.49 9.79 6.71C9.88 6.92 9.93 7.13 9.93 7.32C9.93 7.56 9.86 7.8 9.72 8.03C9.59 8.26 9.4 8.5 9.16 8.74L8.4 9.53C8.29 9.64 8.24 9.77 8.24 9.93C8.24 10.01 8.25 10.08 8.27 10.16C8.3 10.24 8.33 10.3 8.35 10.36C8.53 10.69 8.84 11.12 9.28 11.64C9.73 12.16 10.21 12.69 10.73 13.22C11.27 13.75 11.79 14.24 12.32 14.69C12.84 15.13 13.27 15.43 13.61 15.61C13.66 15.63 13.72 15.66 13.79 15.69C13.87 15.72 13.95 15.73 14.04 15.73C14.21 15.73 14.34 15.67 14.45 15.56L15.21 14.81C15.46 14.56 15.7 14.37 15.93 14.25C16.16 14.11 16.39 14.04 16.64 14.04C16.83 14.04 17.03 14.08 17.25 14.17C17.47 14.26 17.7 14.39 17.95 14.56L21.26 16.91C21.52 17.09 21.7 17.3 21.81 17.55C21.91 17.8 21.97 18.05 21.97 18.33Z" stroke="#6A7686" stroke-width="2" stroke-miterlimit="10"/></svg>
+                                        </div>
+                                        <p class="input-placeholder">contoh: 6281234567890</p>
+                                        <input type="text" id="noWa" class="custom-input" placeholder="">
+                                    </label>
+                                    <span class="input-error" id="noWaError"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Password (hidden initially) -->
+                        <div id="seller-step2" class="flex flex-col gap-4 w-full hidden">
+                            <!-- Verified Banner -->
+                            <div class="flex items-center gap-3 p-4 rounded-2xl bg-green-50 border-[1.5px] border-custom-green">
+                                <svg class="size-6 shrink-0" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z" fill="#00A48A"/></svg>
+                                <div class="flex flex-col">
+                                    <p class="font-semibold text-custom-green text-sm">Keanggotaan Terverifikasi</p>
+                                    <p class="text-custom-grey text-sm" id="verifiedName"></p>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="flex flex-col gap-3">
+                                <p class="font-semibold text-custom-grey">Password</p>
+                                <div class="group/errorState flex flex-col gap-2">
+                                    <label class="group relative">
+                                        <div class="input-icon">
+                                            <img src="../src/assets/images/icons/key-grey.svg"
+                                                class="flex size-6 shrink-0" alt="icon">
+                                        </div>
+                                        <p class="input-placeholder">Enter Your Password</p>
+                                        <input id="sellerPassword" type="password"
+                                            class="custom-input has-eye tracking-[0.3em]" placeholder=""
+                                            oninput="checkPasswordStrength(this.value)">
+                                        <button type="button" class="eye-toggle" onclick="togglePassword('sellerPassword', this)">
+                                            <svg class="eye-open size-5" viewBox="0 0 24 24" fill="none">
+                                                <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42 12 8.42C13.98 8.42 15.58 10.02 15.58 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C18.82 5.79999 15.53 3.71999 12 3.71999C8.47 3.71999 5.18 5.79999 2.89 9.39999C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg class="eye-closed size-5 hidden" viewBox="0 0 24 24" fill="none">
+                                                <path d="M14.53 9.47L9.47 14.53C8.82 13.88 8.42 12.99 8.42 12C8.42 10.02 10.02 8.42 12 8.42C12.99 8.42 13.88 8.82 14.53 9.47Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M17.82 5.77C16.07 4.45 14.07 3.73 12 3.73C8.47 3.73 5.18 5.81 2.89 9.41C1.99 10.82 1.99 13.19 2.89 14.6C3.68 15.84 4.6 16.91 5.6 17.77" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8.42 19.53C9.56 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.88 20.42 8.39 20.05 7.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15.51 12.7C15.25 14.11 14.1 15.26 12.69 15.52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.47 14.53L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22 2L14.53 9.47" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </label>
+                                </div>
+
+                                <!-- Password Strength Indicator -->
+                                <div id="passwordStrength" class="flex flex-col gap-2 hidden">
+                                    <div class="flex gap-1.5">
+                                        <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bar1"></div>
+                                        <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bar2"></div>
+                                        <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bar3"></div>
+                                        <div class="h-1.5 flex-1 rounded-full bg-custom-stroke transition-300" id="bar4"></div>
+                                    </div>
+                                    <p class="text-xs font-semibold transition-300" id="strengthText">Sangat Lemah</p>
+                                    <div class="flex flex-col gap-1 mt-1">
+                                        <div class="flex items-center gap-2">
+                                            <svg id="chkLen" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                            <span class="text-xs font-medium text-custom-grey">Minimal 8 karakter</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg id="chkUpper" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                            <span class="text-xs font-medium text-custom-grey">Huruf besar (A-Z)</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg id="chkLower" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                            <span class="text-xs font-medium text-custom-grey">Huruf kecil (a-z)</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg id="chkNum" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                            <span class="text-xs font-medium text-custom-grey">Angka (0-9)</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg id="chkSpec" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                            <span class="text-xs font-medium text-custom-grey">Karakter spesial (!@#$%^&*)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="flex flex-col gap-3">
+                                <p class="font-semibold text-custom-grey">Konfirmasi Password</p>
+                                <div class="group/errorState flex flex-col gap-2">
+                                    <label class="group relative">
+                                        <div class="input-icon">
+                                            <img src="../src/assets/images/icons/key-grey.svg"
+                                                class="flex size-6 shrink-0" alt="icon">
+                                        </div>
+                                        <p class="input-placeholder">Ulangi Password</p>
+                                        <input id="sellerConfirmPassword" type="password"
+                                            class="custom-input has-eye tracking-[0.3em]" placeholder=""
+                                            oninput="checkPasswordMatch()">
+                                        <button type="button" class="eye-toggle" onclick="togglePassword('sellerConfirmPassword', this)">
+                                            <svg class="eye-open size-5" viewBox="0 0 24 24" fill="none">
+                                                <path d="M15.58 12C15.58 13.98 13.98 15.58 12 15.58C10.02 15.58 8.42 13.98 8.42 12C8.42 10.02 10.02 8.42 12 8.42C13.98 8.42 15.58 10.02 15.58 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C18.82 5.79999 15.53 3.71999 12 3.71999C8.47 3.71999 5.18 5.79999 2.89 9.39999C1.99 10.81 1.99 13.18 2.89 14.59C5.18 18.19 8.47 20.27 12 20.27Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                            <svg class="eye-closed size-5 hidden" viewBox="0 0 24 24" fill="none">
+                                                <path d="M14.53 9.47L9.47 14.53C8.82 13.88 8.42 12.99 8.42 12C8.42 10.02 10.02 8.42 12 8.42C12.99 8.42 13.88 8.82 14.53 9.47Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M17.82 5.77C16.07 4.45 14.07 3.73 12 3.73C8.47 3.73 5.18 5.81 2.89 9.41C1.99 10.82 1.99 13.19 2.89 14.6C3.68 15.84 4.6 16.91 5.6 17.77" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M8.42 19.53C9.56 20.01 10.77 20.27 12 20.27C15.53 20.27 18.82 18.19 21.11 14.59C22.01 13.18 22.01 10.81 21.11 9.39999C20.78 8.88 20.42 8.39 20.05 7.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M15.51 12.7C15.25 14.11 14.1 15.26 12.69 15.52" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.47 14.53L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22 2L14.53 9.47" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                    </label>
+                                </div>
+                                <!-- Match indicator -->
+                                <div id="matchInfo" class="hidden">
+                                    <div class="flex items-center gap-2">
+                                        <svg id="chkMatch" class="size-4 shrink-0 text-custom-stroke" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16.78 9.7L11.11 15.37C10.97 15.51 10.78 15.59 10.58 15.59C10.38 15.59 10.19 15.51 10.05 15.37L7.22 12.54C6.93 12.25 6.93 11.77 7.22 11.48C7.51 11.19 7.99 11.19 8.28 11.48L10.58 13.78L15.72 8.64C16.01 8.35 16.49 8.35 16.78 8.64C17.07 8.93 17.07 9.4 16.78 9.7Z"/></svg>
+                                        <span class="text-xs font-medium text-custom-grey" id="matchLabel">Password cocok</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Seller Buttons -->
+                    <div class="flex flex-col gap-3">
+                        <!-- Step 1: Check Keanggotaan + Reset -->
+                        <div id="seller-btn-step1" class="flex gap-3">
+                            <button type="button" id="btnCheck" onclick="checkKeanggotaan()"
+                                class="flex-1 flex items-center justify-center h-14 rounded-full py-4 px-6 gap-[10px] bg-custom-blue font-semibold capitalize text-white disabled:opacity-70 disabled:cursor-not-allowed transition-all">
+                                <svg class="size-5 shrink-0 animate-spin hidden" id="checkSpinner" viewBox="0 0 24 24" fill="none">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <span id="checkBtnText">Check Keanggotaan</span>
+                            </button>
+                            <button type="button" onclick="resetSeller()"
+                                class="flex items-center justify-center h-14 rounded-full py-4 px-6 gap-[10px] bg-custom-background font-semibold capitalize text-custom-grey hover:bg-gray-200 transition-all">
+                                Reset
+                            </button>
+                        </div>
+
+                        <!-- Step 2: Create Account -->
+                        <button type="submit" id="btnCreateSeller" disabled
+                            class="hidden items-center justify-center h-14 rounded-full py-4 px-6 gap-[10px] bg-custom-blue font-semibold capitalize text-white disabled:opacity-70 disabled:cursor-not-allowed transition-all">
+                            <span>Create Account</span>
+                        </button>
+
+                        <p class="font-medium text-custom-grey text-center">
+                            Already have account?
+                            <a href="login.html"
+                                class="font-semibold text-custom-blue hover:underline transition-300">Sign In</a>
+                        </p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // ==================== Swiper ====================
+        const swiper = new Swiper('#authSwiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: { delay: 5000 },
+            effect: 'fade',
+            fadeEffect: { crossFade: true },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // ==================== Tab Switcher ====================
+        let currentTab = 'buyer';
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const tabBuyer = document.getElementById('tabBuyer');
+            const tabSeller = document.getElementById('tabSeller');
+            const panelBuyer = document.getElementById('panelBuyer');
+            const sellerForm = document.getElementById('sellerForm');
+
+            if (tab === 'buyer') {
+                tabBuyer.className = 'flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-white text-custom-black shadow-sm';
+                tabSeller.className = 'flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-transparent text-custom-grey';
+                panelBuyer.classList.remove('hidden');
+                panelBuyer.classList.add('flex');
+                sellerForm.classList.add('hidden');
+                sellerForm.classList.remove('flex');
+            } else {
+                tabSeller.className = 'flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-white text-custom-black shadow-sm';
+                tabBuyer.className = 'flex items-center justify-center gap-2 h-12 rounded-xl font-semibold text-sm transition-300 bg-transparent text-custom-grey';
+                panelBuyer.classList.add('hidden');
+                panelBuyer.classList.remove('flex');
+                sellerForm.classList.remove('hidden');
+                sellerForm.classList.add('flex');
+            }
+        }
+
+        // ==================== Google OAuth ====================
+        function handleGoogleSignUp() {
+            // TODO: Replace with real Google OAuth flow
+            alert('Google Sign Up — integrate with Google OAuth');
+        }
+
+        // ==================== Password Toggle ====================
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const eyeOpen = btn.querySelector('.eye-open');
+            const eyeClosed = btn.querySelector('.eye-closed');
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                input.type = 'password';
+                eyeOpen.classList.remove('hidden');
+                eyeClosed.classList.add('hidden');
+            }
+        }
+
+        // ==================== Seller: Check Keanggotaan ====================
+        let isVerified = false;
+        let supplierData = null;
+
+        async function checkKeanggotaan() {
+            const id = document.getElementById('idSupplier').value.trim();
+            const toko = document.getElementById('namaToko').value.trim();
+            const wa = document.getElementById('noWa').value.trim();
+
+            clearErrors();
+            let hasErr = false;
+            if (!id) { showFieldError('idSupplier', 'ID Supplier wajib diisi'); hasErr = true; }
+            if (!toko) { showFieldError('namaToko', 'Nama Toko wajib diisi'); hasErr = true; }
+            if (!wa) { showFieldError('noWa', 'No. WA wajib diisi'); hasErr = true; }
+            if (hasErr) return;
+
+            const btn = document.getElementById('btnCheck');
+            const spinner = document.getElementById('checkSpinner');
+            const btnText = document.getElementById('checkBtnText');
+            btn.disabled = true;
+            spinner.classList.remove('hidden');
+            btnText.textContent = 'Checking...';
+
+            try {
+                const res = await simulateAPI(id, toko, wa);
+                if (res.valid) {
+                    isVerified = true;
+                    supplierData = res.data;
+                    document.getElementById('verifiedName').textContent = supplierData.store + ' — ' + supplierData.id;
+
+                    // Disable step 1
+                    document.getElementById('idSupplier').disabled = true;
+                    document.getElementById('namaToko').disabled = true;
+                    document.getElementById('noWa').disabled = true;
+                    document.getElementById('seller-step1').classList.add('opacity-60', 'pointer-events-none');
+
+                    // Show step 2
+                    document.getElementById('seller-step2').classList.remove('hidden');
+                    document.getElementById('seller-btn-step1').classList.add('hidden');
+                    document.getElementById('btnCreateSeller').classList.remove('hidden');
+                    document.getElementById('btnCreateSeller').classList.add('flex');
+
+                    setTimeout(() => document.getElementById('sellerPassword').focus(), 300);
+                } else {
+                    showFieldError('idSupplier', res.message || 'Data supplier tidak ditemukan');
+                }
+            } catch (e) {
+                showFieldError('idSupplier', 'Gagal menghubungi server. Coba lagi.');
+            } finally {
+                btn.disabled = false;
+                spinner.classList.add('hidden');
+                btnText.textContent = 'Check Keanggotaan';
+            }
+        }
+
+        // Simulate API (replace with real endpoint)
+        function simulateAPI(id, store, wa) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    if (id.toUpperCase().startsWith('SUP-')) {
+                        resolve({ valid: true, data: { id: id.toUpperCase(), store, wa } });
+                    } else {
+                        resolve({ valid: false, message: 'ID Supplier tidak ditemukan. Format: SUP-XXX' });
+                    }
+                }, 1500);
+            });
+        }
+
+        // ==================== Password Strength ====================
+        function checkPasswordStrength(pw) {
+            const el = document.getElementById('passwordStrength');
+            if (!pw.length) { el.classList.add('hidden'); updateSellerBtn(); return; }
+            el.classList.remove('hidden');
+
+            const c = {
+                len: pw.length >= 8,
+                upper: /[A-Z]/.test(pw),
+                lower: /[a-z]/.test(pw),
+                num: /[0-9]/.test(pw),
+                spec: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pw),
+            };
+
+            setChk('chkLen', c.len);
+            setChk('chkUpper', c.upper);
+            setChk('chkLower', c.lower);
+            setChk('chkNum', c.num);
+            setChk('chkSpec', c.spec);
+
+            const score = Object.values(c).filter(Boolean).length;
+            const bars = ['bar1', 'bar2', 'bar3', 'bar4'];
+            const st = document.getElementById('strengthText');
+
+            bars.forEach(b => { document.getElementById(b).className = 'h-1.5 flex-1 rounded-full bg-custom-stroke transition-300'; });
+
+            const levels = [
+                { max: 1, bars: 1, color: 'bg-custom-red', text: 'Sangat Lemah', tcolor: 'text-custom-red' },
+                { max: 2, bars: 2, color: 'bg-custom-orange', text: 'Lemah', tcolor: 'text-custom-orange' },
+                { max: 3, bars: 3, color: 'bg-custom-yellow', text: 'Sedang', tcolor: 'text-custom-yellow' },
+                { max: 4, bars: 3, color: 'bg-custom-green', text: 'Kuat', tcolor: 'text-custom-green' },
+                { max: 5, bars: 4, color: 'bg-custom-green', text: 'Sangat Kuat', tcolor: 'text-custom-green' },
+            ];
+            const lvl = levels.find(l => score <= l.max) || levels[4];
+            for (let i = 0; i < lvl.bars; i++) document.getElementById(bars[i]).classList.replace('bg-custom-stroke', lvl.color);
+            st.textContent = lvl.text;
+            st.className = 'text-xs font-semibold transition-300 ' + lvl.tcolor;
+
+            checkPasswordMatch();
+            updateSellerBtn();
+        }
+
+        function setChk(id, ok) {
+            const el = document.getElementById(id);
+            el.classList.remove('text-custom-stroke', 'text-custom-green');
+            el.classList.add(ok ? 'text-custom-green' : 'text-custom-stroke');
+        }
+
+        // ==================== Password Match ====================
+        function checkPasswordMatch() {
+            const pw = document.getElementById('sellerPassword').value;
+            const cf = document.getElementById('sellerConfirmPassword').value;
+            const info = document.getElementById('matchInfo');
+            const icon = document.getElementById('chkMatch');
+            const label = document.getElementById('matchLabel');
+
+            if (!cf.length) { info.classList.add('hidden'); updateSellerBtn(); return; }
+            info.classList.remove('hidden');
+
+            const ok = pw === cf && pw.length > 0;
+            icon.classList.remove('text-custom-stroke', 'text-custom-green', 'text-custom-red');
+            label.classList.remove('text-custom-grey', 'text-custom-red');
+            if (ok) {
+                icon.classList.add('text-custom-green');
+                label.textContent = 'Password cocok';
+                label.classList.add('text-custom-grey');
+            } else {
+                icon.classList.add('text-custom-red');
+                label.textContent = 'Password tidak cocok';
+                label.classList.add('text-custom-red');
+            }
+            updateSellerBtn();
+        }
+
+        // ==================== Enable Create Button ====================
+        function updateSellerBtn() {
+            const pw = document.getElementById('sellerPassword').value;
+            const cf = document.getElementById('sellerConfirmPassword').value;
+            const btn = document.getElementById('btnCreateSeller');
+            const checks = {
+                len: pw.length >= 8,
+                upper: /[A-Z]/.test(pw),
+                lower: /[a-z]/.test(pw),
+                num: /[0-9]/.test(pw),
+                spec: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(pw),
+            };
+            btn.disabled = !(Object.values(checks).every(Boolean) && pw === cf && pw.length > 0 && isVerified);
+        }
+
+        // ==================== Seller Submit ====================
+        function handleSellerSubmit(e) {
+            e.preventDefault();
+            if (!isVerified) return false;
+            const payload = {
+                id_supplier: supplierData.id,
+                nama_toko: supplierData.store,
+                no_wa: supplierData.wa,
+                password: document.getElementById('sellerPassword').value,
+                role: 'store',
+            };
+            console.log('Seller register:', payload);
+            alert('Akun Seller berhasil dibuat! (Demo)');
+            return false;
+        }
+
+        // ==================== Reset Seller ====================
+        function resetSeller() {
+            ['idSupplier', 'namaToko', 'noWa'].forEach(id => {
+                const el = document.getElementById(id);
+                el.value = ''; el.disabled = false;
+            });
+            document.getElementById('sellerPassword').value = '';
+            document.getElementById('sellerConfirmPassword').value = '';
+            document.getElementById('passwordStrength').classList.add('hidden');
+            document.getElementById('matchInfo').classList.add('hidden');
+            document.getElementById('seller-step1').classList.remove('opacity-60', 'pointer-events-none');
+            document.getElementById('seller-step2').classList.add('hidden');
+            document.getElementById('seller-btn-step1').classList.remove('hidden');
+            document.getElementById('btnCreateSeller').classList.add('hidden');
+            document.getElementById('btnCreateSeller').classList.remove('flex');
+            isVerified = false; supplierData = null;
+            clearErrors();
+            document.getElementById('idSupplier').focus();
+        }
+
+        // ==================== Error Helpers ====================
+        function showFieldError(field, msg) {
+            const g = document.getElementById(field + 'Group');
+            const e = document.getElementById(field + 'Error');
+            if (g) g.classList.add('invalid');
+            if (e) { e.textContent = msg; e.style.display = 'block'; }
+        }
+
+        function clearErrors() {
+            ['idSupplier', 'namaToko', 'noWa'].forEach(id => {
+                const g = document.getElementById(id + 'Group');
+                const e = document.getElementById(id + 'Error');
+                if (g) g.classList.remove('invalid');
+                if (e) { e.textContent = ''; e.style.display = 'none'; }
+            });
+        }
+    </script>
 </body>
+
 </html>
