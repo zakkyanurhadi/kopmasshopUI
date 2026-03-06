@@ -32,29 +32,181 @@
     .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
     .branch-line:last-child { height: 55%; }
     .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+    .border-custom-border { border-color: #e8e8e8; }
+    .custom-input {
+      height: 76px; width: 100%; appearance: none; border-radius: 18px; border-width: 1.5px;
+      border-color: #e8e8e8; padding-left: 5rem; padding-right: 1.5rem;
+      padding-bottom: 14.5px; padding-top: 34.5px; font-weight: 600; transition: all 300ms ease;
+    }
+    .custom-input:placeholder-shown { padding-top: 14.5px; }
+    .custom-input:focus { border-color: #292d32; outline: none; }
+    .input-placeholder {
+      position: absolute; left: 81px; top: 25px; transform: translateY(-50%);
+      font-size: 0.875rem; font-weight: 600; color: #6a7686; transition: all 300ms ease;
+    }
+    .group:focus-within .input-placeholder { top: 25px; }
+    .group:has(:placeholder-shown) .input-placeholder {
+      top: 38px; font-size: 1rem !important; font-weight: 700 !important; color: #292d32;
+    }
+    .input-icon {
+      position: absolute; top: 50%; left: 1.5rem; display: flex; height: 28px;
+      transform: translateY(-50%); align-items: center; border-right: 1.5px solid #e8e8e8; padding-right: 1rem;
+    }
+    .bg-custom-red { background-color: #ff133d; }
   </style>
 </head>
 <body class="bg-custom-background text-custom-black">
   <div id="admin-app" data-page-title="Product Create" data-role="seller">
 
-        <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
-      <h2 class="font-bold text-xl">Create New Product</h2>
-      <form class="flex flex-col gap-4">
-        <div class="flex flex-col gap-2">
-          <label class="font-semibold text-custom-grey">Product Name</label>
-          <input class="h-14 w-full rounded-2xl border border-custom-stroke px-5 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" placeholder="Enter product name">
+    <form class="flex flex-col w-full rounded-3xl p-5 gap-5 bg-white">
+      <h2 class="font-bold text-xl capitalize">Complete the form</h2>
+      <!-- Product Images -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Product Images</p>
+        <div class="flex items-center gap-4 w-1/2">
+          <div class="group relative flex size-[100px] p-[26px] rounded-2xl overflow-hidden items-center justify-center bg-custom-background">
+            <img src="../assets/images/icons/gallery-grey.svg" class="size-full object-contain" alt="icon">
+            <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+          </div>
+          <div class="group relative flex size-[100px] p-[26px] rounded-2xl overflow-hidden items-center justify-center bg-custom-background">
+            <img src="../assets/images/icons/gallery-grey.svg" class="size-full object-contain" alt="icon">
+            <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+          </div>
+          <div class="group relative flex size-[100px] p-[26px] rounded-2xl overflow-hidden items-center justify-center bg-custom-background">
+            <img src="../assets/images/icons/gallery-grey.svg" class="size-full object-contain" alt="icon">
+            <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+          </div>
+          <div class="group relative flex size-[100px] p-[26px] rounded-2xl overflow-hidden items-center justify-center bg-custom-background">
+            <img src="../assets/images/icons/gallery-grey.svg" class="size-full object-contain" alt="icon">
+            <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+          </div>
         </div>
-        <div class="flex flex-col gap-2">
-          <label class="font-semibold text-custom-grey">Price</label>
-          <input class="h-14 w-full rounded-2xl border border-custom-stroke px-5 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" placeholder="Enter price">
+      </div>
+      <!-- Product Name -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Product Name</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group relative">
+            <div class="input-icon"><img src="../assets/images/icons/shopping-cart-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Enter Product Name</p>
+            <input type="text" class="custom-input" placeholder="">
+          </label>
         </div>
-        <div class="flex flex-col gap-2">
-          <label class="font-semibold text-custom-grey">Description</label>
-          <textarea class="min-h-[120px] w-full rounded-2xl border border-custom-stroke px-5 py-4 font-medium focus:outline-none focus:ring-2 ring-custom-blue transition-300" placeholder="Enter description"></textarea>
+      </div>
+      <!-- Weight -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Weight</p>
+        <div class="flex items-center gap-4 w-1/2">
+          <label class="group relative flex-1">
+            <div class="input-icon"><img src="../assets/images/icons/box-2-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Enter Product Weight</p>
+            <input type="number" class="custom-input" placeholder="">
+          </label>
+          <label class="flex items-center h-[76px] rounded-[18px] border-[1.5px] border-custom-border py-4 px-5 bg-white focus-within:border-[#292d32] transition-300">
+            <select class="text-custom-black font-semibold appearance-none focus:outline-none p-2">
+              <option value="KG" class="font-semibold">KG</option>
+              <option value="G" class="font-semibold">G</option>
+            </select>
+            <img src="../assets/images/icons/arrow-down-black.svg" class="flex size-6 shrink-0 -ml-1" alt="icon">
+          </label>
         </div>
-        <button type="button" class="flex h-14 w-fit items-center rounded-full bg-custom-blue px-8 font-semibold text-white hover:ring-2 ring-custom-blue transition-300">Save Product</button>
-      </form>
-    </div>
+      </div>
+      <!-- Type -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Type</p>
+        <div class="flex items-center gap-4 w-1/2">
+          <label class="flex items-center h-[76px] rounded-[18px] border-[1.5px] border-custom-border py-4 px-6 gap-4 bg-white cursor-pointer flex-1">
+            <img src="../assets/images/icons/gift-grey.svg" class="flex size-8 shrink-0" alt="icon">
+            <div class="flex flex-col gap-[2px]">
+              <p class="font-bold leading-none">New Item</p>
+              <p class="font-semibold text-custom-grey text-sm">Brand new product</p>
+            </div>
+            <input type="radio" name="type" value="new" class="ml-auto size-5" checked>
+          </label>
+          <label class="flex items-center h-[76px] rounded-[18px] border-[1.5px] border-custom-border py-4 px-6 gap-4 bg-white cursor-pointer flex-1">
+            <img src="../assets/images/icons/box-grey.svg" class="flex size-8 shrink-0" alt="icon">
+            <div class="flex flex-col gap-[2px]">
+              <p class="font-bold leading-none">Used Item</p>
+              <p class="font-semibold text-custom-grey text-sm">Pre-owned product</p>
+            </div>
+            <input type="radio" name="type" value="used" class="ml-auto size-5">
+          </label>
+        </div>
+      </div>
+      <!-- Description -->
+      <div class="flex justify-between">
+        <p class="font-semibold text-custom-grey mt-5">Description</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group flex py-4 px-6 rounded-3xl border-[2px] border-custom-border focus-within:border-[#292d32] transition-300 w-full">
+            <div class="flex h-full pr-4 pt-2 border-r-[1.5px] border-custom-border"><img src="../assets/images/icons/stickynote-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <div class="flex flex-col gap-[6px] pl-4 w-full">
+              <p class="font-semibold text-custom-grey text-sm">Enter Product Description</p>
+              <textarea class="appearance-none outline-none w-full font-semibold leading-[160%]" rows="3" placeholder=""></textarea>
+            </div>
+          </label>
+        </div>
+      </div>
+      <!-- Category -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Category</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group relative">
+            <div class="input-icon"><img src="../assets/images/icons/bag-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <div class="absolute right-6 top-1/2 -translate-y-1/2"><img src="../assets/images/icons/arrow-down-black.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Select Category</p>
+            <select class="custom-input pr-14" style="cursor:pointer">
+              <option value="" disabled selected></option>
+              <option value="1">Elektronik</option>
+              <option value="2">Fashion</option>
+              <option value="3">Makanan</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <!-- Sub Category -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Sub Category</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group relative">
+            <div class="input-icon"><img src="../assets/images/icons/shopping-bag-black.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <div class="absolute right-6 top-1/2 -translate-y-1/2"><img src="../assets/images/icons/arrow-down-black.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Select Sub Category</p>
+            <select class="custom-input pr-14" style="cursor:pointer">
+              <option value="" disabled selected></option>
+              <option value="1">Smartphone</option>
+              <option value="2">Laptop</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <!-- Price -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Price</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group relative">
+            <div class="input-icon"><img src="../assets/images/icons/money-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Enter Product Price</p>
+            <input type="number" class="custom-input" placeholder="">
+          </label>
+        </div>
+      </div>
+      <!-- Stock -->
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-custom-grey">Stock</p>
+        <div class="flex flex-col gap-2 w-1/2">
+          <label class="group relative">
+            <div class="input-icon"><img src="../assets/images/icons/box-grey.svg" class="flex size-6 shrink-0" alt="icon"></div>
+            <p class="input-placeholder">Enter Product Stock</p>
+            <input type="number" class="custom-input" placeholder="">
+          </label>
+        </div>
+      </div>
+      <!-- Buttons -->
+      <div class="flex items-center justify-end gap-4">
+        <a href="product-list.html" class="flex items-center justify-center h-14 rounded-full py-4 px-6 gap-2 bg-custom-red text-white font-semibold text-lg">Cancel</a>
+        <button type="submit" class="flex items-center justify-center h-14 rounded-full py-4 px-6 gap-2 bg-custom-blue text-white font-semibold text-lg">Create Now</button>
+      </div>
+    </form>
 
   </div>
   <script src="../admin-layout.js" defer></script>

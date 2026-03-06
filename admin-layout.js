@@ -1,14 +1,4 @@
-/**
- * Admin Sidebar Layout – shared across all admin & seller pages.
- *
- * Usage: include in admin/seller HTML pages:
- *   <div id="admin-app"></div>
- *   <script src="../admin-layout.js" defer></script>
- *
- * Set data attributes on #admin-app:
- *   data-page-title="Dashboard"
- *   data-role="admin"  (or "seller")
- */
+
 document.addEventListener('DOMContentLoaded', function () {
   var app = document.getElementById('admin-app');
   if (!app) return;
@@ -18,6 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
   var mainContent = app.innerHTML;
   var basePath = '../';
   var currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  var connectorStyleId = 'sidebar-connector-fix-style';
+  if (!document.getElementById(connectorStyleId)) {
+    var connectorStyle = document.createElement('style');
+    connectorStyle.id = connectorStyleId;
+    connectorStyle.textContent = '' +
+      '.branch-line{position:absolute;top:10px;bottom:40px;left:calc(100% - 22px);width:2px;background-color:#e5e7eb;border-radius:999px;transform:none!important;}' +
+      '.branch-line:last-child{height:auto!important;}' +
+      '.curve-branch{position:absolute;left:-22px;top:0;width:22px;height:28px;border-left:2px solid #e5e7eb;border-bottom:2px solid #e5e7eb;border-bottom-left-radius:14px;background:transparent;z-index:1;transform:none;}';
+    document.head.appendChild(connectorStyle);
+  }
 
   /* ── Sidebar menu items ─────────────────────────────────── */
   var menuItems = [
@@ -52,33 +53,30 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     {
       label: 'Manage Wallet',
+      href: 'manage-wallet.html',
       iconDefault: 'wallet-2-black.svg',
-      type: 'accordion',
-      id: 'acc-wallet',
-      children: [
-        { label: 'Store Wallet', href: 'store-balance-list.html', iconDefault: 'empty-wallet-grey.svg', iconActive: 'wallet-3-blue-fill.svg', visibleFor: ['admin'], relatedPages: ['store-balance-detail.html'] },
-        { label: 'My Wallet', href: 'my-store-balance.html', iconDefault: 'empty-wallet-grey.svg', iconActive: 'wallet-3-blue-fill.svg', visibleFor: ['seller'] },
-        { label: 'Withdrawal', href: 'withdrawal-list.html', iconDefault: 'empty-wallet-grey.svg', iconActive: 'wallet-3-blue-fill.svg', relatedPages: ['withdrawal-create.html', 'withdrawal-detail.html'] }
-      ]
+      iconActive: 'wallet-3-blue-fill.svg',
+      type: 'link',
+      relatedPages: ['store-balance-list.html', 'store-balance-detail.html', 'my-store-balance.html', 'withdrawal-list.html', 'withdrawal-create.html', 'withdrawal-detail.html']
     },
     {
       label: 'Manage Users',
-      href: 'user-list.html',
+      href: 'manage-users.html',
       iconDefault: 'profile-2user-black.svg',
       iconActive: 'profile-2user-blue-fill.svg',
       type: 'link',
-      visibleFor: ['admin']
+      relatedPages: ['user-list.html']
     },
     {
       label: 'Manage Reviews',
-      href: '#',
+      href: 'manage-reviews.html',
       iconDefault: 'stickynote-grey.svg',
       iconActive: 'stickynote-blue-fill.svg',
       type: 'link'
     },
     {
       label: 'Settings',
-      href: '#',
+      href: 'settings.html',
       iconDefault: 'setting-2-grey.svg',
       iconActive: 'setting-2-grey.svg',
       type: 'link'
@@ -123,10 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var hasActiveChild = visibleChildren.some(isPageActive);
     var isOpen = hasActiveChild;
 
-    var branchLines = '';
-    for (var b = 0; b < Math.max(0, visibleChildren.length - 1); b++) {
-      branchLines += '<div class="branch-line"></div>';
-    }
+    var branchLines = visibleChildren.length > 0 ? '<div class="branch-line"></div>' : '';
 
     var childrenHtml = '';
     visibleChildren.forEach(function (child) {
@@ -150,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '<img src="' + iconPath(item.iconDefault) + '" class="size-[22px]" alt="">' +
         '</div>' +
         '<p class="font-medium text-[15px] transition-300 w-full text-left">' + item.label + '</p>' +
-        '<svg id="' + item.id + '-arrow" class="size-5 shrink-0 mr-1 transition-300 text-gray-400' + (isOpen ? ' rotate-180' : '') + '" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>' +
+        '<svg id="' + item.id + '-arrow" class="size-5 shrink-0 mr-1 transition-300 text-gray-400' + (isOpen ? ' rotate-90' : '') + '" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>' +
       '</button>' +
       '<div id="' + item.id + '"' + (isOpen ? '' : ' class="hidden"') + '>' +
         '<div class="flex">' +
@@ -219,8 +214,12 @@ document.addEventListener('DOMContentLoaded', function () {
     '<header id="top-navbar" class="flex items-center h-[64px] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.08)] rounded-2xl px-4 lg:px-6 gap-4">' +
       /* Hamburger (mobile) */
       '<button id="btn-hamburger" onclick="openSidebar()" class="lg:hidden flex items-center justify-center size-11 rounded-xl hover:bg-gray-100 transition-300 text-gray-600 shrink-0">' + svgHamburger + '</button>' +
-      /* Spacer */
-      '<div class="flex-1"></div>' +
+      '<div class="flex-1 min-w-0 flex items-center gap-3">' +
+        '<div class="min-w-0 hidden sm:flex flex-col">' +
+          '<p class="text-[11px] tracking-wide uppercase text-custom-grey">Current Page</p>' +
+          '<p class="text-[15px] font-semibold text-custom-black truncate">' + pageTitle + '</p>' +
+        '</div>' +
+      '</div>' +
       /* Navbar icons */
       '<div class="flex items-center gap-2 sm:gap-3">' +
         '<button class="relative flex items-center justify-center size-11 rounded-xl hover:bg-gray-100 transition-300">' +
@@ -285,10 +284,10 @@ function toggleAccordion(id) {
   if (!el) return;
   if (el.classList.contains('hidden')) {
     el.classList.remove('hidden');
-    if (arrow) arrow.classList.add('rotate-180');
+    if (arrow) arrow.classList.add('rotate-90');
   } else {
     el.classList.add('hidden');
-    if (arrow) arrow.classList.remove('rotate-180');
+    if (arrow) arrow.classList.remove('rotate-90');
   }
 }
 
