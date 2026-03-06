@@ -138,34 +138,43 @@ document.addEventListener('DOMContentLoaded', function () {
   var categoryShowcase = document.querySelector('[data-category-showcase]');
   if (categoryShowcase) {
     var categories = [
-      { name: 'Elektronik', image: './assets/images/thumbnails/macbook.png' },
-      { name: 'Komputer & Aksesoris', image: './assets/images/thumbnails/macbook-pro-m2.png' },
-      { name: 'Handphone & Aksesoris', image: './assets/images/thumbnails/iphone-2.png' },
-      { name: 'Pakaian Pria', image: './assets/images/thumbnails/backpack-1.png' },
-      { name: 'Sepatu Pria', image: './assets/images/thumbnails/th-1.svg' },
-      { name: 'Tas Pria', image: './assets/images/thumbnails/backpack-2.png' },
-      { name: 'Aksesoris Fashion', image: './assets/images/thumbnails/th-2.svg' },
-      { name: 'Jam Tangan', image: './assets/images/thumbnails/th-3.svg' },
-      { name: 'Kesehatan', image: './assets/images/thumbnails/th-4.svg' },
-      { name: 'Hobi & Koleksi', image: './assets/images/thumbnails/th-5.svg' },
-      { name: 'Makanan & Minuman', image: './assets/images/thumbnails/headphone-beige.png' },
-      { name: 'Perawatan & Kecantikan', image: './assets/images/thumbnails/headphone-pink.png' },
-      { name: 'Perlengkapan Rumah', image: './assets/images/thumbnails/proof.png' },
-      { name: 'Pakaian Wanita', image: './assets/images/thumbnails/backpack-3.png' },
-      { name: 'Fashion Muslim', image: './assets/images/thumbnails/th-6.svg' },
-      { name: 'Fashion Bayi & Anak', image: './assets/images/thumbnails/th-7.svg' },
-      { name: 'Ibu & Bayi', image: './assets/images/thumbnails/ip-pink.png' },
-      { name: 'Sepatu Wanita', image: './assets/images/thumbnails/iphone.png' },
-      { name: 'Tas Wanita', image: './assets/images/thumbnails/backpack-4.png' },
-      { name: 'Otomotif', image: './assets/images/thumbnails/xiaomi.png' },
-      { name: 'Gaming', image: './assets/images/thumbnails/samsung.png' },
-      { name: 'Audio & Musik', image: './assets/images/thumbnails/airpod.png' },
-      { name: 'Aksesoris HP', image: './assets/images/thumbnails/ip-green.png' },
-      { name: 'Smart Home', image: './assets/images/thumbnails/apple.png' }
+      {
+        name: 'Makanan',
+        bg: 'bg-gradient-to-br from-amber-50 to-orange-100',
+        iconColor: 'text-amber-600',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M12 40c0-12 6-22 20-22s20 10 20 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><ellipse cx="32" cy="40" rx="22" ry="6" stroke="currentColor" stroke-width="3"/><path d="M18 40c1 4 6 7 14 7s13-3 14-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M28 22c-2-6 0-12 4-14" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".6"/><path d="M34 20c0-5 3-10 6-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".4"/><rect x="10" y="46" width="44" height="6" rx="3" stroke="currentColor" stroke-width="3"/></svg>'
+      },
+      {
+        name: 'Minuman',
+        bg: 'bg-gradient-to-br from-sky-50 to-cyan-100',
+        iconColor: 'text-cyan-600',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M20 16h24l-3 36H23L20 16z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M18 16h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M26 16V10c0-1.5 1.5-3 6-3s6 1.5 6 3v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/><ellipse cx="32" cy="30" rx="7" ry="3" stroke="currentColor" stroke-width="1.5" opacity=".3"/><path d="M29 24c-.5-2 .5-4 3-4s3.5 2 3 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/><path d="M44 22c4 1 7 4 7 7s-2 5-5 5h-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>'
+      },
+      {
+        name: 'Craft',
+        bg: 'bg-gradient-to-br from-violet-50 to-purple-100',
+        iconColor: 'text-violet-600',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M32 8L22 48h20L32 8z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><ellipse cx="32" cy="50" rx="14" ry="5" stroke="currentColor" stroke-width="3"/><path d="M27 48c0-8 2-12 5-18" stroke="currentColor" stroke-width="1.5" opacity=".4"/><path d="M37 48c0-8-2-12-5-18" stroke="currentColor" stroke-width="1.5" opacity=".4"/><circle cx="32" cy="26" r="3" stroke="currentColor" stroke-width="2" opacity=".4"/><path d="M14 34c2-2 5-1 6 1s0 5-2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M50 28c-2-2-5-1-6 1s0 5 2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>'
+      },
+      {
+        name: 'Fashion & Aksesoris',
+        bg: 'bg-gradient-to-br from-rose-50 to-pink-100',
+        iconColor: 'text-rose-500',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M22 12h20v6c0 4-4 8-10 8S22 22 22 18v-6z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M22 18L14 56h36L42 18" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M22 12c-4-2-8 0-10 4l6 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 12c4-2 8 0 10 4l-6 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="38" r="2" fill="currentColor" opacity=".3"/><circle cx="32" cy="46" r="2" fill="currentColor" opacity=".3"/></svg>'
+      },
+      {
+        name: 'Pertanian',
+        bg: 'bg-gradient-to-br from-emerald-50 to-green-100',
+        iconColor: 'text-emerald-600',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M32 56V28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M32 28c-8-2-14-10-12-18 8 0 14 6 14 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity=".08"/><path d="M32 36c8-2 16-10 14-20-8 0-16 8-16 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity=".08"/><path d="M24 28c-1-4 0-10 4-14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/><path d="M40 34c2-3 2-8-1-13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".4"/><path d="M12 56h40" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>'
+      },
+      {
+        name: 'Jasa',
+        bg: 'bg-gradient-to-br from-blue-50 to-indigo-100',
+        iconColor: 'text-blue-600',
+        icon: '<svg class="h-8 w-8" viewBox="0 0 64 64" fill="none"><path d="M12 36c0-4 4-8 10-8 4 0 6 2 10 2s6-2 10-2c6 0 10 4 10 8v4c0 2-1 3-3 3H15c-2 0-3-1-3-3v-4z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="26" cy="20" r="5" stroke="currentColor" stroke-width="2.5"/><circle cx="38" cy="20" r="5" stroke="currentColor" stroke-width="2.5"/><path d="M20 46v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M32 44v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M44 46v6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>'
+      }
     ];
-
-    var cols = 10; // jumlah kolom yang tampil
-    var totalCols = Math.ceil(categories.length / 2); // jumlah kolom total (2 baris)
 
     var mobileGrid = categoryShowcase.querySelector('[data-cat-mobile-grid]');
     var desktopTrack = categoryShowcase.querySelector('[data-cat-desktop-track]');
@@ -175,119 +184,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var mobileCard = function (item) {
       return (
-        '<a href="halaman_kategori.html" class="flex h-[150px] w-[140px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
-          '<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">' +
-            '<img src="' + item.image + '" alt="' + item.name + '" class="h-11 w-11 object-contain">' +
+        '<a href="halaman_kategori.html" class="flex h-[130px] w-[120px] flex-col items-center justify-center gap-3 border-r border-b border-slate-200 p-3 text-center transition hover:bg-slate-50 group">' +
+          '<div class="flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm ' + item.bg + ' ' + item.iconColor + ' transition group-hover:scale-110 group-hover:shadow-md">' +
+            item.icon +
           '</div>' +
-          '<p class="text-sm font-medium text-slate-800 leading-tight">' + item.name + '</p>' +
+          '<p class="text-xs font-semibold text-slate-700 leading-tight">' + item.name + '</p>' +
         '</a>'
       );
     };
 
     var desktopCard = function (item) {
       return (
-        '<a href="halaman_kategori.html" class="flex h-[150px] flex-col items-center justify-center gap-2 border-r border-b border-slate-200 p-2 text-center">' +
-          '<div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">' +
-            '<img src="' + item.image + '" alt="' + item.name + '" class="h-11 w-11 object-contain">' +
+        '<a href="halaman_kategori.html" class="flex flex-col items-center justify-center gap-3 py-6 px-4 text-center transition hover:bg-slate-50 group">' +
+          '<div class="flex h-[68px] w-[68px] items-center justify-center rounded-2xl shadow-sm ' + item.bg + ' ' + item.iconColor + ' transition duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:-translate-y-1">' +
+            item.icon +
           '</div>' +
-          '<p class="text-sm font-medium leading-tight text-slate-800">' + item.name + '</p>' +
+          '<p class="text-sm font-semibold leading-tight text-slate-700 group-hover:text-slate-900 transition">' + item.name + '</p>' +
         '</a>'
       );
     };
 
     if (mobileGrid) {
+      mobileGrid.style.gridTemplateRows = 'repeat(2, 1fr)';
+      mobileGrid.style.gridTemplateColumns = 'repeat(3, 120px)';
       mobileGrid.innerHTML = categories.map(mobileCard).join('');
     }
 
     if (desktopTrack) {
-      // Render semua kategori dalam 1 grid panjang (flow by column, 2 rows)
-      var cells = categories.map(desktopCard).join('');
-      // Hitung filler agar grid genap 2 baris
-      var fillerCount = (totalCols * 2) - categories.length;
-      for (var fill = 0; fill < fillerCount; fill++) {
-        cells += '<div class="h-[150px] border-r border-b border-slate-200"></div>';
-      }
-      // Buat inner grid dengan id agar bisa di-update lebar kolomnya
       desktopTrack.innerHTML =
-        '<div id="cat-grid" class="grid grid-rows-2 grid-flow-col">' +
-          cells +
+        '<div class="grid grid-cols-6 divide-x divide-slate-200">' +
+          categories.map(desktopCard).join('') +
         '</div>';
     }
 
-    // Sembunyikan pagination dots
-    if (pagination) {
-      pagination.classList.add('hidden');
-    }
-
-    // Wrapper scroll container (parent dari desktopTrack)
-    var scrollContainer = desktopTrack ? desktopTrack.parentElement : null;
-    var catGrid = document.getElementById('cat-grid');
-
-    var applyColWidth = function () {
-      if (!scrollContainer || !catGrid) return;
-      var colWidth = Math.floor(scrollContainer.offsetWidth / cols);
-      catGrid.style.gridTemplateColumns = 'repeat(' + totalCols + ', ' + colWidth + 'px)';
-    };
-
-    var getColWidth = function () {
-      if (!scrollContainer) return 0;
-      return Math.floor(scrollContainer.offsetWidth / cols);
-    };
-
-    var updateButtons = function () {
-      if (!scrollContainer) return;
-      var scrollLeft = Math.round(scrollContainer.scrollLeft);
-      var maxScroll = scrollContainer.scrollWidth - scrollContainer.offsetWidth;
-      if (prevBtn) {
-        if (scrollLeft <= 0) {
-          prevBtn.classList.add('hidden');
-          prevBtn.classList.remove('flex');
-        } else {
-          prevBtn.classList.remove('hidden');
-          prevBtn.classList.add('flex');
-        }
-      }
-      if (nextBtn) {
-        if (maxScroll <= 0 || scrollLeft >= maxScroll - 1) {
-          nextBtn.classList.add('hidden');
-          nextBtn.classList.remove('flex');
-        } else {
-          nextBtn.classList.remove('hidden');
-          nextBtn.classList.add('flex');
-        }
-      }
-    };
-
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', updateButtons);
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', function () {
-        if (scrollContainer) {
-          scrollContainer.scrollBy({ left: -getColWidth(), behavior: 'smooth' });
-        }
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function () {
-        if (scrollContainer) {
-          scrollContainer.scrollBy({ left: getColWidth(), behavior: 'smooth' });
-        }
-      });
-    }
-
-    // Terapkan kolom width setelah layout render, lalu update tombol
-    setTimeout(function () {
-      applyColWidth();
-      updateButtons();
-    }, 0);
-
-    window.addEventListener('resize', function () {
-      applyColWidth();
-      updateButtons();
-    });
+    // Sembunyikan pagination & nav buttons (tidak perlu scroll untuk 6 kategori)
+    if (pagination) pagination.classList.add('hidden');
+    if (prevBtn) { prevBtn.classList.add('hidden'); prevBtn.classList.remove('flex'); }
+    if (nextBtn) { nextBtn.classList.add('hidden'); nextBtn.classList.remove('flex'); }
   }
 
   var mainImage = document.querySelector('[data-main-image]');
