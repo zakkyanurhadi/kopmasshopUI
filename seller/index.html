@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seller Dashboard - Kopmas Shop</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Lexend Deca', ui-sans-serif, system-ui; margin: 0; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .transition-300 { transition: all 300ms ease; }
+    .bg-custom-background { background-color: #f3f5f9; }
+    .bg-custom-blue { background-color: #1053d5; }
+    .bg-custom-blue-10 { background-color: rgba(16, 83, 213, 0.1); }
+    .bg-custom-black { background-color: #292d32; }
+    .bg-custom-icon-background { background-color: #f3f3f3; }
+    .bg-custom-stroke { background-color: #e8e8e8; }
+    .text-custom-blue { color: #1053d5; }
+    .text-custom-grey { color: #6a7686; }
+    .text-custom-black { color: #292d32; }
+    .border-custom-stroke { border-color: #e8e8e8; }
+    .ring-custom-blue { --tw-ring-color: #1053d5; }
+    .sidebar-item.active { background-color: rgba(16, 83, 213, 0.1); }
+    .sidebar-item.active .sidebar-label { color: #1053d5; }
+    .sidebar-item.active .icon-default { opacity: 0; }
+    .sidebar-item.active .icon-active { opacity: 1; }
+    .sidebar-item.active .active-bar { display: flex; }
+    .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
+    .branch-line:last-child { height: 55%; }
+    .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+  </style>
+</head>
+<body class="bg-custom-background text-custom-black">
+  <div id="admin-app" data-page-title="Dashboard" data-role="seller">
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="flex flex-col sm:col-span-2 lg:col-span-1 rounded-[20px] p-5 gap-6 bg-white">
+        <div class="flex flex-col gap-6">
+          <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+            <img src="../assets/images/icons/wallet-2-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+          </div>
+          <div class="flex flex-col gap-[6px]">
+            <p class="font-bold text-2xl sm:text-4xl">Rp 12.450.000</p>
+            <p class="font-medium text-lg text-custom-grey">Store Revenue</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full rounded-[20px] p-5 gap-6 bg-white">
+        <div class="flex flex-col gap-6">
+          <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+            <img src="../assets/images/icons/bag-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+          </div>
+          <div class="flex flex-col gap-[6px]">
+            <p class="font-bold text-4xl">124</p>
+            <p class="font-medium text-lg text-custom-grey">Total Products</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full rounded-[20px] p-5 gap-6 bg-white">
+        <div class="flex flex-col gap-6">
+          <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+            <img src="../assets/images/icons/profile-2user-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+          </div>
+          <div class="flex flex-col gap-[6px]">
+            <p class="font-bold text-4xl">580</p>
+            <p class="font-medium text-lg text-custom-grey">Total Buyers</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="flex flex-col lg:flex-row gap-5 flex-1">
+      <!-- Left Column -->
+      <div class="flex flex-col gap-5 w-full lg:w-[440px] lg:shrink-0">
+        <div class="flex flex-col rounded-[20px] p-5 gap-6 bg-white">
+          <div class="flex flex-col gap-6">
+            <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+              <img src="../assets/images/icons/shop-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+            </div>
+            <div class="flex flex-col gap-[6px]">
+              <p class="font-bold text-xl">Blue Gadget Center</p>
+              <p class="font-medium text-custom-grey">My Store</p>
+            </div>
+          </div>
+          <hr class="border-custom-stroke">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <p class="font-semibold text-custom-grey">Status</p>
+              <span class="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">Active</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <p class="font-semibold text-custom-grey">Location</p>
+              <p class="font-semibold">Ngaglik, Sleman</p>
+            </div>
+          </div>
+          <a href="my-store.html" class="font-semibold text-custom-blue hover:underline">View Store →</a>
+        </div>
+
+        <div class="flex flex-col flex-1 rounded-[20px] p-5 gap-6 bg-white">
+          <div class="flex flex-col gap-6">
+            <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+              <img src="../assets/images/icons/empty-wallet-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+            </div>
+            <div class="flex flex-col gap-[6px]">
+              <p class="font-bold text-2xl text-custom-blue">Rp 12.450.000</p>
+              <p class="font-medium text-custom-grey">Store Balance</p>
+            </div>
+          </div>
+          <hr class="border-custom-stroke">
+          <a href="my-store-balance.html" class="font-semibold text-custom-blue hover:underline">View Wallet →</a>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="flex flex-col w-full gap-5">
+        <div class="flex flex-col flex-1 rounded-[20px] p-5 gap-6 bg-white">
+          <div class="flex flex-col gap-6">
+            <div class="flex size-[56px] bg-custom-blue-10 items-center justify-center rounded-full">
+              <img src="../assets/images/icons/note-text-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+            </div>
+            <div class="flex flex-col gap-[6px]">
+              <p class="font-bold text-4xl">340</p>
+              <p class="font-medium text-lg text-custom-grey">Total Transaction</p>
+            </div>
+          </div>
+          <hr class="border-custom-stroke">
+          <div class="flex flex-col flex-1 gap-5">
+            <p class="font-bold text-xl">Latest Transactions</p>
+            <div class="flex flex-col gap-5">
+              <div class="card flex flex-col rounded-[20px] border border-custom-stroke py-[18px] px-5 gap-5 bg-white">
+                <div class="flex items-center gap-[14px] w-full overflow-hidden">
+                  <div class="flex size-16 shrink-0 rounded-[20px] bg-custom-background overflow-hidden">
+                    <img src="../assets/images/icons/photo-profile-default.svg" class="size-full object-cover" alt="photo">
+                  </div>
+                  <div class="flex flex-col gap-[6px] w-full flex-grow-0 overflow-hidden">
+                    <p class="font-bold text-lg leading-tight w-full">Budi Santoso</p>
+                  </div>
+                  <div class="flex flex-col gap-2 items-end">
+                    <p class="font-bold text-lg leading-tight text-custom-blue text-nowrap">Rp 2.500.000</p>
+                    <p class="flex items-center gap-1 font-semibold text-custom-grey leading-none text-nowrap">Grand Total</p>
+                  </div>
+                </div>
+                <hr class="border-custom-stroke">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-[10px]">
+                    <div class="flex size-14 shrink-0 rounded-full bg-custom-icon-background overflow-hidden items-center justify-center">
+                      <img src="../assets/images/icons/shopping-cart-black.svg" class="flex size-6 shrink-0" alt="icon">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <p class="font-bold text-lg leading-none">3</p>
+                      <p class="font-semibold text-custom-grey">Total Products</p>
+                    </div>
+                  </div>
+                  <a href="transaction-detail.html" class="flex w-[96px] h-[56px] shrink-0 rounded-2xl py-[18px] px-5 bg-custom-blue-10 gap-2 hover:ring-2 ring-custom-blue transition-300">
+                    <span class="font-semibold text-custom-blue leading-none">Details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="card flex flex-col rounded-[20px] border border-custom-stroke py-[18px] px-5 gap-5 bg-white">
+                <div class="flex items-center gap-[14px] w-full overflow-hidden">
+                  <div class="flex size-16 shrink-0 rounded-[20px] bg-custom-background overflow-hidden">
+                    <img src="../assets/images/icons/photo-profile-default.svg" class="size-full object-cover" alt="photo">
+                  </div>
+                  <div class="flex flex-col gap-[6px] w-full flex-grow-0 overflow-hidden">
+                    <p class="font-bold text-lg leading-tight w-full">Siti Aminah</p>
+                  </div>
+                  <div class="flex flex-col gap-2 items-end">
+                    <p class="font-bold text-lg leading-tight text-custom-blue text-nowrap">Rp 1.750.000</p>
+                    <p class="flex items-center gap-1 font-semibold text-custom-grey leading-none text-nowrap">Grand Total</p>
+                  </div>
+                </div>
+                <hr class="border-custom-stroke">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-[10px]">
+                    <div class="flex size-14 shrink-0 rounded-full bg-custom-icon-background overflow-hidden items-center justify-center">
+                      <img src="../assets/images/icons/shopping-cart-black.svg" class="flex size-6 shrink-0" alt="icon">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <p class="font-bold text-lg leading-none">2</p>
+                      <p class="font-semibold text-custom-grey">Total Products</p>
+                    </div>
+                  </div>
+                  <a href="transaction-detail.html" class="flex w-[96px] h-[56px] shrink-0 rounded-2xl py-[18px] px-5 bg-custom-blue-10 gap-2 hover:ring-2 ring-custom-blue transition-300">
+                    <span class="font-semibold text-custom-blue leading-none">Details</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="../admin-layout.js" defer></script>
+</body>
+</html>
