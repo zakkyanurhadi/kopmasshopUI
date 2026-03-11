@@ -11,10 +11,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
     const header = doc.querySelector('#navbar-wrapper');
+    const mobileBottomNav = doc.querySelector('[data-mobile-bottom-nav-wrapper]');
     const footer = doc.querySelector('footer');
 
     if (headerHost && header) {
-      headerHost.innerHTML = header.outerHTML;
+      headerHost.innerHTML = header.outerHTML + (mobileBottomNav ? mobileBottomNav.outerHTML : '');
     }
 
     if (footerHost && footer) {
@@ -35,7 +36,8 @@ function remapPrototypeLinks() {
     'halaman_product_detail.html': 'halaman_product_detail.html',
     'halaman_store_detail.html': 'halaman_store_detail.html',
     'halaman_cart.html': 'halaman_cart.html',
-    'halaman_checkout.html': 'halaman_checkout.html'
+    'halaman_checkout.html': 'halaman_checkout.html',
+    'halaman_profile.html': 'halaman_profile.html'
   };
 
   document.querySelectorAll('[data-shared-header] a, [data-shared-footer] a').forEach(function (link) {
@@ -80,6 +82,7 @@ function initNavbarBehavior() {
   const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
   const mobileMenu = document.querySelector('[data-mobile-menu]');
   const navSecondary = document.querySelector('.navbar-secondary');
+  const mobileBottomNav = document.querySelector('[data-mobile-bottom-nav]');
   let lastScroll = 0;
 
   window.addEventListener('scroll', function () {
@@ -100,6 +103,7 @@ function initNavbarBehavior() {
     }
 
     lastScroll = currentScroll;
+    document.body.classList.toggle('mobile-bottom-scrolled', currentScroll > 6);
   });
 
   if (mobileMenuToggle) {
@@ -117,4 +121,30 @@ function initNavbarBehavior() {
       }
     });
   });
+
+  const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('[data-mobile-bottom-link]').forEach(function (link) {
+    const routeTokens = (link.dataset.routes || '')
+      .split(',')
+      .map(function (route) { return route.trim().toLowerCase(); })
+      .filter(Boolean);
+    const isActive = routeTokens.includes(currentPage);
+    const icon = link.querySelector('[data-mobile-bottom-icon]');
+    const label = link.querySelector('[data-mobile-bottom-label]');
+
+    link.style.color = isActive ? '#2065fc' : '#64748b';
+    if (label) label.style.fontWeight = isActive ? '700' : '500';
+    if (icon) {
+      icon.style.background = isActive ? 'rgba(32, 101, 252, 0.14)' : 'transparent';
+      icon.style.boxShadow = isActive ? '0 10px 18px rgba(32, 101, 252, 0.18)' : 'none';
+    }
+  });
+
+  const syncMobileBottomPadding = function () {
+    if (!mobileBottomNav) return;
+    const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+    document.body.style.paddingBottom = isMobileViewport ? 'calc(96px + env(safe-area-inset-bottom))' : '';
+  };
+  syncMobileBottomPadding();
+  window.addEventListener('resize', syncMobileBottomPadding);
 }

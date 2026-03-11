@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var mobileCard = function (item) {
       return (
-        '<a href="halaman_kategori.html" class="flex h-[130px] w-[120px] flex-col items-center justify-center gap-3 border-r border-b border-slate-200 p-3 text-center transition hover:bg-slate-50 group">' +
+        '<a href="halaman_kategori.html" class="flex h-[130px] w-[120px] flex-col items-center justify-center gap-3 border-r border-slate-200 p-3 text-center transition hover:bg-slate-50 group">' +
           '<div class="flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm ' + item.bg + ' ' + item.iconColor + ' transition group-hover:scale-110 group-hover:shadow-md">' +
             item.icon +
           '</div>' +
@@ -205,8 +205,10 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     if (mobileGrid) {
-      mobileGrid.style.gridTemplateRows = 'repeat(2, 1fr)';
-      mobileGrid.style.gridTemplateColumns = 'repeat(3, 120px)';
+      mobileGrid.style.gridTemplateRows = '1fr';
+      mobileGrid.style.gridTemplateColumns = 'repeat(' + categories.length + ', 120px)';
+      mobileGrid.style.gridAutoFlow = 'column';
+      mobileGrid.style.width = 'max-content';
       mobileGrid.innerHTML = categories.map(mobileCard).join('');
     }
 
@@ -351,5 +353,4 @@ document.addEventListener('DOMContentLoaded', function () {
     recalculateCart();
   }
 });
-
 
