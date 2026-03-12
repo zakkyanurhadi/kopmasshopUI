@@ -14,74 +14,246 @@ document.addEventListener('DOMContentLoaded', function () {
     var connectorStyle = document.createElement('style');
     connectorStyle.id = connectorStyleId;
     connectorStyle.textContent = '' +
-      '.branch-line{position:absolute;top:10px;bottom:40px;left:calc(100% - 22px);width:2px;background-color:#e5e7eb;border-radius:999px;transform:none!important;}' +
+      '.branch-line{position:absolute;top:10px;bottom:40px;left:calc(100% - 22px);width:1px;background-color:#e5e7eb;border-radius:999px;transform:none!important;}' +
       '.branch-line:last-child{height:auto!important;}' +
       '.curve-branch{position:absolute;left:-22px;top:0;width:22px;height:28px;border-left:2px solid #e5e7eb;border-bottom:2px solid #e5e7eb;border-bottom-left-radius:14px;background:transparent;z-index:1;transform:none;}';
     document.head.appendChild(connectorStyle);
   }
 
   /* ── Sidebar menu items ─────────────────────────────────── */
+  //
+  // visibleFor: array of roles yang boleh lihat item ini.
+  //   ['admin']          → hanya admin
+  //   ['seller']         → hanya seller
+  //   ['admin','seller'] → keduanya
+  // Jika TIDAK ada visibleFor → tampil untuk semua role.
+  //
   var menuItems = [
+    // ── Dashboard ───────────────────────────────────────────────
     {
       label: 'Dashboard',
       href: 'dashboard.html',
       iconDefault: 'home-black.svg',
       iconActive: 'home-blue-fill.svg',
       type: 'link',
+      visibleFor: ['admin', 'seller'],
       relatedPages: ['index.html']
     },
-    {
-      label: 'Manage Product',
-      iconDefault: 'box-black.svg',
-      type: 'accordion',
-      id: 'acc-product',
-      children: [
-        { label: 'Categories', href: 'category-list.html', iconDefault: 'bag-grey.svg', iconActive: 'bag-blue-fill.svg', relatedPages: ['category-create.html', 'category-detail.html', 'category-edit.html'] },
-        { label: 'Products', href: 'product-list.html', iconDefault: 'bag-grey.svg', iconActive: 'bag-blue-fill.svg', relatedPages: ['product-create.html', 'product-detail.html', 'product-edit.html'] }
-      ]
-    },
+
+    // ── Manage Store ─────────────────────────────────────────────
     {
       label: 'Manage Store',
       iconDefault: 'bag-2-black.svg',
       type: 'accordion',
       id: 'acc-store',
       children: [
-        { label: 'List Store', href: 'store-list.html', iconDefault: 'shop-grey.svg', iconActive: 'shop-blue-fill.svg', visibleFor: ['admin'], relatedPages: ['store-create.html', 'store-detail.html', 'store-edit.html'] },
-        { label: 'My Store', href: 'my-store.html', iconDefault: 'shop-grey.svg', iconActive: 'shop-blue-fill.svg', visibleFor: ['seller'] },
-        { label: 'List Transaction', href: 'transaction-list.html', iconDefault: 'stickynote-grey.svg', iconActive: 'stickynote-blue-fill.svg', relatedPages: ['transaction-detail.html'] }
+        // === Admin children ===
+        {
+          label: 'List Store',
+          href: 'store-list.html',
+          iconDefault: 'shop-grey.svg',
+          iconActive: 'shop-blue-fill.svg',
+          visibleFor: ['admin'],
+          relatedPages: ['store-create.html', 'store-detail.html', 'store-edit.html']
+        },
+        {
+          label: 'List Transaction',
+          href: 'transaction-list.html',
+          iconDefault: 'stickynote-grey.svg',
+          iconActive: 'stickynote-blue-fill.svg',
+          visibleFor: ['admin'],
+          relatedPages: ['transaction-detail.html']
+        },
+
+        // === Seller children ===
+        {
+          label: 'Profile',
+          href: 'store-profile.html',
+          iconDefault: 'shop-grey.svg',
+          iconActive: 'shop-blue-fill.svg',
+          visibleFor: ['seller'],
+          relatedPages: ['store-profile-edit.html']
+        },
+        {
+          label: 'Alamat',
+          href: 'store-address.html',
+          iconDefault: 'shop-grey.svg',
+          iconActive: 'shop-blue-fill.svg',
+          visibleFor: ['seller']
+        },
+        // Payment → nested sub-group
+        {
+          type: 'group',
+          id: 'acc-payment',
+          label: 'Payment',
+          iconDefault: 'wallet-2-black.svg',
+          visibleFor: ['seller'],
+          children: [
+            {
+              label: 'Alamat Toko',
+              href: 'payment-address.html',
+              iconDefault: 'shop-grey.svg',
+              iconActive: 'shop-blue-fill.svg'
+            },
+            {
+              label: 'Upload Qris',
+              href: 'payment-qris.html',
+              iconDefault: 'stickynote-grey.svg',
+              iconActive: 'stickynote-blue-fill.svg'
+            },
+            {
+              label: 'Rekening',
+              href: 'payment-rekening.html',
+              iconDefault: 'wallet-2-black.svg',
+              iconActive: 'wallet-3-blue-fill.svg'
+            }
+          ]
+        }
       ]
     },
+
+    // ── Manage Product ───────────────────────────────────────────
+    {
+      label: 'Manage Product',
+      iconDefault: 'box-black.svg',
+      type: 'accordion',
+      id: 'acc-product',
+      children: [
+        {
+          label: 'Categories',
+          href: 'category-list.html',
+          iconDefault: 'bag-grey.svg',
+          iconActive: 'bag-blue-fill.svg',
+          visibleFor: ['admin'],
+          relatedPages: ['category-create.html', 'category-detail.html', 'category-edit.html']
+        },
+        {
+          label: 'Products',
+          href: 'product-list.html',
+          iconDefault: 'bag-grey.svg',
+          iconActive: 'bag-blue-fill.svg',
+          visibleFor: ['admin', 'seller'],
+          relatedPages: ['product-create.html', 'product-detail.html', 'product-edit.html']
+        }
+      ]
+    },
+
+    // ── Manage Orders (seller) ───────────────────────────────────
+    {
+      label: 'Manage Orders',
+      href: 'manage-orders.html',
+      iconDefault: 'stickynote-grey.svg',
+      iconActive: 'stickynote-blue-fill.svg',
+      type: 'link',
+      visibleFor: ['seller'],
+      relatedPages: ['order-detail.html']
+    },
+
+    // ── Sales Report (seller) ────────────────────────────────────
+    {
+      label: 'Sales Report',
+      href: 'sales-report.html',
+      iconDefault: 'setting-2-grey.svg',
+      iconActive: 'setting-2-grey.svg',
+      type: 'link',
+      visibleFor: ['seller']
+    },
+
+    // ── Manage Wallet ────────────────────────────────────────────
     {
       label: 'Manage Wallet',
       href: 'manage-wallet.html',
       iconDefault: 'wallet-2-black.svg',
       iconActive: 'wallet-3-blue-fill.svg',
       type: 'link',
-      relatedPages: ['store-balance-list.html', 'store-balance-detail.html', 'my-store-balance.html', 'withdrawal-list.html', 'withdrawal-create.html', 'withdrawal-detail.html']
+      visibleFor: ['admin', 'seller'],
+      relatedPages: [
+        'store-balance-list.html', 'store-balance-detail.html',
+        'my-store-balance.html', 'withdrawal-list.html',
+        'withdrawal-create.html', 'withdrawal-detail.html'
+      ]
     },
+
+    // ── Manage Users (admin only) ────────────────────────────────
     {
       label: 'Manage Users',
       href: 'manage-users.html',
       iconDefault: 'profile-2user-black.svg',
       iconActive: 'profile-2user-blue-fill.svg',
       type: 'link',
+      visibleFor: ['admin'],
       relatedPages: ['user-list.html']
     },
+
+    // ── Manage Reviews (admin only) ──────────────────────────────
     {
       label: 'Manage Reviews',
       href: 'manage-reviews.html',
       iconDefault: 'stickynote-grey.svg',
       iconActive: 'stickynote-blue-fill.svg',
-      type: 'link'
+      type: 'link',
+      visibleFor: ['admin']
     },
+
+    // ── Settings ─────────────────────────────────────────────────
     {
       label: 'Settings',
       href: 'settings.html',
       iconDefault: 'setting-2-grey.svg',
       iconActive: 'setting-2-grey.svg',
-      type: 'link'
+      type: 'link',
+      visibleFor: ['admin', 'seller']
     }
   ];
+
+  /* ── Build nested sub-group (Payment, dll) ────────────── */
+  function buildNestedGroup(group) {
+    var visibleItems = (group.children || []).filter(isVisible);
+    if (visibleItems.length === 0) return '';
+
+    var gId = group.id;
+    var hasActive = visibleItems.some(isPageActive);
+
+    var itemsHtml = '';
+    visibleItems.forEach(function (child) {
+      var active = isPageActive(child);
+      itemsHtml += '<li class="relative">' +
+        '<div class="curve-branch"></div>' +
+        '<a href="' + child.href + '" class="sidebar-item' + (active ? ' active' : '') +
+          ' flex items-center w-full min-h-[44px] gap-3 rounded-xl overflow-hidden py-2 pl-4 pr-3 transition-300 hover:bg-gray-50">' +
+          '<div class="relative flex size-[18px] shrink-0">' +
+            '<img src="' + iconPath(child.iconDefault) + '" class="icon-default size-[18px] absolute opacity-100 transition-300" alt="">' +
+            '<img src="' + iconPath(child.iconActive) + '" class="icon-active size-[18px] absolute opacity-0 transition-300" alt="">' +
+          '</div>' +
+          '<p class="sidebar-label font-medium text-[13px] text-custom-grey transition-300 w-full">' + child.label + '</p>' +
+          '<div class="active-bar w-[3px] h-7 shrink-0 rounded-l-lg bg-custom-blue hidden transition-300"></div>' +
+        '</a>' +
+      '</li>';
+    });
+
+    return '<li class="relative">' +
+      '<div class="curve-branch"></div>' +
+      '<button onclick="toggleAccordion(\'' + gId + '\')" ' +
+        'class="flex items-center w-full min-h-[44px] gap-3 rounded-xl overflow-hidden py-2 pl-4 pr-3 transition-300 hover:bg-gray-50">' +
+        '<div class="relative flex size-[18px] shrink-0">' +
+          '<img src="' + iconPath(group.iconDefault) + '" class="size-[18px]" alt="">' +
+        '</div>' +
+        '<p class="font-medium text-[13px] text-custom-grey text-left w-full">' + group.label + '</p>' +
+        '<svg id="' + gId + '-arrow" class="size-4 shrink-0 mr-1 transition-300 text-gray-400' + (hasActive ? ' rotate-90' : '') + '" ' +
+          'fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">' +
+          '<path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/>' +
+        '</svg>' +
+      '</button>' +
+      '<div id="' + gId + '"' + (hasActive ? '' : ' class="hidden"') + '>' +
+        '<div class="flex">' +
+          '<div class="flex w-[44px] shrink-0 justify-end items-start relative">' +
+            '<div class="branch-line"></div>' +
+          '</div>' +
+          '<ul class="flex flex-col gap-1 w-full">' + itemsHtml + '</ul>' +
+        '</div>' +
+      '</div>' +
+    '</li>';
+  }
 
   /* ── Helpers ─────────────────────────────────────────────── */
   function isPageActive(item) {
@@ -115,16 +287,29 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function buildAccordion(item) {
-    var visibleChildren = item.children.filter(isVisible);
+    // Filter children berdasarkan visibleFor (flat items & groups)
+    var visibleChildren = (item.children || []).filter(function(child) {
+      if (child.type === 'group') return isVisible(child);
+      return isVisible(child);
+    });
     if (visibleChildren.length === 0) return '';
 
-    var hasActiveChild = visibleChildren.some(isPageActive);
+    var hasActiveChild = visibleChildren.some(function(child) {
+      if (child.type === 'group') return (child.children || []).some(isPageActive);
+      return isPageActive(child);
+    });
     var isOpen = hasActiveChild;
 
-    var branchLines = visibleChildren.length > 0 ? '<div class="branch-line"></div>' : '';
+    var branchLines = '<div class="branch-line"></div>';
 
     var childrenHtml = '';
     visibleChildren.forEach(function (child) {
+      // Sub-group (nested accordion)
+      if (child.type === 'group') {
+        childrenHtml += buildNestedGroup(child);
+        return;
+      }
+      // Regular child link
       var active = isPageActive(child);
       childrenHtml += '<li class="relative">' +
         '<div class="curve-branch"></div>' +
