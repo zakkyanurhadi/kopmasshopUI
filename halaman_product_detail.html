@@ -22,6 +22,7 @@
   <!-- Skeleton Loading -->
   <link rel="stylesheet" href="./assets/css/skeleton.css">
   <script src="./assets/js/gsap-skeleton.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
 </head>
 <body class="bg-slate-50 text-slate-900">
   <div data-shared-header></div>
@@ -43,16 +44,16 @@
       <!-- Image Gallery -->
       <div class="space-y-4">
         <div class="relative overflow-hidden rounded-2xl bg-slate-50">
-          <img id="mainImg" src="./assets/images/thumbnails/iphone.png" alt="iPhone 15 Pro" class="mx-auto h-80 md:h-96 w-full object-contain p-6 transition-transform duration-300 hover:scale-105">
+          <img id="mainImg"  alt="iPhone 15 Pro" class="mx-auto h-80 md:h-96 w-full object-contain p-6 transition-transform duration-300 hover:scale-105 lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone.png">
           <span class="absolute top-4 left-4 rounded-lg bg-red-500 px-3 py-1 text-xs font-bold text-white shadow-sm">-12%</span>
           <button class="absolute top-4 right-4 flex size-10 items-center justify-center rounded-full bg-white/80 backdrop-blur text-slate-400 hover:text-red-500 transition shadow-sm"><i class="fas fa-heart"></i></button>
         </div>
         <div class="flex gap-3 overflow-x-auto pb-1">
-          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/iphone.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-blue-500 bg-slate-50 p-2"><img src="./assets/images/thumbnails/iphone.png" class="h-full w-full object-contain"></button>
-          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/iphone-2.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img src="./assets/images/thumbnails/iphone-2.png" class="h-full w-full object-contain"></button>
-          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-blue.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img src="./assets/images/thumbnails/ip-blue.png" class="h-full w-full object-contain"></button>
-          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-gold.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img src="./assets/images/thumbnails/ip-gold.png" class="h-full w-full object-contain"></button>
-          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-pink.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img src="./assets/images/thumbnails/ip-pink.png" class="h-full w-full object-contain"></button>
+          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/iphone.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-blue-500 bg-slate-50 p-2"><img  class="h-full w-full object-contain lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone.png"></button>
+          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/iphone-2.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img  class="h-full w-full object-contain lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone-2.png"></button>
+          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-blue.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img  class="h-full w-full object-contain lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/ip-blue.png"></button>
+          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-gold.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img  class="h-full w-full object-contain lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/ip-gold.png"></button>
+          <button onclick="document.getElementById('mainImg').src='./assets/images/thumbnails/ip-pink.png'" class="shrink-0 h-20 w-20 rounded-xl border-2 border-transparent hover:border-blue-300 bg-slate-50 p-2 transition"><img  class="h-full w-full object-contain lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/ip-pink.png"></button>
         </div>
       </div>
 
@@ -164,7 +165,7 @@
       </div>
       <div class="grid gap-4 grid-cols-2 lg:grid-cols-4">
         <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
-          <div class="bg-slate-50 p-4"><img src="./assets/images/thumbnails/samsung.png" alt="Samsung" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="bg-slate-50 p-4"><img  alt="Samsung" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/samsung.png"></div>
           <div class="p-4 space-y-1.5">
             <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Samsung S Ultra</p>
             <p class="text-sm font-extrabold text-blue-700">Rp 21.500.000</p>
@@ -172,7 +173,7 @@
           </div>
         </a>
         <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow">
-          <div class="bg-slate-50 p-4"><img src="./assets/images/thumbnails/xiaomi.png" alt="Xiaomi" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="bg-slate-50 p-4"><img  alt="Xiaomi" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/xiaomi.png"></div>
           <div class="p-4 space-y-1.5">
             <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Xiaomi Ultra 14</p>
             <p class="text-sm font-extrabold text-blue-700">Rp 10.200.000</p>
@@ -180,7 +181,7 @@
           </div>
         </a>
         <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow hidden sm:block">
-          <div class="bg-slate-50 p-4"><img src="./assets/images/thumbnails/iphone-2.png" alt="iPhone 14" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="bg-slate-50 p-4"><img  alt="iPhone 14" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone-2.png"></div>
           <div class="p-4 space-y-1.5">
             <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">iPhone 14 Pro</p>
             <p class="text-sm font-extrabold text-blue-700">Rp 17.800.000</p>
@@ -188,7 +189,7 @@
           </div>
         </a>
         <a href="halaman_product_detail.html" class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-md transition-shadow hidden lg:block">
-          <div class="bg-slate-50 p-4"><img src="./assets/images/thumbnails/macbook-pro-m2.png" alt="Macbook" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform"></div>
+          <div class="bg-slate-50 p-4"><img  alt="Macbook" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/macbook-pro-m2.png"></div>
           <div class="p-4 space-y-1.5">
             <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">Macbook Pro M2</p>
             <p class="text-sm font-extrabold text-blue-700">Rp 18.500.000</p>
