@@ -110,28 +110,32 @@
         <!-- Search Bar -->
         <form class="flex flex-1 max-w-2xl md:max-w-2xl">
           <label class="search-input w-full flex items-center h-10 lg:h-12 rounded-2xl px-3 md:px-4 gap-2" style="background:#fff;border:1.5px solid #2065fc;">
-            <input type="text" class="appearance-none w-full placeholder:text-slate-400 text-xs md:text-sm font-medium focus:outline-none bg-transparent" placeholder="Cari..." />
             <span class="flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-full text-white shrink-0" style="background:#2065fc;">
               <i class="fas fa-search text-[11px] md:text-xs"></i>
             </span>
+            <input type="text" class="appearance-none w-full placeholder:text-slate-400 text-xs md:text-sm font-medium focus:outline-none bg-transparent" placeholder="Cari..." />
           </label>
         </form>
 
         <!-- Right Icons & Actions -->
         <div class="flex items-center gap-2 lg:gap-4 shrink-0">
-          <!-- Notification -->
-          <button type="button" class="hidden lg:flex size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
-            <i class="fas fa-bell text-slate-600"></i>
-          </button>
+
 
           <!-- Cart -->
-          <a href="halaman_cart.html" class="flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
+          <a href="halaman_cart.html" class="relative flex size-10 md:size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition">
             <i class="fas fa-shopping-cart text-slate-600 text-base md:text-lg"></i>
+            <span class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] leading-[18px] text-center font-bold">2</span>
           </a>
+          <!-- Notification -->
+          <button type="button" class="hidden lg:flex size-11 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition relative">
+            <i class="fas fa-bell text-slate-600"></i>
+            
+          </button>
 
           <!-- Profile Icon (Mobile) / Sign In Button (Tablet+) -->
-          <div class="md:hidden flex size-10 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition cursor-pointer">
-            <i class="fas fa-user text-slate-600 text-base"></i>
+          <div class="md:hidden relative flex size-10 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition cursor-pointer">
+            <i class="fas fa-bell text-slate-600 text-base"></i>
+      
           </div>
 
           <!-- Sign In Button Desktop -->
@@ -150,7 +154,7 @@
         </a>
         <a href="halaman_my_transaction.html" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
           <i class="fas fa-receipt text-base"></i>
-          <span class="text-sm font-semibold">My Transactions</span>
+          <span class="text-sm font-semibold">Transaksi</span>
         </a>
         <button type="button" class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition">
           <i class="fas fa-question-circle text-base"></i>
