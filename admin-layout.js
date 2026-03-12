@@ -75,39 +75,18 @@ document.addEventListener('DOMContentLoaded', function () {
           relatedPages: ['store-profile-edit.html']
         },
         {
-          label: 'Alamat',
+          label: 'Alamat Toko',
           href: 'store-address.html',
           iconDefault: 'shop-grey.svg',
           iconActive: 'shop-blue-fill.svg',
           visibleFor: ['seller']
         },
-        // Payment → nested sub-group
         {
-          type: 'group',
-          id: 'acc-payment',
           label: 'Payment',
-          iconDefault: 'wallet-2-black.svg',
-          visibleFor: ['seller'],
-          children: [
-            {
-              label: 'Alamat Toko',
-              href: 'payment-address.html',
-              iconDefault: 'shop-grey.svg',
-              iconActive: 'shop-blue-fill.svg'
-            },
-            {
-              label: 'Upload Qris',
-              href: 'payment-qris.html',
-              iconDefault: 'stickynote-grey.svg',
-              iconActive: 'stickynote-blue-fill.svg'
-            },
-            {
-              label: 'Rekening',
-              href: 'payment-rekening.html',
-              iconDefault: 'wallet-2-black.svg',
-              iconActive: 'wallet-3-blue-fill.svg'
-            }
-          ]
+          href: 'store-payment-method.html',
+          iconDefault: 'wallet-grey.svg',
+          iconActive: 'wallet-blue-fill.svg',
+          visibleFor: ['seller']
         }
       ]
     },
@@ -153,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       label: 'Sales Report',
       href: 'sales-report.html',
-      iconDefault: 'setting-2-grey.svg',
-      iconActive: 'setting-2-grey.svg',
+      iconDefault: 'presention-chart-grey.svg',
+      iconActive: 'presention-chart-blue.svg',
       type: 'link',
       visibleFor: ['seller']
     },
@@ -166,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
       iconDefault: 'wallet-2-black.svg',
       iconActive: 'wallet-3-blue-fill.svg',
       type: 'link',
-      visibleFor: ['admin', 'seller'],
+      visibleFor: ['admin'],
       relatedPages: [
         'store-balance-list.html', 'store-balance-detail.html',
         'my-store-balance.html', 'withdrawal-list.html',
@@ -202,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
       iconDefault: 'setting-2-grey.svg',
       iconActive: 'setting-2-grey.svg',
       type: 'link',
-      visibleFor: ['admin', 'seller']
+      visibleFor: ['admin']
     }
   ];
 
@@ -407,10 +386,88 @@ document.addEventListener('DOMContentLoaded', function () {
       '</div>' +
       /* Navbar icons */
       '<div class="flex items-center gap-2 sm:gap-3">' +
-        '<button class="relative flex items-center justify-center size-11 rounded-xl hover:bg-gray-100 transition-300">' +
-          svgBell +
-          '<span class="absolute top-2 right-2 flex size-2 rounded-full bg-red-500 ring-2 ring-white"></span>' +
-        '</button>' +
+        '<div class="relative">' +
+          '<button id="notif-btn" onclick="toggleNotificationDropdown(event)" class="relative flex items-center justify-center size-11 rounded-xl hover:bg-gray-100 transition-300">' +
+            svgBell +
+            '<span id="notif-badge" class="absolute top-2 right-2 flex size-2 rounded-full bg-red-500 ring-2 ring-white"></span>' +
+          '</button>' +
+          '<div id="notif-dropdown" class="hidden absolute right-0 top-full mt-3 w-[calc(100vw-2rem)] sm:w-[380px] bg-white rounded-xl shadow-xl ring-1 ring-gray-100 overflow-hidden z-50">' +
+            '<div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">' +
+              '<div class="flex items-center gap-2">' +
+                '<img src="' + iconPath('notification-black.svg') + '" class="size-5" alt="Notifikasi">' +
+                '<p class="font-semibold text-[15px] text-custom-black">Notifikasi</p>' +
+              '</div>' +
+              '<button onclick="clearNotifications(event)" class="text-[12px] font-semibold text-custom-blue hover:underline">Hapus Semua</button>' +
+            '</div>' +
+            '<p id="notif-count" class="px-4 pt-2 pb-3 text-xs text-custom-grey">4 notifikasi terbaru</p>' +
+            '<div class="max-h-[360px] overflow-y-auto hide-scrollbar px-3 pb-3 flex flex-col gap-2 bg-[#fafbfc]">' +
+              '<article data-notif-item class="rounded-xl bg-white border border-gray-100 p-3">' +
+                '<div class="flex items-start gap-3">' +
+                  '<div class="flex size-9 shrink-0 items-center justify-center rounded-full bg-blue-50">' +
+                    '<img src="' + iconPath('stickynote-blue-fill.svg') + '" class="size-4" alt="Order">' +
+                  '</div>' +
+                  '<div class="min-w-0 flex-1">' +
+                    '<p class="font-semibold text-[13px] text-custom-black">Pesanan baru #INV-2024-00157</p>' +
+                    '<p class="text-xs text-custom-grey mt-1">Segera proses pesanan dari Rina Pratama.</p>' +
+                    '<p class="text-[11px] text-custom-grey/80 mt-2">2 menit lalu</p>' +
+                  '</div>' +
+                  '<button onclick="removeNotification(this, event)" class="flex size-7 items-center justify-center rounded-full hover:bg-red-50 transition-300" aria-label="Hapus notifikasi">' +
+                    '<img src="' + iconPath('note-remove-grey.svg') + '" class="size-4" alt="Hapus">' +
+                  '</button>' +
+                '</div>' +
+              '</article>' +
+              '<article data-notif-item class="rounded-xl bg-white border border-gray-100 p-3">' +
+                '<div class="flex items-start gap-3">' +
+                  '<div class="flex size-9 shrink-0 items-center justify-center rounded-full bg-green-50">' +
+                    '<img src="' + iconPath('wallet-2-blue-fill.svg') + '" class="size-4" alt="Pembayaran">' +
+                  '</div>' +
+                  '<div class="min-w-0 flex-1">' +
+                    '<p class="font-semibold text-[13px] text-custom-black">Pembayaran berhasil diterima</p>' +
+                    '<p class="text-xs text-custom-grey mt-1">Dana Rp 1.750.000 dari #INV-2024-00155 sudah masuk.</p>' +
+                    '<p class="text-[11px] text-custom-grey/80 mt-2">15 menit lalu</p>' +
+                  '</div>' +
+                  '<button onclick="removeNotification(this, event)" class="flex size-7 items-center justify-center rounded-full hover:bg-red-50 transition-300" aria-label="Hapus notifikasi">' +
+                    '<img src="' + iconPath('note-remove-grey.svg') + '" class="size-4" alt="Hapus">' +
+                  '</button>' +
+                '</div>' +
+              '</article>' +
+              '<article data-notif-item class="rounded-xl bg-white border border-gray-100 p-3">' +
+                '<div class="flex items-start gap-3">' +
+                  '<div class="flex size-9 shrink-0 items-center justify-center rounded-full bg-indigo-50">' +
+                    '<img src="' + iconPath('car-delivery-black.svg') + '" class="size-4" alt="Pengiriman">' +
+                  '</div>' +
+                  '<div class="min-w-0 flex-1">' +
+                    '<p class="font-semibold text-[13px] text-custom-black">Pesanan siap dikirim</p>' +
+                    '<p class="text-xs text-custom-grey mt-1">Jadwalkan pengiriman untuk 3 pesanan hari ini.</p>' +
+                    '<p class="text-[11px] text-custom-grey/80 mt-2">1 jam lalu</p>' +
+                  '</div>' +
+                  '<button onclick="removeNotification(this, event)" class="flex size-7 items-center justify-center rounded-full hover:bg-red-50 transition-300" aria-label="Hapus notifikasi">' +
+                    '<img src="' + iconPath('note-remove-grey.svg') + '" class="size-4" alt="Hapus">' +
+                  '</button>' +
+                '</div>' +
+              '</article>' +
+              '<article data-notif-item class="rounded-xl bg-white border border-gray-100 p-3">' +
+                '<div class="flex items-start gap-3">' +
+                  '<div class="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-50">' +
+                    '<img src="' + iconPath('card-send-orange-fill.svg') + '" class="size-4" alt="Saldo">' +
+                  '</div>' +
+                  '<div class="min-w-0 flex-1">' +
+                    '<p class="font-semibold text-[13px] text-custom-black">Saldo toko diperbarui</p>' +
+                    '<p class="text-xs text-custom-grey mt-1">Saldo Anda sekarang Rp 12.450.000.</p>' +
+                    '<p class="text-[11px] text-custom-grey/80 mt-2">3 jam lalu</p>' +
+                  '</div>' +
+                  '<button onclick="removeNotification(this, event)" class="flex size-7 items-center justify-center rounded-full hover:bg-red-50 transition-300" aria-label="Hapus notifikasi">' +
+                    '<img src="' + iconPath('note-remove-grey.svg') + '" class="size-4" alt="Hapus">' +
+                  '</button>' +
+                '</div>' +
+              '</article>' +
+              '<div id="notif-empty" class="hidden rounded-xl bg-white border border-dashed border-gray-200 p-4 text-center">' +
+                '<p class="text-sm font-semibold text-custom-black">Tidak ada notifikasi</p>' +
+                '<p class="text-xs text-custom-grey mt-1">Semua notifikasi sudah dibersihkan</p>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
         /* Avatar + dropdown trigger */
         '<div class="relative ml-2">' +
           '<button id="avatar-btn" onclick="toggleAvatarDropdown()" class="flex items-center gap-2.5 rounded-full hover:bg-gray-50 p-1 transition-300">' +
@@ -451,13 +508,25 @@ document.addEventListener('DOMContentLoaded', function () {
   '</div>';
 
   app.innerHTML = layoutHtml;
+  updateNotificationUI();
 
   /* ── Close dropdown on outside click ──────────────────────── */
   document.addEventListener('click', function (e) {
     var dd = document.getElementById('avatar-dropdown');
     var btn = document.getElementById('avatar-btn');
+    var notif = document.getElementById('notif-dropdown');
+    var notifBtn = document.getElementById('notif-btn');
     if (dd && btn && !btn.contains(e.target) && !dd.contains(e.target)) {
       dd.classList.add('hidden');
+    }
+    if (notif && notifBtn && !notifBtn.contains(e.target) && !notif.contains(e.target)) {
+      notif.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeNotificationDropdown();
     }
   });
 });
@@ -508,6 +577,59 @@ function toggleSidebarCollapse() {
 }
 
 function toggleAvatarDropdown() {
+  closeNotificationDropdown();
   var dd = document.getElementById('avatar-dropdown');
   if (dd) dd.classList.toggle('hidden');
+}
+
+function toggleNotificationDropdown(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  var dd = document.getElementById('notif-dropdown');
+  if (!dd) return;
+
+  var avatarDropdown = document.getElementById('avatar-dropdown');
+  if (avatarDropdown) avatarDropdown.classList.add('hidden');
+  dd.classList.toggle('hidden');
+}
+
+function closeNotificationDropdown() {
+  var dd = document.getElementById('notif-dropdown');
+  if (dd) dd.classList.add('hidden');
+}
+
+function removeNotification(btn, e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  var item = btn && btn.closest ? btn.closest('[data-notif-item]') : null;
+  if (item) item.remove();
+  updateNotificationUI();
+}
+
+function clearNotifications(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
+  var dropdown = document.getElementById('notif-dropdown');
+  if (!dropdown) return;
+  var items = dropdown.querySelectorAll('[data-notif-item]');
+  items.forEach(function (item) { item.remove(); });
+  updateNotificationUI();
+}
+
+function updateNotificationUI() {
+  var dropdown = document.getElementById('notif-dropdown');
+  var countEl = document.getElementById('notif-count');
+  var badgeEl = document.getElementById('notif-badge');
+  var emptyEl = document.getElementById('notif-empty');
+  if (!dropdown) return;
+
+  var count = dropdown.querySelectorAll('[data-notif-item]').length;
+  if (countEl) {
+    countEl.textContent = count > 0 ? count + ' notifikasi terbaru' : 'Tidak ada notifikasi baru';
+  }
+  if (badgeEl) {
+    if (count > 0) badgeEl.classList.remove('hidden');
+    else badgeEl.classList.add('hidden');
+  }
+  if (emptyEl) {
+    if (count > 0) emptyEl.classList.add('hidden');
+    else emptyEl.classList.remove('hidden');
+  }
 }

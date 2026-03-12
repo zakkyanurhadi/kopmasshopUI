@@ -32,6 +32,19 @@
     .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
     .branch-line:last-child { height: 55%; }
     .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+    .btn-outline-import {
+      border: 1.5px solid #e8e8e8;
+      color: #292d32;
+      background-color: #ffffff;
+      cursor: pointer;
+      transition: all 300ms ease;
+    }
+    .btn-outline-import:hover {
+      border-color: #1053d5;
+      color: #1053d5;
+      background-color: rgba(16, 83, 213, 0.08);
+      box-shadow: 0 0 0 3px rgba(16, 83, 213, 0.12);
+    }
   </style>
 </head>
 <body class="bg-custom-background text-custom-black">
@@ -62,7 +75,7 @@
       </div>
     </div>
     <div class="flex flex-col flex-1 rounded-[20px] p-5 gap-6 bg-white">
-      <div class="header flex items-center justify-between">
+      <div class="header flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div class="flex flex-col gap-2">
           <p class="font-bold text-xl">All Products</p>
           <div class="flex items-center gap-1">
@@ -70,10 +83,16 @@
             <p class="font-semibold text-custom-grey">2 Total Products</p>
           </div>
         </div>
-        <a href="product-create.html" class="flex h-14 items-center rounded-full py-4 px-6 bg-custom-blue gap-[6px]">
-          <span class="font-semibold text-lg text-white leading-none">Add New</span>
-          <img src="../assets/images/icons/add-circle-white.svg" class="flex size-6 shrink-0" alt="icon">
-        </a>
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <button type="button" class="btn-outline-import flex h-14 items-center justify-center rounded-full px-6 gap-2">
+            <img src="../assets/images/icons/receive-square-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+            <span class="font-semibold text-lg leading-none">Import Produk dari API</span>
+          </button>
+          <a href="product-create.html" class="flex h-14 items-center justify-center rounded-full py-4 px-6 bg-custom-blue gap-[6px]">
+            <span class="font-semibold text-lg text-white leading-none">Add New</span>
+            <img src="../assets/images/icons/add-circle-white.svg" class="flex size-6 shrink-0" alt="icon">
+          </a>
+        </div>
       </div>
       <div id="Filter" class="flex items-center justify-between">
         <form action="#">
@@ -122,7 +141,7 @@
             </div>
             <hr class="border-custom-stroke">
             <div class="flex items-center justify-between">
-              <p class="flex items-center gap-2 font-semibold text-custom-grey leading-none"><img src="../assets/images/icons/calendar-2-grey.svg" class="size-6 flex shrink-0" alt="icon">Created on 19/02/2020</p>
+              <div></div>
               <div class="flex items-center justify-end gap-[14px]">
                 <button class="flex items-center justify-center h-14 w-[126px] shrink-0 rounded-2xl p-4 gap-2 bg-[rgba(255,19,61,0.1)]"><img src="../assets/images/icons/trash-red.svg" class="flex size-6 shrink-0" alt="icon"><span class="font-semibold" style="color:#ff133d">Delete</span></button>
                 <a href="product-edit.html" class="flex items-center justify-center h-14 w-[126px] shrink-0 rounded-2xl p-4 gap-2 bg-custom-black"><img src="../assets/images/icons/edit-white.svg" class="flex size-6 shrink-0" alt="icon"><span class="font-semibold text-white">Edit</span></a>
@@ -156,7 +175,7 @@
             </div>
             <hr class="border-custom-stroke">
             <div class="flex items-center justify-between">
-              <p class="flex items-center gap-2 font-semibold text-custom-grey leading-none"><img src="../assets/images/icons/calendar-2-grey.svg" class="size-6 flex shrink-0" alt="icon">Created on 19/02/2020</p>
+              <div></div>
               <div class="flex items-center justify-end gap-[14px]">
                 <button class="flex items-center justify-center h-14 w-[126px] shrink-0 rounded-2xl p-4 gap-2 bg-[rgba(255,19,61,0.1)]"><img src="../assets/images/icons/trash-red.svg" class="flex size-6 shrink-0" alt="icon"><span class="font-semibold" style="color:#ff133d">Delete</span></button>
                 <a href="product-edit.html" class="flex items-center justify-center h-14 w-[126px] shrink-0 rounded-2xl p-4 gap-2 bg-custom-black"><img src="../assets/images/icons/edit-white.svg" class="flex size-6 shrink-0" alt="icon"><span class="font-semibold text-white">Edit</span></a>

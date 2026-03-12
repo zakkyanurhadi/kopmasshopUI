@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seller Payment Method - Kopmas Shop</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Lexend Deca', ui-sans-serif, system-ui; margin: 0; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .transition-300 { transition: all 300ms ease; }
+    .bg-custom-background { background-color: #f3f5f9; }
+    .bg-custom-blue { background-color: #1053d5; }
+    .bg-custom-blue-10 { background-color: rgba(16, 83, 213, 0.1); }
+    .bg-custom-black { background-color: #292d32; }
+    .bg-custom-icon-background { background-color: #f3f3f3; }
+    .bg-custom-stroke { background-color: #e8e8e8; }
+    .text-custom-blue { color: #1053d5; }
+    .text-custom-grey { color: #6a7686; }
+    .text-custom-black { color: #292d32; }
+    .border-custom-stroke { border-color: #e8e8e8; }
+    .ring-custom-blue { --tw-ring-color: #1053d5; }
+    .sidebar-item.active { background-color: rgba(16, 83, 213, 0.1); }
+    .sidebar-item.active .sidebar-label { color: #1053d5; }
+    .sidebar-item.active .icon-default { opacity: 0; }
+    .sidebar-item.active .icon-active { opacity: 1; }
+    .sidebar-item.active .active-bar { display: flex; }
+    .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
+    .branch-line:last-child { height: 55%; }
+    .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+    .custom-input {
+      height: 56px; width: 100%; appearance: none; border-radius: 16px; border-width: 1.5px;
+      border-color: #e8e8e8; padding-left: 1.25rem; padding-right: 1.25rem;
+      font-weight: 500; transition: all 300ms ease; font-size: 0.9375rem;
+      background-color: white;
+    }
+    .custom-input:focus { border-color: #1053d5; outline: none; }
+    .custom-select {
+      height: 56px; width: 100%; appearance: none; border-radius: 16px; border-width: 1.5px;
+      border-color: #e8e8e8; padding-left: 1.25rem; padding-right: 3rem;
+      font-weight: 500; transition: all 300ms ease; font-size: 0.9375rem;
+      background-color: white; cursor: pointer;
+      background-image: url('../assets/images/icons/arrow-down-black.svg');
+      background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.5rem;
+    }
+    .custom-select:focus { border-color: #1053d5; outline: none; }
+    .form-label { font-weight: 600; color: #292d32; font-size: 0.9375rem; }
+    .toggle-switch {
+      position: relative; width: 52px; height: 28px;
+    }
+    .toggle-switch input {
+      opacity: 0; width: 0; height: 0;
+    }
+    .toggle-slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #e8e8e8; transition: .3s; border-radius: 28px;
+    }
+    .toggle-slider:before {
+      position: absolute; content: ""; height: 22px; width: 22px;
+      left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: #1053d5;
+    }
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+    .payment-card {
+      border: 1.5px solid #e8e8e8; border-radius: 20px; transition: all 300ms ease;
+    }
+    .payment-card:hover {
+      border-color: #1053d5;
+    }
+    .payment-card.active {
+      border-color: #1053d5; background-color: rgba(16, 83, 213, 0.05);
+    }
+    .bank-logo {
+      width: 60px; height: 30px; object-fit: contain;
+    }
+  </style>
+</head>
+<body class="bg-custom-background text-custom-black">
+  <div id="admin-app" data-page-title="Payment Method" data-role="seller">
+
+    <div class="flex flex-col gap-5">
+      <!-- Header Card -->
+      <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
+        <div class="flex items-center gap-4">
+          <div class="flex size-[56px] items-center justify-center rounded-full bg-custom-blue-10">
+            <img src="../assets/images/icons/wallet-2-blue-fill.svg" class="flex size-6 shrink-0" alt="icon">
+          </div>
+          <div>
+            <h2 class="font-bold text-xl">Metode Pembayaran</h2>
+            <p class="font-medium text-custom-grey text-sm">Kelola metode pembayaran toko Anda</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transfer Bank Section -->
+      <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="flex size-12 items-center justify-center rounded-xl bg-custom-blue-10">
+              <img src="../assets/images/icons/bank-black.svg" class="size-6" alt="icon">
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">Transfer Bank</h3>
+              <p class="font-medium text-custom-grey text-sm">Terima pembayaran via transfer bank</p>
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="bank-toggle" checked onchange="toggleSection('bank')">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div id="bank-section" class="flex flex-col gap-4">
+          <hr class="border-custom-stroke">
+          
+          <!-- BCA -->
+          <div class="payment-card p-4">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="flex size-12 items-center justify-center rounded-xl bg-[#004f9f] text-white font-bold text-sm">
+                  BCA
+                </div>
+                <div>
+                  <p class="font-bold">Bank BCA</p>
+                  <p class="font-medium text-custom-grey text-sm">Bank Central Asia</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" class="bank-item" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nomor Rekening</label>
+                <input type="text" class="custom-input" placeholder="1234567890" value="1234567890">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nama Pemilik Rekening</label>
+                <input type="text" class="custom-input" placeholder="Nama lengkap" value="Ahmad Fauzi">
+              </div>
+            </div>
+          </div>
+
+          <!-- BNI -->
+          <div class="payment-card p-4">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="flex size-12 items-center justify-center rounded-xl bg-[#005490] text-white font-bold text-sm">
+                  BNI
+                </div>
+                <div>
+                  <p class="font-bold">Bank BNI</p>
+                  <p class="font-medium text-custom-grey text-sm">Bank Negara Indonesia</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" class="bank-item">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nomor Rekening</label>
+                <input type="text" class="custom-input" placeholder="1234567890">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nama Pemilik Rekening</label>
+                <input type="text" class="custom-input" placeholder="Nama lengkap">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mandiri -->
+          <div class="payment-card p-4">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="flex size-12 items-center justify-center rounded-xl bg-[#003d79] text-white font-bold text-xs">
+                  MDR
+                </div>
+                <div>
+                  <p class="font-bold">Bank Mandiri</p>
+                  <p class="font-medium text-custom-grey text-sm">Bank Mandiri</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" class="bank-item">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nomor Rekening</label>
+                <input type="text" class="custom-input" placeholder="1234567890">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nama Pemilik Rekening</label>
+                <input type="text" class="custom-input" placeholder="Nama lengkap">
+              </div>
+            </div>
+          </div>
+
+          <!-- BRI -->
+          <div class="payment-card p-4">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="flex size-12 items-center justify-center rounded-xl bg-[#00529c] text-white font-bold text-sm">
+                  BRI
+                </div>
+                <div>
+                  <p class="font-bold">Bank BRI</p>
+                  <p class="font-medium text-custom-grey text-sm">Bank Rakyat Indonesia</p>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" class="bank-item">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nomor Rekening</label>
+                <input type="text" class="custom-input" placeholder="1234567890">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-medium text-custom-grey">Nama Pemilik Rekening</label>
+                <input type="text" class="custom-input" placeholder="Nama lengkap">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QRIS Section -->
+      <div class="flex flex-col gap-5 rounded-[20px] bg-white p-5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="flex size-12 items-center justify-center rounded-xl bg-custom-blue-10">
+              <img src="../assets/images/icons/barcode-black.svg" class="size-6" alt="icon">
+            </div>
+            <div>
+              <h3 class="font-bold text-lg">QRIS</h3>
+              <p class="font-medium text-custom-grey text-sm">Terima pembayaran via scan QRIS</p>
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="qris-toggle" checked onchange="toggleSection('qris')">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div id="qris-section" class="flex flex-col gap-4">
+          <hr class="border-custom-stroke">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- QRIS Upload -->
+            <div class="flex flex-col gap-3">
+              <label class="form-label">Upload QRIS Code <span class="text-red-500">*</span></label>
+              <div class="flex flex-col gap-3">
+                <div class="relative flex w-full aspect-square max-w-[200px] rounded-2xl bg-custom-background border-2 border-dashed border-custom-stroke items-center justify-center overflow-hidden">
+                  <img id="qris-preview" src="../assets/images/icons/gallery-grey.svg" class="size-20 object-contain" alt="qris">
+                  <button type="button" onclick="document.getElementById('qris-input').click()" class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 hover:opacity-100 transition-300">
+                    <span class="text-white font-semibold text-sm">Ganti QRIS</span>
+                  </button>
+                  <input type="file" id="qris-input" accept="image/*" class="hidden" onchange="previewQRIS(event)">
+                </div>
+                <p class="text-sm text-custom-grey">Format: JPG, PNG. Maks: 2MB</p>
+              </div>
+            </div>
+
+            <!-- QRIS Info -->
+            <div class="flex flex-col gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="form-label">Nama Merchant QRIS <span class="text-red-500">*</span></label>
+                <input type="text" class="custom-input" placeholder="Nama yang tertera di QRIS" value="Blue Gadget Center">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="form-label">ID Merchant (Opsional)</label>
+                <input type="text" class="custom-input" placeholder="ID Merchant QRIS">
+              </div>
+              <div class="p-4 rounded-2xl bg-yellow-50 border border-yellow-200">
+                <div class="flex items-start gap-3">
+                  <img src="../assets/images/icons/info-yellow.svg" class="size-5 mt-0.5" alt="info" onerror="this.outerHTML='<span class=\'text-yellow-600 text-lg\'>ℹ️</span>'">
+                  <div>
+                    <p class="font-semibold text-sm text-yellow-800">Tips</p>
+                    <p class="text-sm text-yellow-700 mt-1">Pastikan QRIS yang diupload aktif dan dapat discan dengan jelas. QRIS akan ditampilkan kepada customer saat checkout.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="flex items-center justify-end gap-4 rounded-[20px] bg-white p-5">
+        <button type="button" class="flex h-14 items-center rounded-full px-8 font-semibold text-custom-grey border border-custom-stroke hover:bg-custom-background transition-300">
+          Reset
+        </button>
+        <button type="button" onclick="savePaymentMethods()" class="flex h-14 items-center rounded-full bg-custom-blue px-8 font-semibold text-white hover:ring-2 ring-custom-blue transition-300">
+          Simpan Pengaturan
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <script src="../admin-layout.js" defer></script>
+  <script>
+    function toggleSection(section) {
+      const toggle = document.getElementById(section + '-toggle');
+      const sectionEl = document.getElementById(section + '-section');
+      if (toggle.checked) {
+        sectionEl.style.display = 'flex';
+      } else {
+        sectionEl.style.display = 'none';
+      }
+    }
+
+    function previewQRIS(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('qris-preview').src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function savePaymentMethods() {
+      alert('Metode pembayaran berhasil disimpan!');
+    }
+  </script>
+</body>
+</html>

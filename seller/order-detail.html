@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seller Order Detail - Kopmas Shop</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Lexend Deca', ui-sans-serif, system-ui; margin: 0; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .transition-300 { transition: all 300ms ease; }
+    .bg-custom-background { background-color: #f3f5f9; }
+    .bg-custom-blue { background-color: #1053d5; }
+    .bg-custom-blue-10 { background-color: rgba(16, 83, 213, 0.1); }
+    .bg-custom-black { background-color: #292d32; }
+    .bg-custom-icon-background { background-color: #f3f3f3; }
+    .bg-custom-stroke { background-color: #e8e8e8; }
+    .text-custom-blue { color: #1053d5; }
+    .text-custom-grey { color: #6a7686; }
+    .text-custom-black { color: #292d32; }
+    .border-custom-stroke { border-color: #e8e8e8; }
+    .ring-custom-blue { --tw-ring-color: #1053d5; }
+    .sidebar-item.active { background-color: rgba(16, 83, 213, 0.1); }
+    .sidebar-item.active .sidebar-label { color: #1053d5; }
+    .sidebar-item.active .icon-default { opacity: 0; }
+    .sidebar-item.active .icon-active { opacity: 1; }
+    .sidebar-item.active .active-bar { display: flex; }
+    .branch-line { width: 2px; height: 100%; background-color: #e5e7eb; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-radius: 1px; }
+    .branch-line:last-child { height: 55%; }
+    .curve-branch { position: absolute; left: 0; top: 0; width: 28px; height: 32px; border-left: 2px solid #e5e7eb; border-bottom: 2px solid #e5e7eb; border-bottom-left-radius: 16px; background: transparent; z-index: 1; transform: translateX(-104%); }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1e40af;
+      background-color: #dbeafe;
+    }
+    .timeline-item { position: relative; padding-left: 28px; }
+    .timeline-item::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #1053d5;
+      position: absolute;
+      left: 0;
+      top: 4px;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 20px;
+      width: 2px;
+      height: calc(100% + 10px);
+      background: #e8e8e8;
+    }
+    .timeline-item:last-child::after { display: none; }
+  </style>
+</head>
+<body class="bg-custom-background text-custom-black">
+  <div id="admin-app" data-page-title="Order Detail" data-role="seller">
+
+    <div class="flex flex-col gap-5">
+      <div class="flex items-center justify-between rounded-[20px] bg-white p-5">
+        <div class="flex items-center gap-4">
+          <a href="manage-orders.html" class="flex size-11 items-center justify-center rounded-full bg-custom-blue-10 hover:ring-2 ring-custom-blue transition-300">
+            <img src="../assets/images/icons/arrow-left-grey.svg" class="size-5" alt="icon">
+          </a>
+          <div>
+            <h2 class="font-bold text-xl">Detail Pesanan</h2>
+            <p class="text-sm font-medium text-custom-grey">Invoice #INV-2024-00156</p>
+          </div>
+        </div>
+        <span class="status-pill">
+          <span class="size-2 rounded-full bg-blue-700"></span>
+          Diproses
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+        <div class="xl:col-span-2 flex flex-col gap-5">
+          <section class="flex flex-col gap-4 rounded-[20px] bg-white p-5">
+            <h3 class="font-bold text-lg">Informasi Customer</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="flex items-center gap-3 rounded-2xl bg-custom-background p-4">
+                <div class="flex size-11 items-center justify-center rounded-full bg-white">
+                  <img src="../assets/images/icons/profile-black.svg" class="size-5" alt="icon">
+                </div>
+                <div>
+                  <p class="text-xs text-custom-grey">Nama</p>
+                  <p class="font-semibold">Budi Santoso</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 rounded-2xl bg-custom-background p-4">
+                <div class="flex size-11 items-center justify-center rounded-full bg-white">
+                  <img src="../assets/images/icons/call-grey.svg" class="size-5" alt="icon">
+                </div>
+                <div>
+                  <p class="text-xs text-custom-grey">No. Telepon</p>
+                  <p class="font-semibold">0812-3456-7890</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="flex flex-col gap-4 rounded-[20px] bg-white p-5">
+            <h3 class="font-bold text-lg">Alamat Pengiriman</h3>
+            <div class="rounded-2xl bg-custom-background p-4">
+              <p class="font-semibold">Budi Santoso</p>
+              <p class="text-sm text-custom-grey mt-1">Jl. Anggrek No. 123, RT 05/RW 02, Depok, Sleman, DI Yogyakarta, 55281</p>
+            </div>
+          </section>
+
+          <section class="flex flex-col gap-4 rounded-[20px] bg-white p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-lg">Item Pesanan</h3>
+              <p class="text-sm text-custom-grey">2 produk</p>
+            </div>
+
+            <article class="flex items-center justify-between gap-4 rounded-2xl border border-custom-stroke p-4">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="flex size-14 items-center justify-center rounded-xl bg-custom-background">
+                  <img src="../assets/images/icons/gallery-grey.svg" class="size-7" alt="product">
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold truncate">Samsung Galaxy S24 Ultra 12/512</p>
+                  <p class="text-xs text-custom-grey mt-1">Qty: 1 x Rp 18.500.000</p>
+                </div>
+              </div>
+              <p class="font-bold whitespace-nowrap">Rp 18.500.000</p>
+            </article>
+
+            <article class="flex items-center justify-between gap-4 rounded-2xl border border-custom-stroke p-4">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="flex size-14 items-center justify-center rounded-xl bg-custom-background">
+                  <img src="../assets/images/icons/gallery-grey.svg" class="size-7" alt="product">
+                </div>
+                <div class="min-w-0">
+                  <p class="font-semibold truncate">Case MagSafe Premium</p>
+                  <p class="text-xs text-custom-grey mt-1">Qty: 2 x Rp 175.000</p>
+                </div>
+              </div>
+              <p class="font-bold whitespace-nowrap">Rp 350.000</p>
+            </article>
+          </section>
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <section class="flex flex-col gap-4 rounded-[20px] bg-white p-5">
+            <h3 class="font-bold text-lg">Ringkasan Pembayaran</h3>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-custom-grey">Subtotal</span>
+              <span class="font-semibold">Rp 18.850.000</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-custom-grey">Ongkir</span>
+              <span class="font-semibold">Rp 20.000</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-custom-grey">Biaya Layanan</span>
+              <span class="font-semibold">Rp 2.500</span>
+            </div>
+            <hr class="border-custom-stroke">
+            <div class="flex items-center justify-between">
+              <span class="font-semibold">Total Pembayaran</span>
+              <span class="font-bold text-xl text-custom-blue">Rp 18.872.500</span>
+            </div>
+            <div class="rounded-2xl bg-custom-blue-10 p-3">
+              <p class="text-xs text-custom-grey">Metode Pembayaran</p>
+              <p class="font-semibold mt-1">Transfer Bank - BCA</p>
+            </div>
+          </section>
+
+          <section class="flex flex-col gap-4 rounded-[20px] bg-white p-5">
+            <h3 class="font-bold text-lg">Timeline Pesanan</h3>
+            <div class="flex flex-col gap-4">
+              <div class="timeline-item">
+                <p class="font-semibold text-sm">Pesanan Dibuat</p>
+                <p class="text-xs text-custom-grey">12 Mar 2026, 09:12 WIB</p>
+              </div>
+              <div class="timeline-item">
+                <p class="font-semibold text-sm">Pembayaran Berhasil</p>
+                <p class="text-xs text-custom-grey">12 Mar 2026, 09:18 WIB</p>
+              </div>
+              <div class="timeline-item">
+                <p class="font-semibold text-sm">Pesanan Diproses Seller</p>
+                <p class="text-xs text-custom-grey">12 Mar 2026, 10:02 WIB</p>
+              </div>
+              <div class="timeline-item">
+                <p class="font-semibold text-sm">Menunggu Pengiriman</p>
+                <p class="text-xs text-custom-grey">Sedang disiapkan</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="../admin-layout.js" defer></script>
+</body>
+</html>
