@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kopmas Shop - Edit Profile</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: "Poppins", ui-sans-serif, system-ui;
+      }
+
+      [data-mobile-bottom-nav-wrapper] {
+        background: linear-gradient(to top, rgba(248, 250, 252, 0.96), rgba(248, 250, 252, 0));
+      }
+      [data-mobile-bottom-nav] {
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 1px solid rgba(226, 232, 240, 0.95) !important;
+        box-shadow: 0 -12px 34px rgba(15, 23, 42, 0.16) !important;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+      body.mobile-bottom-scrolled [data-mobile-bottom-nav] {
+        background: rgba(255, 255, 255, 1) !important;
+        box-shadow: 0 -16px 40px rgba(15, 23, 42, 0.2) !important;
+      }
+      .mobile-bottom-indicator {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        width: 30px;
+        height: 3px;
+        border-radius: 0 0 9999px 9999px;
+        background: #2065fc;
+        opacity: 0;
+        transform: translateX(-50%) scaleX(0.2);
+        transform-origin: center;
+        transition: opacity 300ms ease, transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      [data-mobile-bottom-link].is-active .mobile-bottom-indicator {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+        animation: activeBarPopSlow 560ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      @keyframes activeBarPopSlow {
+        0% {
+          transform: translateX(-50%) scaleX(0.2);
+        }
+        65% {
+          transform: translateX(-50%) scaleX(1.12);
+        }
+        100% {
+          transform: translateX(-50%) scaleX(1);
+        }
+      }
+
+      .top-appbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 80;
+        background: #e5e7eb;
+        border-bottom: 1px solid #d1d5db;
+      }
+      .top-appbar-inner {
+        max-width: 672px;
+        margin: 0 auto;
+        min-height: 58px;
+        padding: 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .top-back-link {
+        width: 28px;
+        height: 28px;
+        border-radius: 9999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #334155;
+      }
+      .top-back-link:hover {
+        background: rgba(148, 163, 184, 0.18);
+      }
+
+      .profile-input:focus {
+        box-shadow: 0 0 0 3px rgba(32, 101, 252, 0.2);
+        border-color: #2065fc;
+      }
+
+      .page-enter {
+        animation: pageEnterMobile 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      .page-leave {
+        animation: pageLeaveMobile 220ms cubic-bezier(0.4, 0, 1, 1) forwards;
+      }
+      @keyframes pageEnterMobile {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pageLeaveMobile {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+      }
+    
+      :root {
+        /* Ubah nilai ini untuk atur padding kanan-kiri secara manual */
+        --page-side-padding-mobile-min: 20px;
+        --page-side-padding-fluid: 5vw;
+        --page-side-padding-desktop: 160px;
+      }
+
+      body .px-55 {
+        padding-left: clamp(
+          var(--page-side-padding-mobile-min),
+          var(--page-side-padding-fluid),
+          var(--page-side-padding-desktop)
+        ) !important;
+        padding-right: clamp(
+          var(--page-side-padding-mobile-min),
+          var(--page-side-padding-fluid),
+          var(--page-side-padding-desktop)
+        ) !important;
+      }
+
+      @media (min-width: 1280px) {
+        body .px-55 {
+          padding-left: var(--page-side-padding-desktop) !important;
+          padding-right: var(--page-side-padding-desktop) !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-50 text-slate-900">
+    <header class="top-appbar">
+      <div class="top-appbar-inner">
+        <a id="top-back-link" href="halaman_profile.html" class="top-back-link" aria-label="Kembali ke Profile">
+          <i class="fas fa-arrow-left text-lg"></i>
+        </a>
+        <h1 class="text-2xl font-bold text-slate-900 leading-none">Akun</h1>
+      </div>
+    </header>
+
+    <main class="w-full max-w-none px-55 mt-20 mb-32 max-w-2xl">
+      <div class="mb-6">
+        <h1 class="text-2xl font-extrabold md:text-3xl text-slate-900">Edit Profil</h1>
+        <p class="text-sm text-slate-400 mt-1 font-medium">Perbarui data profil akun Anda</p>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-5 md:p-6 space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400">
+              <i class="fa-solid fa-user text-xl"></i>
+            </div>
+            <button type="button"
+              class="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700">
+              <i class="fa-solid fa-camera"></i>
+              Ganti Foto
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4">
+            <label class="block">
+              <span class="mb-1.5 block text-xs font-semibold text-slate-600">Nama Lengkap</span>
+              <input type="text" value="Afsar Hossen"
+                class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition" />
+            </label>
+
+            <label class="block">
+              <span class="mb-1.5 block text-xs font-semibold text-slate-600">Email</span>
+              <input type="email" value="lmshuvo97@gmail.com"
+                class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition" />
+            </label>
+
+            <label class="block">
+              <span class="mb-1.5 block text-xs font-semibold text-slate-600">Nomor HP</span>
+              <input type="tel" placeholder="08xxxxxxxxxx"
+                class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition" />
+            </label>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <label class="block">
+                <span class="mb-1.5 block text-xs font-semibold text-slate-600">Tanggal Lahir</span>
+                <input type="date"
+                  class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition" />
+              </label>
+              <label class="block">
+                <span class="mb-1.5 block text-xs font-semibold text-slate-600">Jenis Kelamin</span>
+                <select class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition">
+                  <option>Laki-laki</option>
+                  <option>Perempuan</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="block">
+              <span class="mb-1.5 block text-xs font-semibold text-slate-600">Alamat</span>
+              <textarea rows="4" placeholder="Tulis alamat lengkap..."
+                class="profile-input w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="p-5 md:p-6 border-t border-slate-100 flex items-center gap-3 justify-end">
+          <a id="cancel-edit-btn" href="halaman_profile.html"
+            class="inline-flex items-center justify-center rounded-xl border border-slate-300 px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition">
+            Batal
+          </a>
+          <button type="button"
+            class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-semibold text-white hover:bg-blue-700 transition">
+            Simpan Perubahan
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <div data-mobile-bottom-nav-wrapper
+      class="fixed inset-x-0 bottom-0 z-[70] px-4"
+      style="padding-bottom: calc(12px + env(safe-area-inset-bottom));">
+      <nav data-mobile-bottom-nav
+        class="mx-auto grid max-w-md grid-cols-4 rounded-[22px] border border-slate-200/90 bg-white/95 p-2 shadow-xl backdrop-blur">
+        <a href="index.html" data-mobile-bottom-link data-routes="index.html"
+          class="flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-xl text-xs font-medium text-slate-500 transition-colors">
+          <span data-mobile-bottom-icon class="flex h-8 w-8 items-center justify-center rounded-lg">
+            <i class="fas fa-house text-base"></i>
+          </span>
+          <span data-mobile-bottom-label>Beranda</span>
+        </a>
+        <a href="halaman_kategori.html" data-mobile-bottom-link data-routes="halaman_kategori.html,halaman_product_detail.html"
+          class="flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-xl text-xs font-medium text-slate-500 transition-colors">
+          <span data-mobile-bottom-icon class="flex h-8 w-8 items-center justify-center rounded-lg">
+            <i class="fas fa-table-cells-large text-base"></i>
+          </span>
+          <span data-mobile-bottom-label>Categories</span>
+        </a>
+        <a href="halaman_my_transaction.html" data-mobile-bottom-link data-routes="halaman_my_transaction.html"
+          class="flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-xl text-xs font-medium text-slate-500 transition-colors">
+          <span data-mobile-bottom-icon class="relative flex h-8 w-8 items-center justify-center rounded-lg">
+            <i class="fas fa-receipt text-base"></i>
+          </span>
+          <span data-mobile-bottom-label>Pesanan</span>
+        </a>
+        <a href="halaman_profile.html" data-mobile-bottom-link data-routes="halaman_profile.html,halaman_edit_profile.html"
+          class="flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-xl text-xs font-medium text-slate-500 transition-colors">
+          <span data-mobile-bottom-icon class="flex h-8 w-8 items-center justify-center rounded-lg">
+            <i class="fas fa-user text-base"></i>
+          </span>
+          <span data-mobile-bottom-label>Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <script>
+      const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+      const mobileBottomLinks = document.querySelectorAll("[data-mobile-bottom-link]");
+      const topBackLink = document.getElementById("top-back-link");
+      const cancelEditBtn = document.getElementById("cancel-edit-btn");
+
+      const bindPageTransition = (link) => {
+        link?.addEventListener("click", (event) => {
+          const targetHref = link.getAttribute("href");
+          if (!targetHref || targetHref.toLowerCase() === currentPage) {
+            event.preventDefault();
+            return;
+          }
+
+          event.preventDefault();
+          document.body.classList.add("page-leave");
+          setTimeout(() => {
+            window.location.href = targetHref;
+          }, 210);
+        });
+      };
+
+      mobileBottomLinks.forEach((link) => {
+        const routeTokens = (link.dataset.routes || "").split(",").map((r) => r.trim().toLowerCase()).filter(Boolean);
+        const isActive = routeTokens.includes(currentPage);
+        const icon = link.querySelector("[data-mobile-bottom-icon]");
+        const label = link.querySelector("[data-mobile-bottom-label]");
+        let indicator = link.querySelector("[data-mobile-bottom-indicator]");
+        if (!indicator) {
+          indicator = document.createElement("span");
+          indicator.dataset.mobileBottomIndicator = "";
+          indicator.className = "mobile-bottom-indicator";
+          link.prepend(indicator);
+        }
+        link.classList.add("relative");
+        link.classList.toggle("is-active", isActive);
+        link.style.color = isActive ? "#2065fc" : "#64748b";
+        if (label) label.style.fontWeight = isActive ? "700" : "500";
+        if (icon) {
+          icon.style.background = isActive ? "rgba(32,101,252,0.14)" : "transparent";
+          icon.style.boxShadow = isActive ? "0 10px 18px rgba(32,101,252,0.18)" : "none";
+        }
+
+        bindPageTransition(link);
+      });
+      bindPageTransition(topBackLink);
+      bindPageTransition(cancelEditBtn);
+
+      const syncMobileBottomPadding = () => {
+        document.body.style.paddingBottom = "calc(96px + env(safe-area-inset-bottom))";
+      };
+      syncMobileBottomPadding();
+      window.addEventListener("resize", syncMobileBottomPadding);
+
+      window.addEventListener("scroll", () => {
+        document.body.classList.toggle("mobile-bottom-scrolled", window.scrollY > 6);
+      });
+
+      window.addEventListener("pageshow", () => {
+        document.body.classList.remove("page-leave");
+      });
+      requestAnimationFrame(() => {
+        document.body.classList.add("page-enter");
+        setTimeout(() => document.body.classList.remove("page-enter"), 300);
+      });
+    </script>
+  </body>
+</html>

@@ -75,6 +75,39 @@ function adjustRelativePaths() {
   });
 }
 
+function ensureMobileBottomIndicatorStyles() {
+  if (document.getElementById('mobile-bottom-indicator-style')) return;
+
+  const style = document.createElement('style');
+  style.id = 'mobile-bottom-indicator-style';
+  style.textContent = `
+    .mobile-bottom-indicator {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 30px;
+      height: 3px;
+      border-radius: 0 0 9999px 9999px;
+      background: #2065fc;
+      opacity: 0;
+      transform: translateX(-50%) scaleX(0.2);
+      transform-origin: center;
+      transition: opacity 300ms ease, transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    [data-mobile-bottom-link].is-active .mobile-bottom-indicator {
+      opacity: 1;
+      transform: translateX(-50%) scaleX(1);
+      animation: activeBarPopSlow 560ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    @keyframes activeBarPopSlow {
+      0% { transform: translateX(-50%) scaleX(0.2); }
+      65% { transform: translateX(-50%) scaleX(1.12); }
+      100% { transform: translateX(-50%) scaleX(1); }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 function initNavbarBehavior() {
   const navbar = document.getElementById('navbar-wrapper');
   if (!navbar) return;
@@ -84,6 +117,7 @@ function initNavbarBehavior() {
   const navSecondary = document.querySelector('.navbar-secondary');
   const mobileBottomNav = document.querySelector('[data-mobile-bottom-nav]');
   let lastScroll = 0;
+  ensureMobileBottomIndicatorStyles();
 
   window.addEventListener('scroll', function () {
     const currentScroll = window.scrollY;
@@ -131,7 +165,16 @@ function initNavbarBehavior() {
     const isActive = routeTokens.includes(currentPage);
     const icon = link.querySelector('[data-mobile-bottom-icon]');
     const label = link.querySelector('[data-mobile-bottom-label]');
+    let indicator = link.querySelector('[data-mobile-bottom-indicator]');
+    if (!indicator) {
+      indicator = document.createElement('span');
+      indicator.dataset.mobileBottomIndicator = '';
+      indicator.className = 'mobile-bottom-indicator';
+      link.prepend(indicator);
+    }
 
+    link.classList.add('relative');
+    link.classList.toggle('is-active', isActive);
     link.style.color = isActive ? '#2065fc' : '#64748b';
     if (label) label.style.fontWeight = isActive ? '700' : '500';
     if (icon) {
