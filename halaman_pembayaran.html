@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kopmas Shop - Pembayaran</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+    #navbar-wrapper { background: rgba(255,255,255,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.2); transition: all .3s ease; }
+    #navbar-wrapper.scrolled { background: rgba(255,255,255,.85); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
+    .navbar-secondary { max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .35s ease, padding .35s ease; opacity: 1; }
+    .navbar-secondary.sec-hidden { max-height: 0; opacity: 0; padding-bottom: 0 !important; margin-bottom: -8px; }
+
+    :root {
+      --page-side-padding-mobile-min: 20px;
+      --page-side-padding-fluid: 5vw;
+      --page-side-padding-desktop: 160px;
+    }
+
+    body .px-55 {
+      padding-left: clamp(
+        var(--page-side-padding-mobile-min),
+        var(--page-side-padding-fluid),
+        var(--page-side-padding-desktop)
+      ) !important;
+      padding-right: clamp(
+        var(--page-side-padding-mobile-min),
+        var(--page-side-padding-fluid),
+        var(--page-side-padding-desktop)
+      ) !important;
+    }
+
+    @media (min-width: 1280px) {
+      body .px-55 {
+        padding-left: var(--page-side-padding-desktop) !important;
+        padding-right: var(--page-side-padding-desktop) !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div data-shared-header></div>
+  <div class="h-32 lg:h-40"></div>
+
+  <main class="w-full max-w-none px-55 py-10">
+    <div class="mb-6 flex items-center justify-between gap-3">
+      <div>
+        <p class="text-sm font-semibold text-blue-600">Pembayaran</p>
+        <h1 class="text-3xl font-extrabold md:text-4xl">Selesaikan Pembayaran</h1>
+      </div>
+      <a href="halaman_checkout.html" class="hidden rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 md:inline-flex">Kembali ke Checkout</a>
+    </div>
+
+    <div class="mb-7 grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 text-sm sm:grid-cols-3">
+      <div class="rounded-xl bg-blue-50 px-3 py-2 font-semibold text-blue-700">1. Keranjang</div>
+      <div class="rounded-xl bg-blue-50 px-3 py-2 font-semibold text-blue-700">2. Checkout</div>
+      <div class="rounded-xl bg-blue-600 px-3 py-2 font-bold text-white">3. Pembayaran</div>
+    </div>
+
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px]">
+      <section class="space-y-6">
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
+          <h2 class="text-lg font-bold">Metode Pembayaran Terpilih</h2>
+          <p id="paymentMethodText" class="mt-1 text-sm font-semibold text-blue-700">QRIS</p>
+
+          <div id="qrisPanel" class="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+            <p class="text-sm font-semibold text-emerald-800">Scan QRIS untuk bayar</p>
+            <div class="mt-3 flex justify-center rounded-xl bg-white p-4">
+              <img alt="QRIS" class="h-44 w-44 rounded-lg object-contain" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=KOPMASSHOP-QRIS-PAYMENT">
+            </div>
+            <p class="mt-3 text-xs text-emerald-700">Setelah transfer, sistem akan verifikasi otomatis maksimal 5 menit.</p>
+          </div>
+
+          <div id="bankPanel" class="mt-4 hidden rounded-xl border border-blue-200 bg-blue-50 p-4">
+            <p class="text-sm font-semibold text-blue-800">Transfer ke Virtual Account</p>
+            <p class="mt-2 text-xs text-blue-700">Bank: <span id="bankName" class="font-bold">BCA</span></p>
+            <p class="mt-1 text-xs text-blue-700">Nomor VA:</p>
+            <p id="vaNumber" class="mt-1 text-lg font-extrabold tracking-wide text-slate-900">8808123456789012</p>
+            <button id="copyVaButton" type="button" class="mt-3 rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white hover:bg-blue-700">Salin Nomor VA</button>
+          </div>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
+          <h2 class="text-lg font-bold">Alamat Pengiriman</h2>
+          <p id="addressName" class="mt-3 text-sm font-semibold text-slate-900">-</p>
+          <p id="addressPhone" class="mt-1 text-xs text-slate-600">-</p>
+          <p id="addressLocation" class="mt-2 text-xs font-semibold text-blue-700">-</p>
+          <p id="addressFull" class="mt-1 text-sm text-slate-700">-</p>
+        </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-lg font-bold">Konfirmasi Pembayaran</h2>
+            <span id="expiryBadge" class="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">Berlaku 1 Hari</span>
+          </div>
+          <p class="mt-2 text-xs text-slate-500">Batas waktu pembayaran: <span id="expiryText" class="font-bold text-slate-700">24:00:00</span></p>
+
+          <div class="mt-4 space-y-3">
+            <label class="block">
+              <span class="mb-1 block text-xs font-semibold text-slate-500">Upload Bukti Pembayaran</span>
+              <input id="proofInput" type="file" accept="image/*,.pdf" class="block w-full rounded-xl border border-slate-200 bg-white p-3 text-sm text-slate-700 file:mr-3 file:rounded-lg file:border-0 file:bg-blue-600 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-white hover:file:bg-blue-700" />
+            </label>
+
+            <div id="proofPreviewWrap" class="hidden rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <p id="proofPreviewName" class="text-xs font-semibold text-slate-700">-</p>
+              <img id="proofPreviewImage" alt="Preview bukti pembayaran" class="mt-2 hidden h-40 w-full rounded-lg object-contain bg-white" />
+            </div>
+
+            <label class="block">
+              <span class="mb-1 block text-xs font-semibold text-slate-500">Catatan (Opsional)</span>
+              <textarea id="paymentNote" placeholder="Contoh: pembayaran via m-banking atas nama Zaky" class="min-h-20 w-full rounded-xl border border-slate-200 p-3 text-sm outline-none focus:border-blue-500"></textarea>
+            </label>
+
+            <p id="paymentFeedback" class="hidden text-xs font-semibold"></p>
+
+            <button id="btnSubmitPayment" type="button" class="h-11 rounded-xl bg-blue-600 px-5 text-sm font-bold text-white hover:bg-blue-700 transition">Upload Bukti & Konfirmasi</button>
+          </div>
+        </article>
+      </section>
+
+      <aside class="h-fit rounded-2xl border border-slate-200 bg-white p-5 lg:sticky lg:top-28">
+        <h2 class="text-lg font-bold">Ringkasan Pembayaran</h2>
+        <div class="mt-4 space-y-2 text-sm text-slate-600">
+          <p class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-semibold text-slate-900">Rp 0</span></p>
+          <p class="flex justify-between"><span>Ongkir</span><span id="summaryOngkir" class="font-semibold text-slate-900">Rp 0</span></p>
+          <p class="flex justify-between"><span>PPN</span><span id="summaryPpn" class="font-semibold text-slate-900">Rp 0</span></p>
+          <hr class="my-2 border-slate-200">
+          <p class="flex justify-between text-base"><span class="font-bold text-slate-900">Total Bayar</span><span id="summaryGrandTotal" class="font-extrabold text-blue-700">Rp 0</span></p>
+        </div>
+
+        <div class="mt-5 space-y-2">
+          <button id="btnDonePay" type="button" class="flex h-11 w-full items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700">Saya Sudah Bayar</button>
+          <a href="halaman_checkout.html" class="flex h-11 items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-100">Ubah Checkout</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div data-shared-footer></div>
+  <script src="./layout-shared.js" defer></script>
+  <script>
+    const paymentMethodText = document.getElementById("paymentMethodText");
+    const qrisPanel = document.getElementById("qrisPanel");
+    const bankPanel = document.getElementById("bankPanel");
+    const bankName = document.getElementById("bankName");
+    const vaNumber = document.getElementById("vaNumber");
+    const expiryBadge = document.getElementById("expiryBadge");
+    const expiryText = document.getElementById("expiryText");
+    const proofInput = document.getElementById("proofInput");
+    const proofPreviewWrap = document.getElementById("proofPreviewWrap");
+    const proofPreviewName = document.getElementById("proofPreviewName");
+    const proofPreviewImage = document.getElementById("proofPreviewImage");
+    const paymentNote = document.getElementById("paymentNote");
+    const paymentFeedback = document.getElementById("paymentFeedback");
+    const btnSubmitPayment = document.getElementById("btnSubmitPayment");
+    const btnDonePay = document.getElementById("btnDonePay");
+
+    const summarySubtotal = document.getElementById("summarySubtotal");
+    const summaryOngkir = document.getElementById("summaryOngkir");
+    const summaryPpn = document.getElementById("summaryPpn");
+    const summaryGrandTotal = document.getElementById("summaryGrandTotal");
+
+    const addressName = document.getElementById("addressName");
+    const addressPhone = document.getElementById("addressPhone");
+    const addressLocation = document.getElementById("addressLocation");
+    const addressFull = document.getElementById("addressFull");
+
+    const PAYMENT_EXPIRY_MS = 24 * 60 * 60 * 1000;
+    let expiryTimerId = null;
+
+    function buildVaNumber(bankCode) {
+      const prefix = {
+        BCA: "88081",
+        BRI: "88082",
+        BNI: "88083",
+        Mandiri: "88084"
+      }[bankCode] || "88080";
+
+      return `${prefix}23456789012`;
+    }
+
+    function showPaymentFeedback(message, type) {
+      paymentFeedback.classList.remove("hidden", "text-red-600", "text-emerald-600", "text-slate-500");
+      if (type === "error") {
+        paymentFeedback.classList.add("text-red-600");
+      } else if (type === "success") {
+        paymentFeedback.classList.add("text-emerald-600");
+      } else {
+        paymentFeedback.classList.add("text-slate-500");
+      }
+      paymentFeedback.textContent = message;
+    }
+
+    function formatRemainingTime(ms) {
+      const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      if (days > 0) {
+        return `${days}h ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+      }
+
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function setPaymentActionsEnabled(enabled) {
+      proofInput.disabled = !enabled;
+      paymentNote.disabled = !enabled;
+      btnSubmitPayment.disabled = !enabled;
+
+      if (enabled) {
+        btnSubmitPayment.classList.remove("opacity-60", "pointer-events-none");
+      } else {
+        btnSubmitPayment.classList.add("opacity-60", "pointer-events-none");
+      }
+    }
+
+    function getExpiryAt() {
+      let expiryAt = Number(localStorage.getItem("checkoutPaymentExpiryAt") || 0);
+      if (!expiryAt || Number.isNaN(expiryAt)) {
+        expiryAt = Date.now() + PAYMENT_EXPIRY_MS;
+        localStorage.setItem("checkoutPaymentExpiryAt", String(expiryAt));
+      }
+      return expiryAt;
+    }
+
+    function startExpiryCountdown() {
+      const expiryAt = getExpiryAt();
+
+      const tick = () => {
+        const remaining = expiryAt - Date.now();
+        if (remaining <= 0) {
+          expiryText.textContent = "Waktu pembayaran habis";
+          expiryBadge.textContent = "Expired";
+          expiryBadge.classList.remove("bg-amber-50", "text-amber-700");
+          expiryBadge.classList.add("bg-red-50", "text-red-700");
+          setPaymentActionsEnabled(false);
+          showPaymentFeedback("Pembayaran kadaluarsa. Silakan checkout ulang untuk membuat tagihan baru.", "error");
+          if (expiryTimerId) {
+            clearInterval(expiryTimerId);
+          }
+          return;
+        }
+
+        expiryText.textContent = formatRemainingTime(remaining);
+      };
+
+      tick();
+      expiryTimerId = setInterval(tick, 1000);
+    }
+
+    function handleProofSelection() {
+      const file = proofInput.files?.[0];
+      if (!file) {
+        proofPreviewWrap.classList.add("hidden");
+        proofPreviewImage.classList.add("hidden");
+        proofPreviewImage.removeAttribute("src");
+        return;
+      }
+
+      proofPreviewWrap.classList.remove("hidden");
+      proofPreviewName.textContent = `${file.name} (${Math.max(1, Math.round(file.size / 1024))} KB)`;
+
+      if (file.type.startsWith("image/")) {
+        proofPreviewImage.src = URL.createObjectURL(file);
+        proofPreviewImage.classList.remove("hidden");
+      } else {
+        proofPreviewImage.classList.add("hidden");
+        proofPreviewImage.removeAttribute("src");
+      }
+    }
+
+    function hydrateExistingProof() {
+      try {
+        const raw = localStorage.getItem("checkoutPaymentProof");
+        if (!raw) return;
+
+        const proof = JSON.parse(raw);
+        if (!proof?.fileName) return;
+
+        proofPreviewWrap.classList.remove("hidden");
+        proofPreviewName.textContent = `${proof.fileName} (${proof.sizeKb || 0} KB)`;
+        proofPreviewImage.classList.add("hidden");
+        paymentNote.value = proof.note || "";
+        showPaymentFeedback("Bukti pembayaran sebelumnya sudah tersimpan. Kamu bisa upload ulang jika perlu.", "info");
+      } catch (error) {
+        // Ignore malformed local storage payload
+      }
+    }
+
+    function submitPaymentProof() {
+      const expiryAt = Number(localStorage.getItem("checkoutPaymentExpiryAt") || 0);
+      if (expiryAt && Date.now() > expiryAt) {
+        showPaymentFeedback("Pembayaran sudah kadaluarsa.", "error");
+        return;
+      }
+
+      const file = proofInput.files?.[0];
+      if (!file) {
+        showPaymentFeedback("Upload bukti pembayaran terlebih dahulu.", "error");
+        return;
+      }
+
+      const payload = {
+        fileName: file.name,
+        fileType: file.type,
+        sizeKb: Math.max(1, Math.round(file.size / 1024)),
+        note: paymentNote.value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem("checkoutPaymentProof", JSON.stringify(payload));
+      showPaymentFeedback("Bukti pembayaran berhasil diupload. Lanjut klik Saya Sudah Bayar.", "success");
+    }
+
+    function hydratePaymentSummary() {
+      try {
+        const rawSummary = localStorage.getItem("checkoutSummary");
+        const rawMethod = localStorage.getItem("checkoutPaymentMethod");
+        const pageParams = new URLSearchParams(window.location.search);
+
+        if (rawSummary) {
+          const summary = JSON.parse(rawSummary);
+          summarySubtotal.textContent = summary?.subtotal || "Rp 0";
+          summaryOngkir.textContent = summary?.ongkir || "Rp 0";
+          summaryPpn.textContent = summary?.ppn || "Rp 0";
+          summaryGrandTotal.textContent = summary?.grandTotal || "Rp 0";
+        }
+
+        let method = "qris";
+        let bank = "BCA";
+
+        if (rawMethod) {
+          const payment = JSON.parse(rawMethod);
+          method = payment?.method || "qris";
+          bank = payment?.bank || "BCA";
+        }
+
+        const queryMethod = pageParams.get("method");
+        const queryBank = pageParams.get("bank");
+        if (queryMethod) {
+          method = queryMethod;
+        }
+        if (queryBank) {
+          bank = queryBank;
+        }
+
+        localStorage.setItem("checkoutPaymentMethod", JSON.stringify({ method, bank }));
+
+        if (queryMethod || queryBank) {
+          const cleanUrl = window.location.pathname;
+          window.history.replaceState({}, document.title, cleanUrl);
+        }
+
+        if (method === "bank_transfer") {
+          paymentMethodText.textContent = `Transfer Bank (${bank})`;
+          qrisPanel.classList.add("hidden");
+          bankPanel.classList.remove("hidden");
+          bankName.textContent = bank;
+          vaNumber.textContent = buildVaNumber(bank);
+        } else {
+          paymentMethodText.textContent = "QRIS";
+          qrisPanel.classList.remove("hidden");
+          bankPanel.classList.add("hidden");
+        }
+      } catch (error) {
+        paymentMethodText.textContent = "QRIS";
+      }
+    }
+
+    function hydrateAddress() {
+      try {
+        const raw = localStorage.getItem("checkoutBuyerAddress");
+        if (!raw) return;
+
+        const address = JSON.parse(raw);
+        addressName.textContent = address?.name || "-";
+        addressPhone.textContent = address?.phone || "-";
+        addressLocation.textContent = address?.locationLabel || "-";
+        addressFull.textContent = address?.fullAddress || "-";
+      } catch (error) {
+        // Ignore malformed payload
+      }
+    }
+
+    document.getElementById("copyVaButton").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(vaNumber.textContent);
+        alert("Nomor VA berhasil disalin.");
+      } catch (error) {
+        alert("Gagal menyalin nomor VA.");
+      }
+    });
+
+    proofInput.addEventListener("change", handleProofSelection);
+    btnSubmitPayment.addEventListener("click", submitPaymentProof);
+    btnDonePay.addEventListener("click", () => {
+      const rawProof = localStorage.getItem("checkoutPaymentProof");
+      if (!rawProof) {
+        showPaymentFeedback("Upload bukti pembayaran dulu sebelum konfirmasi.", "error");
+        return;
+      }
+
+      window.location.href = "halaman_my_transaction.html";
+    });
+
+    hydratePaymentSummary();
+    hydrateAddress();
+    startExpiryCountdown();
+    hydrateExistingProof();
+  </script>
+</body>
+</html>

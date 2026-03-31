@@ -73,57 +73,29 @@
       <section class="space-y-6">
         <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
           <div class="flex items-center justify-between gap-2">
-            <h2 class="text-lg font-bold">Tambah Alamat</h2>
-            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Aman</span>
+            <h2 class="text-lg font-bold">Tambah Alamat Pengiriman</h2>
+            <span class="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">Untuk Pembeli</span>
           </div>
 
           <div class="mt-4 rounded-xl border border-slate-200 p-4 md:p-5 space-y-4">
-            <p class="text-sm font-bold text-slate-800">Alamat Toko</p>
-            <label class="block">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">*Lokasi</span>
-              <div class="flex flex-col gap-2 sm:flex-row">
-                <input id="destinationSearch" type="text" placeholder="Cari kecamatan / kota tujuan" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-                <button id="btnCariLokasi" type="button" class="h-11 shrink-0 rounded-xl bg-slate-900 px-4 text-sm font-bold text-white hover:bg-slate-800 transition">Pilih Lokasi</button>
-              </div>
-            </label>
-            <label class="block">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Pilih Lokasi</span>
-              <select id="destinationSelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-                <option value="">Belum ada lokasi, cari dulu</option>
-              </select>
-            </label>
-            <label class="block">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">* Alamat</span>
-              <textarea id="alamatLengkapInput" placeholder="Masukkan alamat lengkap" class="min-h-24 w-full rounded-xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500"></textarea>
-            </label>
-            <button id="btnTambahAlamat" type="button" class="h-11 rounded-xl bg-blue-600 px-5 text-sm font-bold text-white hover:bg-blue-700 transition">Tambah Alamat</button>
+            <p class="text-sm font-bold text-slate-800">Kelola Alamat Pembeli</p>
+            <p class="text-xs text-slate-500">Tambah atau ubah alamat pembeli melalui halaman khusus. Data alamat akan dipakai untuk cek ongkir.</p>
+            <a href="alamat.html?from=checkout" class="inline-flex h-11 items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-bold text-white hover:bg-blue-700 transition">Buka Halaman Alamat</a>
             <p id="alamatFeedback" class="hidden text-xs font-semibold"></p>
           </div>
 
-          <div class="mt-5 grid gap-4 md:grid-cols-2">
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Nama penerima</span>
-              <input id="namaPenerimaInput" type="text" placeholder="Nama lengkap" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-            </label>
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate-500">No. telepon</span>
-              <input id="noTeleponInput" type="text" placeholder="08xxxxxxxxxx" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-            </label>
-            <label class="md:col-span-2">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Kota / Kabupaten</span>
-              <input id="kotaKabupatenInput" type="text" placeholder="Sleman" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-            </label>
-            <label class="md:col-span-2">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Alamat lengkap</span>
-              <textarea id="alamatPengirimanInput" placeholder="Nama jalan, nomor rumah, kecamatan, patokan" class="min-h-24 w-full rounded-xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500"></textarea>
-            </label>
+          <div id="alamatList" class="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <p class="text-sm font-bold text-slate-900">Alamat Pengiriman Terpilih</p>
+            <p id="selectedAddressName" class="mt-2 text-sm font-semibold text-slate-700">Belum ada alamat pembeli.</p>
+            <p id="selectedAddressPhone" class="mt-1 text-xs text-slate-600">-</p>
+            <p id="selectedAddressLocation" class="mt-2 text-xs font-semibold text-blue-700">-</p>
+            <p id="selectedAddressFull" class="mt-1 text-sm text-slate-700">Silakan tambahkan alamat terlebih dahulu.</p>
           </div>
-
-          <div id="alamatList" class="mt-5 space-y-3"></div>
         </article>
 
         <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
           <h2 class="text-lg font-bold">Metode Pengiriman (RajaOngkir)</h2>
+          <p class="mt-1 text-xs text-slate-500">Asal toko akan mengikuti data toko dari dashboard seller.</p>
           <div class="mt-4 grid gap-3 md:grid-cols-3 text-sm">
             <label>
               <span class="mb-1 block text-xs font-semibold text-slate-500">Kurir</span>
@@ -145,6 +117,51 @@
           <div id="shippingServices" class="mt-4 space-y-3 text-sm"></div>
           <p id="shippingFeedback" class="mt-3 hidden text-xs font-semibold"></p>
         </article>
+
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
+          <h2 class="text-lg font-bold">Metode Pembayaran</h2>
+          <p class="mt-1 text-xs text-slate-500">Pilih metode pembayaran yang ingin digunakan.</p>
+
+          <div class="mt-4 space-y-3 text-sm">
+            <label class="flex cursor-pointer items-center justify-between rounded-xl border border-slate-200 p-3 hover:border-blue-300" data-payment-card>
+              <div class="flex items-center gap-3">
+                <span class="inline-flex size-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <i class="fas fa-qrcode"></i>
+                </span>
+                <div>
+                  <p class="font-semibold text-slate-900">QRIS</p>
+                  <p class="text-xs text-slate-500">Bayar dengan scan QR dari e-wallet / m-banking</p>
+                </div>
+              </div>
+              <input type="radio" name="paymentMethod" value="qris" checked class="size-4 accent-blue-600" />
+            </label>
+
+            <label class="flex cursor-pointer items-center justify-between rounded-xl border border-slate-200 p-3 hover:border-blue-300" data-payment-card>
+              <div class="flex items-center gap-3">
+                <span class="inline-flex size-9 items-center justify-center rounded-full bg-blue-100 text-blue-700">
+                  <i class="fas fa-building-columns"></i>
+                </span>
+                <div>
+                  <p class="font-semibold text-slate-900">Transfer Bank</p>
+                  <p class="text-xs text-slate-500">Transfer manual ke rekening virtual</p>
+                </div>
+              </div>
+              <input type="radio" name="paymentMethod" value="bank_transfer" class="size-4 accent-blue-600" />
+            </label>
+          </div>
+
+          <div id="bankOptions" class="mt-3 hidden rounded-xl border border-slate-200 bg-slate-50 p-3">
+            <label class="block">
+              <span class="mb-1 block text-xs font-semibold text-slate-500">Pilih Bank</span>
+              <select id="bankSelect" class="h-10 w-full rounded-lg border border-slate-200 px-3 text-sm outline-none focus:border-blue-500">
+                <option value="BCA">BCA Virtual Account</option>
+                <option value="BRI">BRI Virtual Account</option>
+                <option value="BNI">BNI Virtual Account</option>
+                <option value="Mandiri">Mandiri Virtual Account</option>
+              </select>
+            </label>
+          </div>
+        </article>
       </section>
 
       <aside class="h-fit rounded-2xl border border-slate-200 bg-white p-5 lg:sticky lg:top-28">
@@ -162,13 +179,14 @@
         <div class="mt-4 space-y-2 text-sm text-slate-600">
           <p class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-semibold text-slate-900">Rp 19.999.000</span></p>
           <p class="flex justify-between"><span>Ongkir</span><span id="summaryOngkir" class="font-semibold text-slate-900">Rp 0</span></p>
+          <p class="flex justify-between"><span>Metode Pembayaran</span><span id="summaryPaymentMethod" class="font-semibold text-slate-900">QRIS</span></p>
           <p class="flex justify-between"><span>PPN</span><span id="summaryPpn" class="font-semibold text-slate-900">Rp 2.199.890</span></p>
           <hr class="my-2 border-slate-200">
           <p class="flex justify-between text-base"><span class="font-bold text-slate-900">Grand Total</span><span id="summaryGrandTotal" class="font-extrabold text-blue-700">Rp 22.198.890</span></p>
         </div>
 
         <div class="mt-5 space-y-2">
-          <a href="index.html" class="flex h-11 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700">Pay Now</a>
+          <a href="halaman_pembayaran.html" id="btnGoPayment" class="flex h-11 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700">Lanjut ke Pembayaran</a>
           <a href="halaman_cart.html" class="flex h-11 items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-100">Edit Keranjang</a>
         </div>
       </aside>
@@ -184,25 +202,28 @@
 
     const STORE_ORIGIN_ID = "501";
 
-    const destinationSearch = document.getElementById("destinationSearch");
-    const destinationSelect = document.getElementById("destinationSelect");
-    const alamatLengkapInput = document.getElementById("alamatLengkapInput");
-    const alamatList = document.getElementById("alamatList");
     const alamatFeedback = document.getElementById("alamatFeedback");
-    const kotaKabupatenInput = document.getElementById("kotaKabupatenInput");
-    const alamatPengirimanInput = document.getElementById("alamatPengirimanInput");
+    const selectedAddressName = document.getElementById("selectedAddressName");
+    const selectedAddressPhone = document.getElementById("selectedAddressPhone");
+    const selectedAddressLocation = document.getElementById("selectedAddressLocation");
+    const selectedAddressFull = document.getElementById("selectedAddressFull");
 
     const shippingServices = document.getElementById("shippingServices");
     const shippingFeedback = document.getElementById("shippingFeedback");
     const courierSelect = document.getElementById("courierSelect");
     const weightInput = document.getElementById("weightInput");
+    const paymentMethodRadios = document.querySelectorAll("input[name='paymentMethod']");
+    const paymentCards = document.querySelectorAll("[data-payment-card]");
+    const bankOptions = document.getElementById("bankOptions");
+    const bankSelect = document.getElementById("bankSelect");
 
     const summarySubtotal = document.getElementById("summarySubtotal");
     const summaryPpn = document.getElementById("summaryPpn");
     const summaryOngkir = document.getElementById("summaryOngkir");
+    const summaryPaymentMethod = document.getElementById("summaryPaymentMethod");
     const summaryGrandTotal = document.getElementById("summaryGrandTotal");
+    const btnGoPayment = document.getElementById("btnGoPayment");
 
-    const savedAddresses = [];
     let selectedShippingCost = 0;
 
     function formatRupiah(value) {
@@ -231,21 +252,94 @@
       const grandTotal = subtotal + ppn + selectedShippingCost;
       summaryOngkir.textContent = formatRupiah(selectedShippingCost);
       summaryGrandTotal.textContent = formatRupiah(grandTotal);
+      persistCheckoutSummary();
     }
 
-    function getDestinationId(destination) {
-      return destination?.id || destination?.destination_id || destination?.subdistrict_id || destination?.city_id || "";
+    function persistCheckoutSummary() {
+      const selectedPayment = document.querySelector("input[name='paymentMethod']:checked");
+      const payload = {
+        subtotal: summarySubtotal.textContent,
+        ppn: summaryPpn.textContent,
+        ongkir: summaryOngkir.textContent,
+        grandTotal: summaryGrandTotal.textContent,
+        paymentMethod: selectedPayment?.value || "qris",
+        paymentLabel: summaryPaymentMethod.textContent
+      };
+
+      localStorage.setItem("checkoutSummary", JSON.stringify(payload));
+
+      localStorage.setItem("checkoutPaymentMethod", JSON.stringify({
+        method: selectedPayment?.value || "qris",
+        bank: bankSelect.value
+      }));
+
+      return {
+        method: selectedPayment?.value || "qris",
+        bank: bankSelect.value
+      };
     }
 
-    function getDestinationLabel(destination) {
-      return (
-        destination?.label ||
-        destination?.subdistrict_name ||
-        destination?.city_name ||
-        destination?.district ||
-        destination?.city ||
-        "Lokasi"
-      );
+    function updatePaymentMethod() {
+      const selected = document.querySelector("input[name='paymentMethod']:checked");
+      const methodValue = selected?.value || "qris";
+
+      paymentCards.forEach((card) => {
+        const radio = card.querySelector("input[name='paymentMethod']");
+        if (radio && radio.checked) {
+          card.classList.add("border-blue-400", "bg-blue-50/50");
+        } else {
+          card.classList.remove("border-blue-400", "bg-blue-50/50");
+        }
+      });
+
+      if (methodValue === "bank_transfer") {
+        bankOptions.classList.remove("hidden");
+        summaryPaymentMethod.textContent = `Transfer Bank (${bankSelect.value})`;
+      } else {
+        bankOptions.classList.add("hidden");
+        summaryPaymentMethod.textContent = "QRIS";
+      }
+
+      localStorage.setItem("checkoutPaymentMethod", JSON.stringify({
+        method: methodValue,
+        bank: bankSelect.value
+      }));
+
+      persistCheckoutSummary();
+    }
+
+    function hydratePaymentMethod() {
+      try {
+        const raw = localStorage.getItem("checkoutPaymentMethod");
+        if (!raw) {
+          updatePaymentMethod();
+          return;
+        }
+
+        const saved = JSON.parse(raw);
+        const savedMethod = saved?.method;
+        const savedBank = saved?.bank;
+
+        if (savedBank && bankSelect.querySelector(`option[value="${savedBank}"]`)) {
+          bankSelect.value = savedBank;
+        }
+
+        const targetRadio = Array.from(paymentMethodRadios).find((radio) => radio.value === savedMethod);
+        if (targetRadio) {
+          targetRadio.checked = true;
+        }
+      } catch (error) {
+        // Ignore malformed local storage payload
+      }
+
+      updatePaymentMethod();
+    }
+
+    function extractCosts(payload) {
+      if (Array.isArray(payload?.data)) return payload.data;
+      if (Array.isArray(payload?.results)) return payload.results;
+      if (Array.isArray(payload?.rajaongkir?.results)) return payload.rajaongkir.results;
+      return [];
     }
 
     function extractDestinations(payload) {
@@ -256,132 +350,139 @@
       return [];
     }
 
-    function extractCosts(payload) {
-      if (Array.isArray(payload?.data)) return payload.data;
-      if (Array.isArray(payload?.results)) return payload.results;
-      if (Array.isArray(payload?.rajaongkir?.results)) return payload.rajaongkir.results;
-      return [];
+    function getDestinationId(destination) {
+      return destination?.id || destination?.destination_id || destination?.subdistrict_id || destination?.city_id || "";
     }
 
-    async function cariLokasi() {
-      const query = destinationSearch.value.trim();
-      if (!query) {
-        showFeedback(alamatFeedback, "Isi kata kunci lokasi dulu.", "error");
-        return;
-      }
+    function bindShippingSelection() {
+      const firstSelected = shippingServices.querySelector("input[name='shippingService']:checked");
+      selectedShippingCost = Number(firstSelected?.dataset.shippingCost || 0);
+      updateGrandTotal();
 
-      showFeedback(alamatFeedback, "Mencari lokasi...", "info");
-      destinationSelect.innerHTML = '<option value="">Memuat lokasi...</option>';
-
-      try {
-        const url = `${RAJAONGKIR_DESTINATION_URL}?search=${encodeURIComponent(query)}&limit=20`;
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            key: RAJAONGKIR_TOKEN,
-            Authorization: `Bearer ${RAJAONGKIR_TOKEN}`,
-            Accept: "application/json"
-          }
+      shippingServices.querySelectorAll("input[name='shippingService']").forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+          selectedShippingCost = Number(event.target.dataset.shippingCost || 0);
+          updateGrandTotal();
         });
-
-        const payload = await response.json();
-        if (!response.ok) {
-          throw new Error(payload?.message || "Gagal mengambil lokasi");
-        }
-
-        const destinations = extractDestinations(payload);
-        if (!destinations.length) {
-          destinationSelect.innerHTML = '<option value="">Lokasi tidak ditemukan</option>';
-          showFeedback(alamatFeedback, "Lokasi tidak ditemukan.", "error");
-          return;
-        }
-
-        destinationSelect.innerHTML = '<option value="">Pilih salah satu lokasi</option>';
-        destinations.forEach((destination) => {
-          const id = getDestinationId(destination);
-          if (!id) return;
-          const option = document.createElement("option");
-          option.value = id;
-          option.textContent = getDestinationLabel(destination);
-          option.dataset.raw = JSON.stringify(destination);
-          destinationSelect.appendChild(option);
-        });
-
-        showFeedback(alamatFeedback, `Ditemukan ${destinationSelect.options.length - 1} lokasi.`, "success");
-      } catch (error) {
-        destinationSelect.innerHTML = '<option value="">Gagal memuat lokasi</option>';
-        showFeedback(alamatFeedback, error.message || "Gagal memuat lokasi.", "error");
-      }
+      });
     }
 
-    function renderAlamatList() {
-      if (!savedAddresses.length) {
-        alamatList.innerHTML = "";
-        return;
-      }
+    function renderEstimatedServices(courier, weight) {
+      const courierLabelMap = {
+        jne: "JNE",
+        jnt: "J&T",
+        sicepat: "SiCepat",
+        anteraja: "AnterAja"
+      };
+      const courierLabel = courierLabelMap[courier] || "Kurir";
+      const kg = Math.max(1, Math.ceil(weight / 1000));
+      const base = {
+        jne: 11000,
+        jnt: 10000,
+        sicepat: 10500,
+        anteraja: 9800
+      }[courier] || 10000;
 
-      alamatList.innerHTML = savedAddresses
-        .map((address, index) => `
-          <div class="rounded-xl border border-slate-200 p-4 bg-slate-50">
-            <div class="flex items-start justify-between gap-3">
-              <div>
-                <p class="text-sm font-bold text-slate-900">Alamat #${index + 1}</p>
-                <p class="mt-1 text-xs font-semibold text-blue-700">${address.locationLabel}</p>
-                <p class="mt-1 text-sm text-slate-700">${address.fullAddress}</p>
-              </div>
-              <button type="button" data-select-address="${index}" class="rounded-lg border border-blue-500 px-3 py-1.5 text-xs font-bold text-blue-600 hover:bg-blue-50 transition">Gunakan</button>
+      const services = [
+        { name: `${courierLabel} Reguler`, etd: "2-4", cost: base + (kg - 1) * 2500 },
+        { name: `${courierLabel} Next Day`, etd: "1-2", cost: base + 7000 + (kg - 1) * 3000 },
+        { name: `${courierLabel} Hemat`, etd: "3-6", cost: Math.max(8000, base - 1500 + (kg - 1) * 2000) }
+      ];
+
+      shippingServices.innerHTML = services
+        .map((service, index) => `
+          <label class="flex cursor-pointer items-center justify-between rounded-xl border border-slate-200 p-3 hover:border-blue-300">
+            <div>
+              <p class="font-semibold">${service.name}</p>
+              <p class="text-slate-500">Estimasi ${service.etd} hari</p>
             </div>
-          </div>
+            <div class="flex items-center gap-3">
+              <span class="font-bold">${formatRupiah(service.cost)}</span>
+              <input type="radio" name="shippingService" data-shipping-cost="${service.cost}" ${index === 0 ? "checked" : ""}>
+            </div>
+          </label>
         `)
         .join("");
 
-      alamatList.querySelectorAll("[data-select-address]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const address = savedAddresses[Number(button.dataset.selectAddress)];
-          if (!address) return;
-          kotaKabupatenInput.value = address.locationLabel;
-          alamatPengirimanInput.value = address.fullAddress;
-          showFeedback(alamatFeedback, "Alamat dipakai untuk pengiriman.", "success");
-        });
-      });
+      bindShippingSelection();
     }
 
-    function tambahAlamat() {
-      const selectedOption = destinationSelect.options[destinationSelect.selectedIndex];
-      const destinationId = destinationSelect.value;
-      const fullAddress = alamatLengkapInput.value.trim();
+    async function resolveDestinationId(selectedAddress) {
+      const rawId = String(selectedAddress?.destinationId || "").trim();
+      const source = selectedAddress?.destinationSource || "rajaongkir";
 
-      if (!destinationId) {
-        showFeedback(alamatFeedback, "Pilih lokasi tujuan terlebih dahulu.", "error");
+      if (source === "rajaongkir" && rawId && /^\d+$/.test(rawId)) {
+        return rawId;
+      }
+
+      const queries = [
+        selectedAddress?.destinationQuery,
+        [selectedAddress?.districtName, selectedAddress?.cityName].filter(Boolean).join(" "),
+        selectedAddress?.locationLabel
+      ]
+        .map((query) => String(query || "").trim())
+        .filter(Boolean);
+
+      for (const query of queries) {
+        try {
+          const response = await fetch(`${RAJAONGKIR_DESTINATION_URL}?search=${encodeURIComponent(query)}&limit=3`, {
+            method: "GET",
+            headers: {
+              key: RAJAONGKIR_TOKEN,
+              Accept: "application/json"
+            }
+          });
+
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            continue;
+          }
+
+          const destinations = extractDestinations(payload);
+          const destinationId = getDestinationId(destinations[0]);
+          if (destinationId) {
+            return String(destinationId);
+          }
+        } catch (error) {
+          // Try next query candidate
+        }
+      }
+
+      return "";
+    }
+
+    function getSavedBuyerAddress() {
+      try {
+        const raw = localStorage.getItem("checkoutBuyerAddress");
+        return raw ? JSON.parse(raw) : null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function renderSelectedAddress() {
+      const address = getSavedBuyerAddress();
+      if (!address) {
+        selectedAddressName.textContent = "Belum ada alamat pembeli.";
+        selectedAddressPhone.textContent = "-";
+        selectedAddressLocation.textContent = "-";
+        selectedAddressFull.textContent = "Silakan tambahkan alamat terlebih dahulu.";
         return;
       }
 
-      if (!fullAddress) {
-        showFeedback(alamatFeedback, "Alamat lengkap wajib diisi.", "error");
-        return;
-      }
-
-      savedAddresses.push({
-        destinationId,
-        locationLabel: selectedOption.textContent,
-        fullAddress
-      });
-
-      kotaKabupatenInput.value = selectedOption.textContent;
-      alamatPengirimanInput.value = fullAddress;
-      alamatLengkapInput.value = "";
-
-      renderAlamatList();
-      showFeedback(alamatFeedback, "Alamat berhasil ditambahkan.", "success");
+      selectedAddressName.textContent = address.name || "Tanpa nama";
+      selectedAddressPhone.textContent = address.phone || "-";
+      selectedAddressLocation.textContent = address.locationLabel || "-";
+      selectedAddressFull.textContent = address.fullAddress || "-";
     }
 
     async function cekOngkir() {
-      const destinationId = destinationSelect.value;
+      const selectedAddress = getSavedBuyerAddress();
       const courier = courierSelect.value;
       const weight = Number(weightInput.value) || 0;
 
-      if (!destinationId) {
-        showFeedback(shippingFeedback, "Pilih lokasi tujuan dulu sebelum cek ongkir.", "error");
+      if (!selectedAddress) {
+        showFeedback(shippingFeedback, "Tambahkan alamat pembeli dulu sebelum cek ongkir.", "error");
         return;
       }
 
@@ -394,6 +495,13 @@
       shippingServices.innerHTML = "";
 
       try {
+        const destinationId = await resolveDestinationId(selectedAddress);
+        if (!destinationId) {
+          renderEstimatedServices(courier, weight);
+          showFeedback(shippingFeedback, "API lokasi tidak tersedia, menampilkan estimasi ongkir sementara.", "info");
+          return;
+        }
+
         const body = {
           origin: STORE_ORIGIN_ID,
           destination: destinationId,
@@ -407,7 +515,6 @@
           headers: {
             "Content-Type": "application/json",
             key: RAJAONGKIR_TOKEN,
-            Authorization: `Bearer ${RAJAONGKIR_TOKEN}`,
             Accept: "application/json"
           },
           body: JSON.stringify(body)
@@ -420,7 +527,8 @@
 
         const services = extractCosts(payload);
         if (!services.length) {
-          showFeedback(shippingFeedback, "Layanan tidak tersedia untuk tujuan ini.", "error");
+          renderEstimatedServices(courier, weight);
+          showFeedback(shippingFeedback, "Layanan kurir API kosong, menampilkan estimasi ongkir sementara.", "info");
           return;
         }
 
@@ -445,27 +553,40 @@
           })
           .join("");
 
-        const firstSelected = shippingServices.querySelector("input[name='shippingService']:checked");
-        selectedShippingCost = Number(firstSelected?.dataset.shippingCost || 0);
-        updateGrandTotal();
-
-        shippingServices.querySelectorAll("input[name='shippingService']").forEach((radio) => {
-          radio.addEventListener("change", (event) => {
-            selectedShippingCost = Number(event.target.dataset.shippingCost || 0);
-            updateGrandTotal();
-          });
-        });
+        bindShippingSelection();
 
         showFeedback(shippingFeedback, "Ongkir berhasil dimuat dari RajaOngkir.", "success");
       } catch (error) {
-        showFeedback(shippingFeedback, error.message || "Terjadi kesalahan saat cek ongkir.", "error");
+        renderEstimatedServices(courier, weight);
+        showFeedback(shippingFeedback, "Koneksi API bermasalah, menampilkan estimasi ongkir sementara.", "info");
       }
     }
 
-    document.getElementById("btnCariLokasi").addEventListener("click", cariLokasi);
-    document.getElementById("btnTambahAlamat").addEventListener("click", tambahAlamat);
     document.getElementById("btnCekOngkir").addEventListener("click", cekOngkir);
+    paymentMethodRadios.forEach((radio) => {
+      radio.addEventListener("change", updatePaymentMethod);
+    });
+    bankSelect.addEventListener("change", updatePaymentMethod);
 
+    const pageParams = new URLSearchParams(window.location.search);
+    if (pageParams.get("address_saved") === "1") {
+      showFeedback(alamatFeedback, "Alamat pembeli berhasil disimpan.", "success");
+      const cleanUrl = `${window.location.pathname}`;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+
+    window.addEventListener("focus", renderSelectedAddress);
+    btnGoPayment.addEventListener("click", (event) => {
+      event.preventDefault();
+      const payment = persistCheckoutSummary();
+      const params = new URLSearchParams({
+        method: payment.method,
+        bank: payment.bank
+      });
+      window.location.href = `halaman_pembayaran.html?${params.toString()}`;
+    });
+    renderSelectedAddress();
+    hydratePaymentMethod();
     updateGrandTotal();
   </script>
 </body>

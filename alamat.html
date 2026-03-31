@@ -1,675 +1,357 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-    />
-    <title>Tambah Alamat</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        font-family: "Plus Jakarta Sans", sans-serif;
-      }
-      body {
-        background-color: #eff2f5;
-        min-height: 100vh;
-      }
-
-      .toggle-input:checked + .toggle-label {
-        background-color: #2563eb;
-      }
-      .toggle-input:checked + .toggle-label::after {
-        transform: translateX(22px);
-      }
-      .toggle-label {
-        display: inline-block;
-        width: 50px;
-        height: 28px;
-        background-color: #cbd5e1;
-        border-radius: 9999px;
-        position: relative;
-        cursor: pointer;
-        transition: background-color 0.25s ease;
-      }
-      .toggle-label::after {
-        content: "";
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 22px;
-        height: 22px;
-        background: white;
-        border-radius: 50%;
-        transition: transform 0.25s ease;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-      }
-
-      .card {
-        background: white;
-        border-radius: 16px;
-        padding: 20px;
-        margin-bottom: 12px;
-      }
-      .field-row {
-        border-bottom: 1px solid #f1f5f9;
-        padding: 14px 0;
-      }
-      .field-row:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-      .field-row:first-child {
-        padding-top: 0;
-      }
-
-      .info-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        border: 1.5px solid #94a3b8;
-        color: #94a3b8;
-        font-size: 11px;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      input[type="text"],
-      textarea {
-        outline: none;
-        width: 100%;
-        background: transparent;
-        border: none;
-        font-size: 14px;
-        color: #1e293b;
-        resize: none;
-      }
-      input::placeholder,
-      textarea::placeholder {
-        color: #cbd5e1;
-      }
-
-      .btn-kirim {
-        background: #2563eb;
-        color: white;
-        border-radius: 50px;
-        padding: 16px;
-        font-size: 16px;
-        font-weight: 700;
-        width: 100%;
-        border: none;
-        cursor: pointer;
-        transition:
-          background 0.2s,
-          transform 0.1s;
-        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
-      }
-      .btn-kirim:active {
-        transform: scale(0.98);
-        background: #1d4ed8;
-      }
-
-      /* ============================================
-         Overlay (shared mobile + desktop)
-      ============================================ */
-      .sheet-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: 50;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.28s ease;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-      }
-      .sheet-overlay.active {
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      /* ============================================
-         MOBILE: Bottom Sheet (default)
-      ============================================ */
-      .bottom-sheet {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: white;
-        border-radius: 20px 20px 0 0;
-        z-index: 51;
-        height: 82vh;
-        transform: translateY(100%);
-        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
-        display: flex;
-        flex-direction: column;
-      }
-      .bottom-sheet.active {
-        transform: translateY(0);
-      }
-
-      /* ============================================
-         DESKTOP: Centered Floating Modal (≥ 640px)
-      ============================================ */
-      @media (min-width: 640px) {
-        body {
-          /* light grid bg for desktop feel */
-          background-image: radial-gradient(#d1d5db 1px, transparent 1px);
-          background-size: 28px 28px;
-        }
-
-        .bottom-sheet {
-          /* Override bottom-sheet behaviour */
-          bottom: auto;
-          left: 50%;
-          top: 50%;
-          right: auto;
-          transform: translate(-50%, -50%) scale(0.94);
-          opacity: 0;
-          transition:
-            transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
-            opacity 0.22s ease;
-          border-radius: 20px;
-          width: 100%;
-          max-width: 520px;
-          height: auto;
-          max-height: 80vh;
-          box-shadow:
-            0 24px 60px rgba(0, 0, 0, 0.18),
-            0 8px 24px rgba(0, 0, 0, 0.10);
-        }
-        .bottom-sheet.active {
-          transform: translate(-50%, -50%) scale(1);
-          opacity: 1;
-        }
-
-        /* Hide the drag handle on desktop */
-        .sheet-handle {
-          display: none;
-        }
-
-        /* Main page: centered card layout */
-        .page-wrapper {
-          max-width: 680px;
-          margin: 0 auto;
-          padding: 32px 24px 100px;
-        }
-
-        .card {
-          border-radius: 20px;
-          padding: 28px;
-          box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-        }
-      }
-
-      .sheet-handle {
-        width: 40px;
-        height: 4px;
-        background: #e2e8f0;
-        border-radius: 2px;
-        margin: 12px auto 0;
-        flex-shrink: 0;
-      }
-
-      .sheet-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 20px 12px;
-        border-bottom: 1px solid #f1f5f9;
-        flex-shrink: 0;
-      }
-
-      .breadcrumb-bar {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 10px 20px;
-        overflow-x: auto;
-        border-bottom: 1px solid #f1f5f9;
-        flex-shrink: 0;
-        scrollbar-width: none;
-      }
-      .breadcrumb-bar::-webkit-scrollbar {
-        display: none;
-      }
-
-      .breadcrumb-chip {
-        display: inline-flex;
-        align-items: center;
-        padding: 4px 12px;
-        border-radius: 9999px;
-        font-size: 13px;
-        font-weight: 500;
-        border: 1.5px solid #2563eb;
-        color: #2563eb;
-        white-space: nowrap;
-        cursor: pointer;
-        transition: background 0.15s;
-        background: white;
-        flex-shrink: 0;
-      }
-      .breadcrumb-chip.active {
-        background: #eff6ff;
-      }
-
-      .list-area {
-        overflow-y: auto;
-        flex: 1;
-      }
-
-      .list-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 20px;
-        border-bottom: 1px solid #f8fafc;
-        cursor: pointer;
-        transition: background 0.1s;
-        font-size: 14px;
-        color: #1e293b;
-      }
-      .list-item:active {
-        background: #eff6ff;
-      }
-      .list-item.selected {
-        color: #2563eb;
-        font-weight: 600;
-      }
-
-      .loading-spinner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 48px;
-        color: #94a3b8;
-        font-size: 14px;
-        gap: 10px;
-      }
-      .spinner {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #e2e8f0;
-        border-top-color: #2563eb;
-        border-radius: 50%;
-        animation: spin 0.7s linear infinite;
-        flex-shrink: 0;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      .save-btn {
-        color: #2563eb;
-        font-size: 15px;
-        font-weight: 600;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 4px 0;
-      }
-      .save-btn:disabled {
-        color: #cbd5e1;
-        cursor: default;
-      }
-    
-      :root {
-        /* Ubah nilai ini untuk atur padding kanan-kiri secara manual */
-        --page-side-padding-mobile-min: 20px;
-        --page-side-padding-fluid: 5vw;
-        --page-side-padding-desktop: 160px;
-      }
-
-      body .px-55 {
-        padding-left: clamp(
-          var(--page-side-padding-mobile-min),
-          var(--page-side-padding-fluid),
-          var(--page-side-padding-desktop)
-        ) !important;
-        padding-right: clamp(
-          var(--page-side-padding-mobile-min),
-          var(--page-side-padding-fluid),
-          var(--page-side-padding-desktop)
-        ) !important;
-      }
-
-      @media (min-width: 1280px) {
-        body .px-55 {
-          padding-left: var(--page-side-padding-desktop) !important;
-          padding-right: var(--page-side-padding-desktop) !important;
-        }
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js" async></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kopmas Shop - Alamat Pembeli</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', ui-sans-serif, system-ui; }
+  </style>
 </head>
-  <body>
-    <div class="page-wrapper max-w-md mx-auto px-4 pt-4 pb-28">
-      <!-- Header -->
-      <div class="flex items-center gap-3 py-4 mb-4">
-        <button onclick="history.back()" class="text-gray-800 p-1 -ml-1">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+<body class="bg-slate-50 text-slate-900">
+  <main class="mx-auto w-full max-w-3xl px-4 py-6 md:px-6 md:py-10">
+    <div class="mb-5 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="halaman_checkout.html" class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
-        </button>
-        <h1 class="text-lg font-bold text-gray-900">Tambah Alamat</h1>
-      </div>
-
-      <!-- Alamat Toko -->
-      <div class="card">
-        <h2 class="text-base font-bold text-gray-900 mb-4">Alamat Toko</h2>
-
-        <div
-          class="field-row flex items-center justify-between cursor-pointer"
-          style="align-items: flex-start; padding-top: 16px; padding-bottom: 16px;"
-          onclick="bukaLokasi('toko')"
-        >
-          <!-- Label kiri -->
-          <div style="flex-shrink:0;">
-            <p class="text-sm font-semibold" style="color:#1e293b;">
-              <span class="text-red-500">*</span>Lokasi
-            </p>
-          </div>
-
-          <!-- Value bertumpuk di kanan + arrow -->
-          <div style="display:flex;align-items:center;gap:8px;">
-            <!-- Levels stacked right-aligned -->
-            <div id="toko-lokasi-stack" style="display:flex;flex-direction:column;align-items:flex-end;gap:1px;">
-              <!-- Placeholder (shown when nothing selected) -->
-              <span id="toko-lokasi-placeholder" style="font-size:14px;color:#cbd5e1;">Pilih Lokasi</span>
-              <!-- Individual level lines (hidden by default) -->
-              <span id="toko-loc-indonesia" style="font-size:14px;color:#1e293b;display:none;">Indonesia</span>
-              <span id="toko-loc-provinsi"  style="font-size:14px;color:#1e293b;display:none;"></span>
-              <span id="toko-loc-kota"      style="font-size:14px;color:#1e293b;display:none;"></span>
-              <span id="toko-loc-kecamatan" style="font-size:14px;color:#1e293b;display:none;"></span>
-              <span id="toko-loc-kelurahan" style="font-size:14px;color:#1e293b;display:none;"></span>
-            </div>
-            <!-- Arrow -->
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <p class="text-xs font-medium mb-1.5">
-            <span class="text-red-500">*</span>
-            <span class="text-gray-700">Alamat</span>
-          </p>
-          <textarea
-            id="toko-alamat"
-            rows="3"
-            placeholder="Masukkan alamat lengkap"
-            class="text-sm"
-          ></textarea>
+        </a>
+        <div>
+          <p class="text-xs font-semibold text-blue-600">Checkout</p>
+          <h1 class="text-xl font-extrabold md:text-2xl">Tambah Alamat Pembeli</h1>
         </div>
       </div>
     </div>
 
-    <!-- Fixed Bottom Button -->
-    <div
-      class="fixed bottom-0 left-0 right-0 px-4 pb-6 pt-3"
-      style="background: linear-gradient(to top, #eff2f5 70%, transparent)"
-    >
-      <div class="max-w-md mx-auto">
-        <button class="btn-kirim" onclick="kirimkan()">Kirimkan</button>
+    <section class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
+      <h2 class="text-base font-bold">Data Penerima</h2>
+
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <label>
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Nama Lengkap</span>
+          <input id="nameInput" type="text" placeholder="Nama penerima" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
+        </label>
+        <label>
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Nomor Telepon</span>
+          <input id="phoneInput" type="text" placeholder="08xxxxxxxxxx" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
+        </label>
+      </div>
+
+      <div class="mt-5 rounded-xl border border-slate-200 p-4 md:p-5 space-y-4">
+        <p class="text-sm font-bold text-slate-800">Lokasi Tujuan</p>
+        <label class="block">
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Provinsi</span>
+          <select id="provinceSelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
+            <option value="">Pilih provinsi</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Kota / Kabupaten</span>
+          <select id="citySelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500" disabled>
+            <option value="">Pilih kota / kabupaten</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Kapanewon</span>
+          <select id="districtSelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500" disabled>
+            <option value="">Pilih kapanewon</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Kalurahan</span>
+          <select id="villageSelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500" disabled>
+            <option value="">Pilih kalurahan</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="mt-5 grid gap-4">
+        <label>
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Alamat Jalan, Gedung, Nomor Rumah</span>
+          <textarea id="streetInput" placeholder="Contoh: Gang Nakulo, Modinan, Banyuraden" class="min-h-24 w-full rounded-xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500"></textarea>
+        </label>
+        <label>
+          <span class="mb-1 block text-xs font-semibold text-slate-500">Detail Lainnya (Patokan, Blok, Unit)</span>
+          <textarea id="detailInput" placeholder="Contoh: Kontrakan warna ungu" class="min-h-20 w-full rounded-xl border border-slate-200 p-4 text-sm outline-none focus:border-blue-500"></textarea>
+        </label>
+      </div>
+
+      <p id="feedbackText" class="mt-4 hidden text-xs font-semibold"></p>
+
+      <div class="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+        <a href="halaman_checkout.html" class="inline-flex h-11 items-center justify-center rounded-xl border border-slate-300 px-5 text-sm font-semibold text-slate-700 hover:bg-slate-100">Batal</a>
+        <button id="btnOpenSaveModal" type="button" class="inline-flex h-11 items-center justify-center rounded-xl bg-blue-600 px-5 text-sm font-bold text-white hover:bg-blue-700 transition">Simpan Alamat</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="saveModal" class="pointer-events-none fixed inset-0 z-50 opacity-0 transition">
+    <div class="absolute inset-0 bg-slate-900/40"></div>
+    <div class="relative mx-auto mt-24 w-[92%] max-w-md rounded-2xl bg-white p-5 shadow-xl">
+      <h3 class="text-base font-bold text-slate-900">Simpan alamat ini?</h3>
+      <p class="mt-1 text-xs text-slate-500">Pastikan data penerima dan lokasi sudah benar.</p>
+      <div class="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm">
+        <p id="previewName" class="font-semibold text-slate-900">-</p>
+        <p id="previewPhone" class="mt-1 text-slate-700">-</p>
+        <p id="previewLocation" class="mt-2 text-xs font-semibold text-blue-700">-</p>
+        <p id="previewAddress" class="mt-1 text-slate-700">-</p>
+      </div>
+      <div class="mt-5 grid grid-cols-2 gap-2">
+        <button id="btnCloseSaveModal" type="button" class="h-11 rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-100">Batal</button>
+        <button id="btnConfirmSave" type="button" class="h-11 rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700">Ya, Simpan</button>
       </div>
     </div>
+  </div>
 
-    <!-- Overlay -->
-    <div class="sheet-overlay" id="overlay" onclick="tutupSheet()"></div>
+  <script>
+    const REGION_BASE_URL = "https://www.emsifa.com/api-wilayah-indonesia/api";
 
-    <!-- Bottom Sheet -->
-    <div class="bottom-sheet" id="location-sheet">
-      <div class="sheet-handle"></div>
-      <div class="sheet-header">
-        <h3 class="text-base font-bold text-gray-900" id="sheet-title">
-          Pilih Lokasi
-        </h3>
-        <button
-          class="save-btn"
-          id="save-btn"
-          onclick="simpanLokasi()"
-          disabled
-        >
-          Simpan
-        </button>
-      </div>
-      <div class="breadcrumb-bar" id="breadcrumb-bar"></div>
-      <div class="list-area" id="list-area">
-        <div class="loading-spinner">
-          <div class="spinner"></div>
-          Memuat...
-        </div>
-      </div>
-    </div>
+    const nameInput = document.getElementById("nameInput");
+    const phoneInput = document.getElementById("phoneInput");
+    const provinceSelect = document.getElementById("provinceSelect");
+    const citySelect = document.getElementById("citySelect");
+    const districtSelect = document.getElementById("districtSelect");
+    const villageSelect = document.getElementById("villageSelect");
+    const streetInput = document.getElementById("streetInput");
+    const detailInput = document.getElementById("detailInput");
+    const feedbackText = document.getElementById("feedbackText");
 
-    <script>
-      const BASE = "https://www.emsifa.com/api-wilayah-indonesia/api";
-      let currentTarget = null;
-      let selected = {
-        provinsi: null,
-        kota: null,
-        kecamatan: null,
-        kelurahan: null,
-      };
-      let currentStep = 0;
+    const saveModal = document.getElementById("saveModal");
+    const previewName = document.getElementById("previewName");
+    const previewPhone = document.getElementById("previewPhone");
+    const previewLocation = document.getElementById("previewLocation");
+    const previewAddress = document.getElementById("previewAddress");
 
-      const STEPS = ["provinsi", "kota", "kecamatan", "kelurahan"];
-      const TITLES = [
-        "Provinsi",
-        "Kota / Kabupaten",
-        "Kecamatan",
-        "Kelurahan / Desa",
-      ];
-      const getURL = [
-        () => `${BASE}/provinces.json`,
-        () => `${BASE}/regencies/${selected.provinsi.id}.json`,
-        () => `${BASE}/districts/${selected.kota.id}.json`,
-        () => `${BASE}/villages/${selected.kecamatan.id}.json`,
-      ];
+    function showFeedback(message, type) {
+      feedbackText.classList.remove("hidden", "text-red-600", "text-emerald-600", "text-slate-500");
+      if (type === "error") feedbackText.classList.add("text-red-600");
+      else if (type === "success") feedbackText.classList.add("text-emerald-600");
+      else feedbackText.classList.add("text-slate-500");
+      feedbackText.textContent = message;
+    }
 
-      // (toggle elements removed — not present in this page)
-
-      function bukaLokasi(target) {
-        currentTarget = target;
-        selected = {
-          provinsi: null,
-          kota: null,
-          kecamatan: null,
-          kelurahan: null,
-        };
-        document.getElementById("save-btn").disabled = true;
-        renderBreadcrumb();
-        loadStep(0);
-        _openSheet();
-      }
-
-      function tutupSheet() {
-        document.getElementById("overlay").classList.remove("active");
-        document.getElementById("location-sheet").classList.remove("active");
-        document.body.style.overflow = '';
-      }
-
-      // Close on Escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') tutupSheet();
+    function fillSelect(selectEl, items, placeholder) {
+      selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+      items.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.id;
+        option.textContent = item.name;
+        selectEl.appendChild(option);
       });
+    }
 
-      // Prevent body scroll when sheet open
-      function _openSheet() {
-        document.getElementById("overlay").classList.add("active");
-        document.getElementById("location-sheet").classList.add("active");
-        document.body.style.overflow = 'hidden';
+    function resetSelect(selectEl, placeholder) {
+      selectEl.innerHTML = `<option value="">${placeholder}</option>`;
+      selectEl.disabled = true;
+    }
+
+    async function fetchRegion(endpoint) {
+      const response = await fetch(`${REGION_BASE_URL}/${endpoint}`);
+      if (!response.ok) {
+        throw new Error("Gagal mengambil data wilayah");
+      }
+      return response.json();
+    }
+
+    async function loadProvinces() {
+      try {
+        const provinces = await fetchRegion("provinces.json");
+        fillSelect(provinceSelect, provinces, "Pilih provinsi");
+      } catch (error) {
+        showFeedback("Gagal memuat daftar provinsi. Coba refresh halaman.", "error");
+      }
+    }
+
+    async function onProvinceChange() {
+      const provinceId = provinceSelect.value;
+
+      resetSelect(citySelect, "Pilih kota / kabupaten");
+      resetSelect(districtSelect, "Pilih kapanewon");
+      resetSelect(villageSelect, "Pilih kalurahan");
+
+      if (!provinceId) {
+        return;
       }
 
-      async function loadStep(s) {
-        currentStep = s;
-        document.getElementById("sheet-title").textContent = TITLES[s];
-        const area = document.getElementById("list-area");
-        area.innerHTML = `<div class="loading-spinner"><div class="spinner"></div> Memuat data...</div>`;
-        try {
-          const res = await fetch(getURL[s]());
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const data = await res.json();
-          renderList(data, s);
-        } catch (e) {
-          area.innerHTML = `<div class="loading-spinner" style="color:#EF4444;flex-direction:column;gap:8px">
-            <span>⚠️ Gagal memuat data</span>
-            <span style="font-size:12px">Pastikan koneksi internet aktif</span>
-          </div>`;
-        }
+      try {
+        const cities = await fetchRegion(`regencies/${provinceId}.json`);
+        fillSelect(citySelect, cities, "Pilih kota / kabupaten");
+        citySelect.disabled = false;
+      } catch (error) {
+        showFeedback("Gagal memuat kota / kabupaten.", "error");
+      }
+    }
+
+    async function onCityChange() {
+      const cityId = citySelect.value;
+
+      resetSelect(districtSelect, "Pilih kapanewon");
+      resetSelect(villageSelect, "Pilih kalurahan");
+
+      if (!cityId) {
+        return;
       }
 
-      function renderList(items, s) {
-        const area = document.getElementById("list-area");
-        area.innerHTML = "";
-        const key = STEPS[s];
-        items.forEach((item) => {
-          const div = document.createElement("div");
-          div.className = "list-item";
-          if (selected[key] && selected[key].id === item.id)
-            div.classList.add("selected");
-          div.innerHTML = `
-            <span>${item.name}</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>`;
-          div.addEventListener("click", () => pilihItem(item, s));
-          area.appendChild(div);
-        });
+      try {
+        const districts = await fetchRegion(`districts/${cityId}.json`);
+        fillSelect(districtSelect, districts, "Pilih kapanewon");
+        districtSelect.disabled = false;
+      } catch (error) {
+        showFeedback("Gagal memuat kapanewon.", "error");
+      }
+    }
+
+    async function onDistrictChange() {
+      const districtId = districtSelect.value;
+
+      resetSelect(villageSelect, "Pilih kalurahan");
+
+      if (!districtId) {
+        return;
       }
 
-      function pilihItem(item, s) {
-        const key = STEPS[s];
-        selected[key] = item;
-        // clear deeper
-        for (let i = s + 1; i < STEPS.length; i++) selected[STEPS[i]] = null;
-        document.getElementById("save-btn").disabled = true;
+      try {
+        const villages = await fetchRegion(`villages/${districtId}.json`);
+        fillSelect(villageSelect, villages, "Pilih kalurahan");
+        villageSelect.disabled = false;
+      } catch (error) {
+        showFeedback("Gagal memuat kalurahan.", "error");
+      }
+    }
 
-        if (s < 3) {
-          renderBreadcrumb();
-          loadStep(s + 1);
-        } else {
-          // final level selected
-          document.getElementById("save-btn").disabled = false;
-          renderBreadcrumb();
-          // re-highlight
-          document.querySelectorAll(".list-item").forEach((el) => {
-            el.classList.toggle(
-              "selected",
-              el.querySelector("span").textContent === item.name,
-            );
-          });
-        }
+    function selectedText(selectEl) {
+      return selectEl.options[selectEl.selectedIndex]?.textContent || "";
+    }
+
+    function getAddressDraft() {
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const street = streetInput.value.trim();
+      const detail = detailInput.value.trim();
+
+      const provinceId = provinceSelect.value;
+      const cityId = citySelect.value;
+      const districtId = districtSelect.value;
+      const villageId = villageSelect.value;
+
+      const provinceName = selectedText(provinceSelect);
+      const cityName = selectedText(citySelect);
+      const districtName = selectedText(districtSelect);
+      const villageName = selectedText(villageSelect);
+
+      const locationLabel = [villageName, districtName, cityName, provinceName].filter(Boolean).join(", ");
+      const destinationQuery = [districtName, cityName, provinceName].filter(Boolean).join(" ");
+      const fullAddress = detail ? `${street}, ${detail}` : street;
+
+      return {
+        name,
+        phone,
+        provinceId,
+        provinceName,
+        cityId,
+        cityName,
+        districtId,
+        districtName,
+        villageId,
+        villageName,
+        destinationId: "",
+        destinationSource: "hierarchy",
+        destinationQuery,
+        locationLabel,
+        fullAddress
+      };
+    }
+
+    function validateAddress(address) {
+      if (!address.name) return "Nama penerima wajib diisi.";
+      if (!address.phone) return "Nomor telepon wajib diisi.";
+      if (!address.provinceId) return "Pilih provinsi terlebih dahulu.";
+      if (!address.cityId) return "Pilih kota / kabupaten terlebih dahulu.";
+      if (!address.districtId) return "Pilih kapanewon terlebih dahulu.";
+      if (!address.villageId) return "Pilih kalurahan terlebih dahulu.";
+      if (!address.fullAddress) return "Alamat lengkap wajib diisi.";
+      return "";
+    }
+
+    function openSaveModal() {
+      const draft = getAddressDraft();
+      const validationError = validateAddress(draft);
+      if (validationError) {
+        showFeedback(validationError, "error");
+        return;
       }
 
-      function renderBreadcrumb() {
-        const bar = document.getElementById("breadcrumb-bar");
-        bar.innerHTML = "";
+      previewName.textContent = draft.name;
+      previewPhone.textContent = draft.phone;
+      previewLocation.textContent = draft.locationLabel;
+      previewAddress.textContent = draft.fullAddress;
 
-        const crumbs = [{ label: "Indonesia", step: -1 }];
-        if (selected.provinsi)
-          crumbs.push({ label: selected.provinsi.name, step: 0 });
-        if (selected.kota) crumbs.push({ label: selected.kota.name, step: 1 });
-        if (selected.kecamatan)
-          crumbs.push({ label: selected.kecamatan.name, step: 2 });
-        if (selected.kelurahan)
-          crumbs.push({ label: selected.kelurahan.name, step: 3 });
+      saveModal.classList.remove("pointer-events-none", "opacity-0");
+    }
 
-        crumbs.forEach((c, i) => {
-          const chip = document.createElement("span");
-          chip.className =
-            "breadcrumb-chip" + (i === crumbs.length - 1 ? " active" : "");
-          chip.textContent = c.label;
-          chip.addEventListener("click", () => {
-            if (c.step === -1) {
-              selected = {
-                provinsi: null,
-                kota: null,
-                kecamatan: null,
-                kelurahan: null,
-              };
-              loadStep(0);
-            } else {
-              loadStep(c.step);
-            }
-            renderBreadcrumb();
-          });
-          bar.appendChild(chip);
+    function closeSaveModal() {
+      saveModal.classList.add("pointer-events-none", "opacity-0");
+    }
 
-          if (i < crumbs.length - 1) {
-            const sep = document.createElement("span");
-            sep.textContent = "›";
-            sep.style.cssText =
-              "color:#CBD5E1;font-size:16px;flex-shrink:0;line-height:1";
-            bar.appendChild(sep);
-          }
-        });
-
-        setTimeout(() => {
-          bar.scrollLeft = bar.scrollWidth;
-        }, 50);
+    function saveAddress() {
+      const draft = getAddressDraft();
+      const validationError = validateAddress(draft);
+      if (validationError) {
+        closeSaveModal();
+        showFeedback(validationError, "error");
+        return;
       }
 
-      function simpanLokasi() {
-        if (!selected.kelurahan) return;
+      localStorage.setItem("checkoutBuyerAddress", JSON.stringify(draft));
+      window.location.href = "halaman_checkout.html?address_saved=1";
+    }
 
-        const prefix = currentTarget;
-
-        // Hide placeholder
-        const placeholder = document.getElementById(`${prefix}-lokasi-placeholder`);
-        if (placeholder) placeholder.style.display = 'none';
-
-        // Show & fill each level
-        const setLevel = (id, value) => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          if (value) { el.textContent = value; el.style.display = ''; }
-          else { el.style.display = 'none'; }
-        };
-
-        setLevel(`${prefix}-loc-indonesia`, 'Indonesia');
-        setLevel(`${prefix}-loc-provinsi`,  selected.provinsi  ? selected.provinsi.name  : null);
-        setLevel(`${prefix}-loc-kota`,      selected.kota      ? selected.kota.name      : null);
-        setLevel(`${prefix}-loc-kecamatan`, selected.kecamatan ? selected.kecamatan.name : null);
-        setLevel(`${prefix}-loc-kelurahan`, selected.kelurahan ? selected.kelurahan.name : null);
-
-        tutupSheet();
+    async function setSelectValueFromSaved(selectEl, value, loaderFn) {
+      if (!value) return;
+      selectEl.value = value;
+      if (loaderFn) {
+        await loaderFn();
       }
+    }
 
-      function kirimkan() {
-        const lokasi = document.getElementById("toko-lokasi-text").textContent;
-        const alamat = document.getElementById("toko-alamat").value;
-        if (lokasi === "Pilih Lokasi") {
-          alert("Harap pilih lokasi toko terlebih dahulu.");
-          return;
-        }
-        if (!alamat.trim()) {
-          alert("Harap isi alamat lengkap toko.");
-          return;
-        }
-        alert("✅ Alamat berhasil disimpan!\n\n" + lokasi);
+    async function hydrateFromSavedAddress() {
+      try {
+        const raw = localStorage.getItem("checkoutBuyerAddress");
+        if (!raw) return;
+        const address = JSON.parse(raw);
+
+        nameInput.value = address?.name || "";
+        phoneInput.value = address?.phone || "";
+        streetInput.value = address?.fullAddress || "";
+
+        await setSelectValueFromSaved(provinceSelect, address?.provinceId, onProvinceChange);
+        await setSelectValueFromSaved(citySelect, address?.cityId, onCityChange);
+        await setSelectValueFromSaved(districtSelect, address?.districtId, onDistrictChange);
+        await setSelectValueFromSaved(villageSelect, address?.villageId);
+      } catch (error) {
+        // Ignore invalid localStorage data
       }
-    </script>
-  </body>
+    }
+
+    provinceSelect.addEventListener("change", onProvinceChange);
+    citySelect.addEventListener("change", onCityChange);
+    districtSelect.addEventListener("change", onDistrictChange);
+    document.getElementById("btnOpenSaveModal").addEventListener("click", openSaveModal);
+    document.getElementById("btnCloseSaveModal").addEventListener("click", closeSaveModal);
+    document.getElementById("btnConfirmSave").addEventListener("click", saveAddress);
+
+    saveModal.addEventListener("click", (event) => {
+      if (event.target === saveModal || event.target.classList.contains("bg-slate-900/40")) {
+        closeSaveModal();
+      }
+    });
+
+    loadProvinces().then(hydrateFromSavedAddress);
+  </script>
+</body>
 </html>
