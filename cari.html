@@ -12,18 +12,27 @@
 
   <style>
     :root {
+      /* Ubah nilai ini untuk atur padding kanan-kiri secara manual */
       --page-side-padding-mobile-min: 20px;
-      --page-side-padding-fluid: clamp(20px, 5vw, 55px);
-      --page-side-padding-desktop: 80px;
+      --page-side-padding-fluid: 5vw;
+      --page-side-padding-desktop: 160px;
     }
 
-    .px-55 {
-      padding-left: var(--page-side-padding-fluid);
-      padding-right: var(--page-side-padding-fluid);
+    body .px-55 {
+      padding-left: clamp(
+        var(--page-side-padding-mobile-min),
+        var(--page-side-padding-fluid),
+        var(--page-side-padding-desktop)
+      ) !important;
+      padding-right: clamp(
+        var(--page-side-padding-mobile-min),
+        var(--page-side-padding-fluid),
+        var(--page-side-padding-desktop)
+      ) !important;
     }
 
     @media (min-width: 1280px) {
-      .px-55 {
+      body .px-55 {
         padding-left: var(--page-side-padding-desktop) !important;
         padding-right: var(--page-side-padding-desktop) !important;
       }
@@ -51,11 +60,33 @@
             placeholder="Cari lebih banyak di Terjadwal..."
             class="w-full h-11 px-4 rounded-full border-2 border-slate-300 focus:border-blue-500 focus:outline-none text-sm placeholder-slate-400"
           >
-          <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600 transition">
+          <button id="searchButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600 transition">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
+    </section>
+
+    <!-- Search History -->
+    <section id="historySection" class="mb-8">
+      <div class="mb-4 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-clock-rotate-left text-slate-600"></i>
+          <h2 class="text-lg font-extrabold text-slate-800">Histori Pencarian</h2>
+        </div>
+        <button id="clearHistoryButton" class="text-xs font-semibold text-slate-500 hover:text-red-500 transition">Hapus semua</button>
+      </div>
+      <div id="historyChips" class="flex flex-wrap gap-2"></div>
+      <p id="historyEmpty" class="text-sm text-slate-500">Belum ada histori pencarian.</p>
+    </section>
+
+    <!-- Recommended Products -->
+    <section id="recommendationsSection" class="mb-10">
+      <div class="mb-4 flex items-center gap-2">
+        <i class="fas fa-thumbs-up text-blue-600"></i>
+        <h2 class="text-lg font-extrabold text-slate-800">Produk Rekomendasi</h2>
+      </div>
+      <div id="recommendationsGrid" class="grid gap-4 grid-cols-2 lg:grid-cols-4"></div>
     </section>
 
     <!-- Popular Search Suggestions (shown when no search results) -->
@@ -99,12 +130,6 @@
   <!-- Mobile Bottom Navigation -->
   <nav id="mobileNav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 sm:hidden"></nav>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-24 right-6 sm:right-10 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition group">
-    <i class="fab fa-whatsapp text-2xl"></i>
-    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-800 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">Chat Admin Kopmas</span>
-  </a>
-
   <script src="./layout-shared.js"></script>
   <script>
     // Mock product data for demo
@@ -114,7 +139,7 @@
         name: "iPhone 15 Pro",
         price: "Rp 18.999.000",
         rating: 4.9,
-        image: "./assets/images/thumbnails/iphone.png",
+        image: "./assets/images/thumbnails/iphone-2.png",
         store: "Blue Gadget Center",
         location: "Sleman"
       },
@@ -123,7 +148,7 @@
         name: "Samsung S Ultra",
         price: "Rp 21.500.000",
         rating: 4.7,
-        image: "./assets/images/thumbnails/samsung.png",
+        image: "./assets/images/thumbnails/ip-blue.png",
         store: "Tech Store Premium",
         location: "Jakarta"
       },
@@ -132,7 +157,7 @@
         name: "Xiaomi Ultra 14",
         price: "Rp 10.200.000",
         rating: 4.6,
-        image: "./assets/images/thumbnails/xiaomi.png",
+        image: "./assets/images/thumbnails/ip-green.png",
         store: "Mobile Center",
         location: "Bandung"
       },
@@ -141,18 +166,84 @@
         name: "Google Pixel 8",
         price: "Rp 12.999.000",
         rating: 4.8,
-        image: "./assets/images/thumbnails/google.png",
+        image: "./assets/images/thumbnails/ip-white.png",
         store: "Digital Store",
         location: "Surabaya"
       }
     ];
 
     const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
     const suggestionsSection = document.getElementById('suggestionsSection');
     const resultsSection = document.getElementById('resultsSection');
     const resultsGrid = document.getElementById('resultsGrid');
     const searchQuery = document.getElementById('searchQuery');
     const suggestionChips = document.querySelectorAll('.suggestion-chip');
+    const recommendationsGrid = document.getElementById('recommendationsGrid');
+    const historyChips = document.getElementById('historyChips');
+    const historyEmpty = document.getElementById('historyEmpty');
+    const clearHistoryButton = document.getElementById('clearHistoryButton');
+
+    const SEARCH_HISTORY_KEY = 'kopmas_search_history';
+    const MAX_SEARCH_HISTORY = 8;
+
+    function getSearchHistory() {
+      try {
+        const rawData = localStorage.getItem(SEARCH_HISTORY_KEY);
+        return rawData ? JSON.parse(rawData) : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveSearchHistory(query) {
+      const cleanQuery = query.trim();
+      if (!cleanQuery) return;
+
+      const history = getSearchHistory().filter(item => item.toLowerCase() !== cleanQuery.toLowerCase());
+      history.unshift(cleanQuery);
+      const limitedHistory = history.slice(0, MAX_SEARCH_HISTORY);
+      localStorage.setItem(SEARCH_HISTORY_KEY, JSON.stringify(limitedHistory));
+      renderSearchHistory();
+    }
+
+    function renderSearchHistory() {
+      const history = getSearchHistory();
+
+      if (history.length === 0) {
+        historyChips.innerHTML = '';
+        historyEmpty.classList.remove('hidden');
+        clearHistoryButton.classList.add('hidden');
+        return;
+      }
+
+      historyEmpty.classList.add('hidden');
+      clearHistoryButton.classList.remove('hidden');
+      historyChips.innerHTML = history.map(item => `
+        <button class="history-chip rounded-full border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 hover:border-blue-500 hover:text-blue-600 transition" data-query="${item}">
+          <i class="fas fa-clock mr-1 text-slate-400"></i>${item}
+        </button>
+      `).join('');
+    }
+
+    function renderRecommendations() {
+      recommendationsGrid.innerHTML = mockProducts.slice(0, 4).map(product => `
+        <button class="recommendation-card group overflow-hidden rounded-2xl border border-slate-200 bg-white text-left hover:shadow-lg transition-shadow" data-query="${product.name}">
+          <div class="bg-slate-50 p-4">
+            <img alt="${product.name}" class="mx-auto h-28 object-contain group-hover:scale-105 transition-transform lazyload" src="${product.image}" data-src="${product.image}">
+          </div>
+          <div class="p-4 space-y-2">
+            <p class="truncate text-sm font-bold text-slate-800 group-hover:text-blue-600 transition">${product.name}</p>
+            <p class="text-sm font-extrabold text-blue-700">${product.price}</p>
+            <p class="text-xs text-slate-500">${product.store} • ${product.location}</p>
+          </div>
+        </button>
+      `).join('');
+
+      if (window.lazyLoadInstance) {
+        window.lazyLoadInstance.update();
+      }
+    }
 
     // Search functionality
     function performSearch(query) {
@@ -170,7 +261,7 @@
       resultsGrid.innerHTML = mockProducts.map(product => `
         <div class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-lg transition-shadow">
           <div class="bg-slate-50 p-4">
-            <img alt="${product.name}" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="${product.image}">
+            <img alt="${product.name}" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="${product.image}" data-src="${product.image}">
           </div>
           <div class="p-4 space-y-3">
             <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">${product.name}</p>
@@ -194,18 +285,57 @@
       }
     }
 
+    function submitSearch(query) {
+      performSearch(query);
+      saveSearchHistory(query);
+    }
+
     // Event listeners
     searchInput.addEventListener('input', (e) => {
       performSearch(e.target.value);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        submitSearch(searchInput.value);
+      }
+    });
+
+    searchButton.addEventListener('click', () => {
+      submitSearch(searchInput.value);
     });
 
     // Suggestion chip clicks
     suggestionChips.forEach(chip => {
       chip.addEventListener('click', () => {
         searchInput.value = chip.textContent;
-        performSearch(chip.textContent);
+        submitSearch(chip.textContent);
       });
     });
+
+    historyChips.addEventListener('click', (e) => {
+      const chip = e.target.closest('.history-chip');
+      if (!chip) return;
+      const query = chip.dataset.query || '';
+      searchInput.value = query;
+      submitSearch(query);
+    });
+
+    clearHistoryButton.addEventListener('click', () => {
+      localStorage.removeItem(SEARCH_HISTORY_KEY);
+      renderSearchHistory();
+    });
+
+    recommendationsGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.recommendation-card');
+      if (!card) return;
+      const query = card.dataset.query || '';
+      searchInput.value = query;
+      submitSearch(query);
+    });
+
+    renderRecommendations();
+    renderSearchHistory();
 
     // Focus on search input on page load
     searchInput.focus();
