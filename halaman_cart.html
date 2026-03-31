@@ -15,7 +15,7 @@
     #navbar-wrapper.scrolled { background: rgba(255,255,255,.85); box-shadow: 0 8px 32px rgba(0,0,0,.1); }
     .navbar-secondary { max-height: 50px; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .35s ease, padding .35s ease; opacity: 1; }
     .navbar-secondary.sec-hidden { max-height: 0; opacity: 0; padding-bottom: 0 !important; margin-bottom: -8px; }
-  
+
       :root {
         /* Ubah nilai ini untuk atur padding kanan-kiri secara manual */
         --page-side-padding-mobile-min: 20px;
@@ -74,88 +74,126 @@
 
     <div class="grid gap-6 lg:grid-cols-[1fr_400px]">
 
-      <!-- Cart Items -->
-      <section class="space-y-4">
-        <!-- Item 1 -->
-        <article class="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
-          <div class="flex gap-4">
-            <a href="halaman_product_detail.html" class="shrink-0">
-              <img  class="h-24 w-24 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone.png">
-            </a>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-start justify-between gap-2">
-                <div class="min-w-0">
-                  <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">iPhone 15 Pro 256GB</a>
-                  <p class="text-xs text-slate-500 mt-0.5">Natural Titanium</p>
-                </div>
-                <button class="shrink-0 flex size-8 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-sm"></i></button>
-              </div>
-              <p class="mt-2 text-lg font-extrabold text-blue-700">Rp 19.999.000</p>
-              <div class="mt-3 flex items-center justify-between">
-                <div class="inline-flex items-center rounded-xl border border-slate-200 overflow-hidden">
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-minus text-xs"></i></button>
-                  <span class="h-9 w-10 flex items-center justify-center text-sm font-bold border-x border-slate-200">1</span>
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-plus text-xs"></i></button>
-                </div>
-                <p class="text-sm font-semibold text-slate-500">Subtotal: <span class="text-slate-900">Rp 19.999.000</span></p>
-              </div>
-            </div>
-          </div>
-        </article>
+      <!-- Cart Items Grouped by Store -->
+      <section class="space-y-6">
 
-        <!-- Item 2 -->
-        <article class="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
-          <div class="flex gap-4">
-            <a href="halaman_product_detail.html" class="shrink-0">
-              <img  class="h-24 w-24 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/airpod.png">
-            </a>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-start justify-between gap-2">
-                <div class="min-w-0">
-                  <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">Airpods Pro Gen 2</a>
-                  <p class="text-xs text-slate-500 mt-0.5">White</p>
-                </div>
-                <button class="shrink-0 flex size-8 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-sm"></i></button>
-              </div>
-              <p class="mt-2 text-lg font-extrabold text-blue-700">Rp 3.499.000</p>
-              <div class="mt-3 flex items-center justify-between">
-                <div class="inline-flex items-center rounded-xl border border-slate-200 overflow-hidden">
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-minus text-xs"></i></button>
-                  <span class="h-9 w-10 flex items-center justify-center text-sm font-bold border-x border-slate-200">2</span>
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-plus text-xs"></i></button>
-                </div>
-                <p class="text-sm font-semibold text-slate-500">Subtotal: <span class="text-slate-900">Rp 6.998.000</span></p>
-              </div>
-            </div>
+        <!-- Store 1: Blue Gadget Center -->
+        <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden" data-store-card data-store-id="blue-gadget-center" data-store-subtotal="19999000">
+          <!-- Store Header -->
+          <div class="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-4 md:px-5 py-3">
+            <label class="inline-flex items-center" aria-label="Pilih toko Blue Gadget Center">
+              <input type="checkbox" class="size-4 accent-blue-600" data-store-checkbox checked>
+            </label>
+            <i class="fas fa-store text-blue-600 text-lg"></i>
+            <a href="halaman_store_detail.html" class="flex-1 font-bold text-slate-900 hover:text-blue-600 transition">Blue Gadget Center</a>
+            <span class="text-xs text-slate-500">Sleman, Yogyakarta</span>
           </div>
-        </article>
 
-        <!-- Item 3 -->
-        <article class="rounded-2xl border border-slate-200 bg-white p-4 md:p-5">
-          <div class="flex gap-4">
-            <a href="halaman_product_detail.html" class="shrink-0">
-              <img  class="h-24 w-24 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/headphone-gold.png">
-            </a>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-start justify-between gap-2">
-                <div class="min-w-0">
-                  <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">Headphone Gold Pro</a>
-                  <p class="text-xs text-slate-500 mt-0.5">Gold Edition</p>
+          <!-- Items in Store 1 -->
+          <div class="space-y-4 p-4 md:p-5">
+            <!-- Item 1 -->
+            <article class="flex gap-4 pb-4 border-b border-slate-200 last:border-0 last:pb-0">
+              <a href="halaman_product_detail.html" class="shrink-0">
+                <img class="h-20 w-20 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/iphone.png" alt="iPhone 15 Pro">
+              </a>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">iPhone 15 Pro 256GB</a>
+                    <p class="text-xs text-slate-500 mt-0.5">Natural Titanium</p>
+                  </div>
+                  <button class="shrink-0 flex size-7 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-xs"></i></button>
                 </div>
-                <button class="shrink-0 flex size-8 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-sm"></i></button>
-              </div>
-              <p class="mt-2 text-lg font-extrabold text-blue-700">Rp 2.750.000</p>
-              <div class="mt-3 flex items-center justify-between">
-                <div class="inline-flex items-center rounded-xl border border-slate-200 overflow-hidden">
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-minus text-xs"></i></button>
-                  <span class="h-9 w-10 flex items-center justify-center text-sm font-bold border-x border-slate-200">1</span>
-                  <button class="h-9 w-9 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition"><i class="fas fa-plus text-xs"></i></button>
+                <p class="mt-1.5 font-extrabold text-blue-700">Rp 19.999.000</p>
+                <div class="mt-2 flex items-center justify-between">
+                  <div class="inline-flex items-center rounded-lg border border-slate-200 overflow-hidden">
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-minus"></i></button>
+                    <span class="h-8 w-9 flex items-center justify-center text-xs font-bold border-x border-slate-200">1</span>
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-plus"></i></button>
+                  </div>
+                  <p class="text-xs font-semibold text-slate-500">Subtotal: <span class="text-slate-900 font-bold">Rp 19.999.000</span></p>
                 </div>
-                <p class="text-sm font-semibold text-slate-500">Subtotal: <span class="text-slate-900">Rp 2.750.000</span></p>
               </div>
-            </div>
+            </article>
           </div>
-        </article>
+
+          <!-- Store Subtotal -->
+          <div class="bg-slate-50 border-t border-slate-200 px-4 md:px-5 py-3 text-sm font-semibold text-slate-600 flex justify-end gap-2">
+            Subtotal Toko: <span class="text-slate-900">Rp 19.999.000</span>
+          </div>
+        </div>
+
+        <!-- Store 2: Tech Store Premium -->
+        <div class="rounded-2xl border border-slate-200 bg-white overflow-hidden" data-store-card data-store-id="tech-store-premium" data-store-subtotal="9748000">
+          <!-- Store Header -->
+          <div class="flex items-center gap-3 border-b border-slate-200 bg-slate-50 px-4 md:px-5 py-3">
+            <label class="inline-flex items-center" aria-label="Pilih toko Tech Store Premium">
+              <input type="checkbox" class="size-4 accent-blue-600" data-store-checkbox checked>
+            </label>
+            <i class="fas fa-store text-blue-600 text-lg"></i>
+            <a href="halaman_store_detail.html" class="flex-1 font-bold text-slate-900 hover:text-blue-600 transition">Tech Store Premium</a>
+            <span class="text-xs text-slate-500">Jakarta Pusat</span>
+          </div>
+
+          <!-- Items in Store 2 -->
+          <div class="space-y-4 p-4 md:p-5">
+            <!-- Item 2 -->
+            <article class="flex gap-4 pb-4 border-b border-slate-200 last:border-0 last:pb-0">
+              <a href="halaman_product_detail.html" class="shrink-0">
+                <img class="h-20 w-20 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/airpod.png" alt="Airpods Pro">
+              </a>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">Airpods Pro Gen 2</a>
+                    <p class="text-xs text-slate-500 mt-0.5">White</p>
+                  </div>
+                  <button class="shrink-0 flex size-7 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-xs"></i></button>
+                </div>
+                <p class="mt-1.5 font-extrabold text-blue-700">Rp 3.499.000</p>
+                <div class="mt-2 flex items-center justify-between">
+                  <div class="inline-flex items-center rounded-lg border border-slate-200 overflow-hidden">
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-minus"></i></button>
+                    <span class="h-8 w-9 flex items-center justify-center text-xs font-bold border-x border-slate-200">2</span>
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-plus"></i></button>
+                  </div>
+                  <p class="text-xs font-semibold text-slate-500">Subtotal: <span class="text-slate-900 font-bold">Rp 6.998.000</span></p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Item 3 -->
+            <article class="flex gap-4">
+              <a href="halaman_product_detail.html" class="shrink-0">
+                <img class="h-20 w-20 rounded-xl bg-slate-50 object-contain p-2 hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="./assets/images/thumbnails/headphone-gold.png" alt="Headphone Gold">
+              </a>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="min-w-0">
+                    <a href="halaman_product_detail.html" class="text-sm font-bold hover:text-blue-600 transition truncate block">Headphone Gold Pro</a>
+                    <p class="text-xs text-slate-500 mt-0.5">Gold Edition</p>
+                  </div>
+                  <button class="shrink-0 flex size-7 items-center justify-center rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition"><i class="fas fa-trash-alt text-xs"></i></button>
+                </div>
+                <p class="mt-1.5 font-extrabold text-blue-700">Rp 2.750.000</p>
+                <div class="mt-2 flex items-center justify-between">
+                  <div class="inline-flex items-center rounded-lg border border-slate-200 overflow-hidden">
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-minus"></i></button>
+                    <span class="h-8 w-9 flex items-center justify-center text-xs font-bold border-x border-slate-200">1</span>
+                    <button class="h-8 w-8 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition text-xs"><i class="fas fa-plus"></i></button>
+                  </div>
+                  <p class="text-xs font-semibold text-slate-500">Subtotal: <span class="text-slate-900 font-bold">Rp 2.750.000</span></p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Store Subtotal -->
+          <div class="bg-slate-50 border-t border-slate-200 px-4 md:px-5 py-3 text-sm font-semibold text-slate-600 flex justify-end gap-2">
+            Subtotal Toko: <span class="text-slate-900">Rp 9.748.000</span>
+          </div>
+        </div>
+
       </section>
 
       <!-- Order Summary Sidebar -->
@@ -170,14 +208,15 @@
 
         <div class="space-y-2.5 text-sm text-slate-600">
           <p class="flex justify-between"><span>Total Item (4)</span><span class="font-semibold text-slate-900">Rp 29.747.000</span></p>
-          <p class="flex justify-between"><span>Estimasi Ongkir</span><span class="font-semibold text-slate-900">Rp 20.000</span></p>
+          <p class="flex justify-between"><span>Toko Dipilih (<span id="selected-store-count">2</span>)</span><span id="selected-store-total" class="font-semibold text-slate-900">Rp 29.747.000</span></p>
+          <hr class="border-slate-200">
           <p class="flex justify-between text-emerald-600"><span>Diskon Promo</span><span class="font-semibold">-Rp 0</span></p>
           <hr class="border-slate-200">
-          <p class="flex justify-between text-base"><span class="font-bold text-slate-900">Total</span><span class="font-extrabold text-blue-700">Rp 29.767.000</span></p>
+          <p class="flex justify-between text-base"><span class="font-bold text-slate-900">Total Checkout</span><span id="checkout-total" class="font-extrabold text-blue-700">Rp 29.747.000</span></p>
         </div>
 
         <div class="space-y-2">
-          <a href="halaman_checkout.html" class="flex h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">
+          <a href="halaman_checkout.html" id="checkout-button" class="flex h-12 items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">
             <i class="fas fa-lock text-xs"></i> Checkout Sekarang
           </a>
           <a href="index.html" class="flex h-11 items-center justify-center rounded-xl border border-slate-300 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition">Lanjut Belanja</a>
@@ -195,5 +234,57 @@
   </main>
   <div data-shared-footer></div>
   <script src="./layout-shared.js" defer></script>
+  <script>
+    (function initStoreChecklistCheckout() {
+      const storeCards = Array.from(document.querySelectorAll('[data-store-card]'));
+      const selectedStoreCountEl = document.getElementById('selected-store-count');
+      const selectedStoreTotalEl = document.getElementById('selected-store-total');
+      const checkoutTotalEl = document.getElementById('checkout-total');
+      const checkoutButtonEl = document.getElementById('checkout-button');
+
+      if (!storeCards.length || !selectedStoreCountEl || !selectedStoreTotalEl || !checkoutTotalEl || !checkoutButtonEl) {
+        return;
+      }
+
+      const formatRupiah = (amount) => new Intl.NumberFormat('id-ID').format(amount);
+
+      function recalculateSelectedTotal() {
+        let selectedStoreCount = 0;
+        let selectedStoreTotal = 0;
+
+        storeCards.forEach((card) => {
+          const checkbox = card.querySelector('[data-store-checkbox]');
+          const subtotal = Number(card.dataset.storeSubtotal || 0);
+          const isSelected = Boolean(checkbox && checkbox.checked);
+
+          if (isSelected) {
+            selectedStoreCount += 1;
+            selectedStoreTotal += subtotal;
+          }
+        });
+
+        selectedStoreCountEl.textContent = String(selectedStoreCount);
+        selectedStoreTotalEl.textContent = `Rp ${formatRupiah(selectedStoreTotal)}`;
+        checkoutTotalEl.textContent = `Rp ${formatRupiah(selectedStoreTotal)}`;
+
+        if (selectedStoreCount === 0) {
+          checkoutButtonEl.classList.add('pointer-events-none', 'opacity-60');
+          checkoutButtonEl.setAttribute('aria-disabled', 'true');
+        } else {
+          checkoutButtonEl.classList.remove('pointer-events-none', 'opacity-60');
+          checkoutButtonEl.removeAttribute('aria-disabled');
+        }
+      }
+
+      storeCards.forEach((card) => {
+        const checkbox = card.querySelector('[data-store-checkbox]');
+        if (checkbox) {
+          checkbox.addEventListener('change', recalculateSelectedTotal);
+        }
+      });
+
+      recalculateSelectedTotal();
+    })();
+  </script>
 </body>
 </html>

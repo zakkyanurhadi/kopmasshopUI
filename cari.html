@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cari Produk - Blue Kopmas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/skeleton.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <script defer src="./assets/js/gsap-skeleton.js"></script>
+
+  <style>
+    :root {
+      --page-side-padding-mobile-min: 20px;
+      --page-side-padding-fluid: clamp(20px, 5vw, 55px);
+      --page-side-padding-desktop: 80px;
+    }
+
+    .px-55 {
+      padding-left: var(--page-side-padding-fluid);
+      padding-right: var(--page-side-padding-fluid);
+    }
+
+    @media (min-width: 1280px) {
+      .px-55 {
+        padding-left: var(--page-side-padding-desktop) !important;
+        padding-right: var(--page-side-padding-desktop) !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50">
+
+  <!-- Header -->
+  <header id="header" class="sticky top-0 z-40 bg-white border-b border-slate-100"></header>
+
+  <!-- Search Page Container -->
+  <main class="px-55 py-6 md:py-8">
+
+    <!-- Search Bar Section -->
+    <section class="mb-8">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="javascript:history.back()" class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-100 transition">
+          <i class="fas fa-chevron-left text-xl text-slate-700"></i>
+        </a>
+        <div class="flex-1 relative">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari lebih banyak di Terjadwal..."
+            class="w-full h-11 px-4 rounded-full border-2 border-slate-300 focus:border-blue-500 focus:outline-none text-sm placeholder-slate-400"
+          >
+          <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600 transition">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Search Suggestions (shown when no search results) -->
+    <section id="suggestionsSection" class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <i class="fas fa-fire text-red-500 text-lg"></i>
+        <h2 class="text-lg font-extrabold text-slate-800">Sering Dicari Orang Lain</h2>
+      </div>
+      <div class="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Ayam Sayurbox</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Paket Masak</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Daging Sapi dan Kambing</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Susu dan Biskuit</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Aneka Pasta</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Vitamin</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Bundle Hemat</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Tahu dan Telur</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">MPASI</button>
+        <button class="px-4 py-2.5 rounded-full border border-slate-300 text-sm font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 transition suggestion-chip">Ikan dan Kerang</button>
+      </div>
+    </section>
+
+    <!-- Search Results (hidden until user searches) -->
+    <section id="resultsSection" class="hidden">
+      <div class="mb-6">
+        <h2 class="text-lg font-extrabold text-slate-800 mb-2">Hasil Pencarian</h2>
+        <p class="text-sm text-slate-500">Menampilkan hasil untuk "<span id="searchQuery"></span>"</p>
+      </div>
+
+      <!-- Results Grid -->
+      <div id="resultsGrid" class="grid gap-4 grid-cols-2 lg:grid-cols-4">
+        <!-- Result items will be generated here -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="mt-12 bg-white border-t border-slate-100"></footer>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav id="mobileNav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 sm:hidden"></nav>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-24 right-6 sm:right-10 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition group">
+    <i class="fab fa-whatsapp text-2xl"></i>
+    <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-slate-800 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition pointer-events-none">Chat Admin Kopmas</span>
+  </a>
+
+  <script src="./layout-shared.js"></script>
+  <script>
+    // Mock product data for demo
+    const mockProducts = [
+      {
+        id: 1,
+        name: "iPhone 15 Pro",
+        price: "Rp 18.999.000",
+        rating: 4.9,
+        image: "./assets/images/thumbnails/iphone.png",
+        store: "Blue Gadget Center",
+        location: "Sleman"
+      },
+      {
+        id: 2,
+        name: "Samsung S Ultra",
+        price: "Rp 21.500.000",
+        rating: 4.7,
+        image: "./assets/images/thumbnails/samsung.png",
+        store: "Tech Store Premium",
+        location: "Jakarta"
+      },
+      {
+        id: 3,
+        name: "Xiaomi Ultra 14",
+        price: "Rp 10.200.000",
+        rating: 4.6,
+        image: "./assets/images/thumbnails/xiaomi.png",
+        store: "Mobile Center",
+        location: "Bandung"
+      },
+      {
+        id: 4,
+        name: "Google Pixel 8",
+        price: "Rp 12.999.000",
+        rating: 4.8,
+        image: "./assets/images/thumbnails/google.png",
+        store: "Digital Store",
+        location: "Surabaya"
+      }
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsSection = document.getElementById('suggestionsSection');
+    const resultsSection = document.getElementById('resultsSection');
+    const resultsGrid = document.getElementById('resultsGrid');
+    const searchQuery = document.getElementById('searchQuery');
+    const suggestionChips = document.querySelectorAll('.suggestion-chip');
+
+    // Search functionality
+    function performSearch(query) {
+      if (query.trim() === '') {
+        suggestionsSection.classList.remove('hidden');
+        resultsSection.classList.add('hidden');
+        return;
+      }
+
+      searchQuery.textContent = query;
+      suggestionsSection.classList.add('hidden');
+      resultsSection.classList.remove('hidden');
+
+      // Render results
+      resultsGrid.innerHTML = mockProducts.map(product => `
+        <div class="group overflow-hidden rounded-2xl border border-slate-200 bg-white hover:shadow-lg transition-shadow">
+          <div class="bg-slate-50 p-4">
+            <img alt="${product.name}" class="mx-auto h-36 object-contain group-hover:scale-105 transition-transform lazyload" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="${product.image}">
+          </div>
+          <div class="p-4 space-y-3">
+            <p class="truncate text-sm font-bold group-hover:text-blue-600 transition">${product.name}</p>
+            <p class="text-sm font-extrabold text-blue-700">${product.price}</p>
+            <div class="flex items-center gap-1 text-xs text-amber-400">
+              <i class="fas fa-star"></i>
+              <span class="text-slate-500 ml-1">${product.rating}</span>
+            </div>
+
+            <!-- CTA Button - Mobile Only -->
+            <a href="halaman_product_detail.html" class="mt-3 flex h-10 items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 text-xs font-bold text-white hover:bg-blue-700 transition sm:hidden">
+              <i class="fas fa-eye"></i> Lihat Detail
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      // Lazy load images
+      if (window.lazyLoadInstance) {
+        window.lazyLoadInstance.update();
+      }
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value);
+    });
+
+    // Suggestion chip clicks
+    suggestionChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        searchInput.value = chip.textContent;
+        performSearch(chip.textContent);
+      });
+    });
+
+    // Focus on search input on page load
+    searchInput.focus();
+  </script>
+</body>
+</html>
