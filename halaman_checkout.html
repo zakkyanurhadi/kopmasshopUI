@@ -95,25 +95,36 @@
 
         <article class="rounded-2xl border border-slate-200 bg-white p-5 md:p-6">
           <h2 class="text-lg font-bold">Metode Pengiriman (RajaOngkir)</h2>
-          <p class="mt-1 text-xs text-slate-500">Asal toko akan mengikuti data toko dari dashboard seller.</p>
-          <div class="mt-4 grid gap-3 md:grid-cols-3 text-sm">
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Kurir</span>
-              <select id="courierSelect" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-                <option value="jne">JNE</option>
+          <p class="mt-1 text-xs text-slate-500">Klik calculate delivery untuk cek ongkir langsung dari API RajaOngkir.</p>
+
+          <div class="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex min-w-[220px] items-center gap-3">
+                <span class="inline-flex size-12 items-center justify-center rounded-full bg-slate-200 text-slate-600">
+                  <i class="fas fa-truck"></i>
+                </span>
+                <div>
+                  <p id="shippingSelectionTitle" class="text-lg font-bold text-slate-900">Belum Pilih Kurir</p>
+                  <p id="shippingSelectionDesc" class="text-sm font-medium text-slate-500">Klik hitung untuk pilih kurir</p>
+                </div>
+              </div>
+              <button id="btnCekOngkir" type="button" class="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-blue-200 bg-white px-4 text-sm font-bold text-blue-700 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white">
+                Hitung Ongkir
+                <i class="fas fa-chevron-right text-xs"></i>
+              </button>
+            </div>
+
+            <div class="hidden">
+              <select id="courierSelect">
+                <option value="jne" selected>JNE</option>
                 <option value="jnt">J&T</option>
                 <option value="sicepat">SiCepat</option>
                 <option value="anteraja">AnterAja</option>
               </select>
-            </label>
-            <label>
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Berat (gram)</span>
-              <input id="weightInput" type="number" min="1" value="1000" class="h-11 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-blue-500">
-            </label>
-            <div class="flex items-end">
-              <button id="btnCekOngkir" type="button" class="h-11 w-full rounded-xl bg-blue-600 px-4 text-sm font-bold text-white hover:bg-blue-700 transition">Cek Ongkir</button>
+              <input id="weightInput" type="number" min="1" value="1000">
             </div>
           </div>
+
           <div id="shippingServices" class="mt-4 space-y-3 text-sm"></div>
           <p id="shippingFeedback" class="mt-3 hidden text-xs font-semibold"></p>
         </article>
@@ -150,17 +161,6 @@
             </label>
           </div>
 
-          <div id="bankOptions" class="mt-3 hidden rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <label class="block">
-              <span class="mb-1 block text-xs font-semibold text-slate-500">Pilih Bank</span>
-              <select id="bankSelect" class="h-10 w-full rounded-lg border border-slate-200 px-3 text-sm outline-none focus:border-blue-500">
-                <option value="BCA">BCA Virtual Account</option>
-                <option value="BRI">BRI Virtual Account</option>
-                <option value="BNI">BNI Virtual Account</option>
-                <option value="Mandiri">Mandiri Virtual Account</option>
-              </select>
-            </label>
-          </div>
         </article>
       </section>
 
@@ -210,12 +210,12 @@
 
     const shippingServices = document.getElementById("shippingServices");
     const shippingFeedback = document.getElementById("shippingFeedback");
+    const shippingSelectionTitle = document.getElementById("shippingSelectionTitle");
+    const shippingSelectionDesc = document.getElementById("shippingSelectionDesc");
     const courierSelect = document.getElementById("courierSelect");
     const weightInput = document.getElementById("weightInput");
     const paymentMethodRadios = document.querySelectorAll("input[name='paymentMethod']");
     const paymentCards = document.querySelectorAll("[data-payment-card]");
-    const bankOptions = document.getElementById("bankOptions");
-    const bankSelect = document.getElementById("bankSelect");
 
     const summarySubtotal = document.getElementById("summarySubtotal");
     const summaryPpn = document.getElementById("summaryPpn");
@@ -225,6 +225,17 @@
     const btnGoPayment = document.getElementById("btnGoPayment");
 
     let selectedShippingCost = 0;
+
+    function updateShippingSelection(serviceName, etd, cost) {
+      if (!serviceName) {
+        shippingSelectionTitle.textContent = "Belum Pilih Kurir";
+        shippingSelectionDesc.textContent = "Klik hitung untuk pilih kurir";
+        return;
+      }
+
+      shippingSelectionTitle.textContent = serviceName;
+      shippingSelectionDesc.textContent = `Estimasi ${etd || "-"} hari • ${formatRupiah(cost || 0)}`;
+    }
 
     function formatRupiah(value) {
       return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(value);
@@ -269,19 +280,17 @@
       localStorage.setItem("checkoutSummary", JSON.stringify(payload));
 
       localStorage.setItem("checkoutPaymentMethod", JSON.stringify({
-        method: selectedPayment?.value || "qris",
-        bank: bankSelect.value
+        method: selectedPayment?.value || "qris"
       }));
 
       return {
-        method: selectedPayment?.value || "qris",
-        bank: bankSelect.value
+        method: selectedPayment?.value || "qris"
       };
     }
 
     function updatePaymentMethod() {
       const selected = document.querySelector("input[name='paymentMethod']:checked");
-      const methodValue = selected?.value || "qris";
+      const methodValue = selected ? selected.value : "qris";
 
       paymentCards.forEach((card) => {
         const radio = card.querySelector("input[name='paymentMethod']");
@@ -293,19 +302,22 @@
       });
 
       if (methodValue === "bank_transfer") {
-        bankOptions.classList.remove("hidden");
-        summaryPaymentMethod.textContent = `Transfer Bank (${bankSelect.value})`;
+        summaryPaymentMethod.textContent = "Transfer Bank";
       } else {
-        bankOptions.classList.add("hidden");
         summaryPaymentMethod.textContent = "QRIS";
       }
 
       localStorage.setItem("checkoutPaymentMethod", JSON.stringify({
-        method: methodValue,
-        bank: bankSelect.value
+        method: methodValue
       }));
 
       persistCheckoutSummary();
+    }
+
+    function syncPaymentMethodRealtime() {
+      updatePaymentMethod();
+      requestAnimationFrame(updatePaymentMethod);
+      setTimeout(updatePaymentMethod, 0);
     }
 
     function hydratePaymentMethod() {
@@ -318,11 +330,6 @@
 
         const saved = JSON.parse(raw);
         const savedMethod = saved?.method;
-        const savedBank = saved?.bank;
-
-        if (savedBank && bankSelect.querySelector(`option[value="${savedBank}"]`)) {
-          bankSelect.value = savedBank;
-        }
 
         const targetRadio = Array.from(paymentMethodRadios).find((radio) => radio.value === savedMethod);
         if (targetRadio) {
@@ -357,11 +364,21 @@
     function bindShippingSelection() {
       const firstSelected = shippingServices.querySelector("input[name='shippingService']:checked");
       selectedShippingCost = Number(firstSelected?.dataset.shippingCost || 0);
+      updateShippingSelection(
+        firstSelected?.dataset.serviceName || "",
+        firstSelected?.dataset.etd || "",
+        selectedShippingCost,
+      );
       updateGrandTotal();
 
       shippingServices.querySelectorAll("input[name='shippingService']").forEach((radio) => {
         radio.addEventListener("change", (event) => {
           selectedShippingCost = Number(event.target.dataset.shippingCost || 0);
+          updateShippingSelection(
+            event.target.dataset.serviceName || "",
+            event.target.dataset.etd || "",
+            selectedShippingCost,
+          );
           updateGrandTotal();
         });
       });
@@ -398,7 +415,7 @@
             </div>
             <div class="flex items-center gap-3">
               <span class="font-bold">${formatRupiah(service.cost)}</span>
-              <input type="radio" name="shippingService" data-shipping-cost="${service.cost}" ${index === 0 ? "checked" : ""}>
+              <input type="radio" name="shippingService" data-shipping-cost="${service.cost}" data-service-name="${service.name}" data-etd="${service.etd}" ${index === 0 ? "checked" : ""}>
             </div>
           </label>
         `)
@@ -546,7 +563,7 @@
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="font-bold">${formatRupiah(cost)}</span>
-                  <input type="radio" name="shippingService" data-shipping-cost="${cost}" ${index === 0 ? "checked" : ""}>
+                  <input type="radio" name="shippingService" data-shipping-cost="${cost}" data-service-name="${serviceName}" data-etd="${etd}" ${index === 0 ? "checked" : ""}>
                 </div>
               </label>
             `;
@@ -564,9 +581,20 @@
 
     document.getElementById("btnCekOngkir").addEventListener("click", cekOngkir);
     paymentMethodRadios.forEach((radio) => {
-      radio.addEventListener("change", updatePaymentMethod);
+      radio.addEventListener("click", syncPaymentMethodRealtime);
+      radio.addEventListener("input", syncPaymentMethodRealtime);
+      radio.addEventListener("change", syncPaymentMethodRealtime);
     });
-    bankSelect.addEventListener("change", updatePaymentMethod);
+    paymentCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        syncPaymentMethodRealtime();
+      });
+    });
+    document.addEventListener("change", (event) => {
+      if (event.target && event.target.matches("input[name='paymentMethod']")) {
+        syncPaymentMethodRealtime();
+      }
+    });
 
     const pageParams = new URLSearchParams(window.location.search);
     if (pageParams.get("address_saved") === "1") {
@@ -576,12 +604,12 @@
     }
 
     window.addEventListener("focus", renderSelectedAddress);
+    window.addEventListener("focus", updatePaymentMethod);
     btnGoPayment.addEventListener("click", (event) => {
       event.preventDefault();
       const payment = persistCheckoutSummary();
       const params = new URLSearchParams({
-        method: payment.method,
-        bank: payment.bank
+        method: payment.method
       });
       window.location.href = `halaman_pembayaran.html?${params.toString()}`;
     });
