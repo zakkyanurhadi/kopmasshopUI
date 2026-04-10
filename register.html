@@ -874,15 +874,13 @@
         // ==================== Seller: Check Keanggotaan ====================
 
         const LOCAL_PROXY_BASE_URL = 'http://127.0.0.1:8787/proxy';
-        const USE_LOCAL_PROXY = ['127.0.0.1', 'localhost'].includes(window.location.hostname);
 
         let isVerified = false;
         let supplierData = null;
         let supplierCandidates = [];
 
         function getApiUrl(path) {
-            if (USE_LOCAL_PROXY) return LOCAL_PROXY_BASE_URL + path;
-            return new URL(path, API_BASE_URL).toString();
+            return LOCAL_PROXY_BASE_URL + path;
         }
 
         function getApiHeaders(asJson = false) {
@@ -890,7 +888,6 @@
                 'Accept': 'application/json',
             };
             if (asJson) headers['Content-Type'] = 'application/json';
-            if (!USE_LOCAL_PROXY) headers['X-Public-Api-Key'] = PUBLIC_API_KEY;
             return headers;
         }
 
@@ -1056,10 +1053,7 @@
                 return candidates;
             } catch (err) {
                 if (err instanceof TypeError) {
-                    if (USE_LOCAL_PROXY) {
-                        throw new Error('Proxy lokal tidak bisa diakses. Jalankan: node local-api-proxy.cjs');
-                    }
-                    throw new Error('Gagal akses API (kemungkinan CORS/jaringan). Jalankan lewat proxy lokal: node local-api-proxy.cjs');
+                    throw new Error('Proxy lokal tidak bisa diakses. Jalankan: node local-api-proxy.cjs');
                 }
                 throw err;
             }
@@ -1082,10 +1076,7 @@
                 return normalizeProductList(json);
             } catch (err) {
                 if (err instanceof TypeError) {
-                    if (USE_LOCAL_PROXY) {
-                        throw new Error('Proxy lokal tidak bisa diakses. Jalankan: node local-api-proxy.cjs');
-                    }
-                    throw new Error('Gagal akses products API (kemungkinan CORS/jaringan). Jalankan lewat proxy lokal: node local-api-proxy.cjs');
+                    throw new Error('Proxy lokal tidak bisa diakses. Jalankan: node local-api-proxy.cjs');
                 }
                 throw err;
             }

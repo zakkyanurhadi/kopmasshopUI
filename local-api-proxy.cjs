@@ -1,8 +1,34 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-const PORT = 8787;
-const API_BASE_URL = 'https://koperasi-umkm.privatedomain.site';
-const PUBLIC_API_KEY = 'WFpW4QvY5V3ctGH5Jb3zE5C7wCGWt8vS';
+function loadEnvFile(filePath) {
+    if (!fs.existsSync(filePath)) return;
+    const raw = fs.readFileSync(filePath, 'utf8');
+    raw.split(/\r?\n/).forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) return;
+        const idx = trimmed.indexOf('=');
+        if (idx < 1) return;
+        const key = trimmed.slice(0, idx).trim();
+        let value = trimmed.slice(idx + 1).trim();
+        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+            value = value.slice(1, -1);
+        }
+        if (!process.env[key]) process.env[key] = value;
+    });
+}
+
+loadEnvFile(path.join(__dirname, '.env'));
+
+const PORT = Number(process.env.LOCAL_PROXY_PORT || 8787);
+const HOST = process.env.LOCAL_PROXY_HOST || '127.0.0.1';
+const API_BASE_URL = process.env.API_BASE_URL || 'https://koperasi-umkm.privatedomain.site';
+const PUBLIC_API_KEY = process.env.PUBLIC_API_KEY || '';
+
+if (!PUBLIC_API_KEY) {
+    console.warn('[local-api-proxy] PUBLIC_API_KEY belum diset di .env');
+}
 
 function setCorsHeaders(res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -44,8 +70,11 @@ const server = http.createServer(async (req, res) => {
 
         const upstreamHeaders = {
             'Accept': 'application/json',
-            'X-Public-Api-Key': PUBLIC_API_KEY,
         };
+
+        if (PUBLIC_API_KEY) {
+            upstreamHeaders['X-Public-Api-Key'] = PUBLIC_API_KEY;
+        }
 
         if (body) {
             upstreamHeaders['Content-Type'] = 'application/json';
@@ -72,6 +101,6 @@ const server = http.createServer(async (req, res) => {
     }
 });
 
-server.listen(PORT, '127.0.0.1', () => {
-    console.log(`Local API proxy running at http://127.0.0.1:${PORT}`);
+server.listen(PORT, HOST, () => {
+    console.log(`Local API proxy running at http://${HOST}:${PORT}`);
 });
