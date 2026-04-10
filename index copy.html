@@ -163,155 +163,6 @@
           transform: translateX(-50%) scaleX(1);
         }
       }
-
-      .user-menu {
-        position: relative;
-      }
-
-      .user-menu-trigger {
-        height: 44px;
-        width: 44px;
-        border-radius: 9999px;
-        border: 1px solid rgba(148, 163, 184, 0.3);
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.95),
-          rgba(241, 245, 249, 0.94)
-        );
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-        transition: all 0.24s ease;
-      }
-
-      .user-menu-trigger:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
-      }
-
-      .user-menu-trigger:focus-visible {
-        outline: none;
-        box-shadow:
-          0 0 0 3px rgba(32, 101, 252, 0.25),
-          0 12px 28px rgba(15, 23, 42, 0.16);
-      }
-
-      .user-avatar-shell {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 34px;
-        height: 34px;
-        border-radius: 9999px;
-        background: linear-gradient(145deg, #e2e8f0, #f8fafc);
-      }
-
-      .user-avatar-icon {
-        color: #2563eb;
-        font-size: 16px;
-      }
-
-      .user-online-dot {
-        position: absolute;
-        right: -1px;
-        bottom: -1px;
-        width: 11px;
-        height: 11px;
-        border-radius: 9999px;
-        background: #22c55e;
-        border: 2px solid #fff;
-      }
-
-      .user-dropdown {
-        position: absolute;
-        top: calc(100% + 12px);
-        right: 0;
-        width: min(290px, calc(100vw - 24px));
-        border-radius: 18px;
-        border: 1px solid rgba(226, 232, 240, 0.95);
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 24px 48px rgba(15, 23, 42, 0.18);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        opacity: 0;
-        transform: translateY(8px) scale(0.98);
-        transform-origin: top right;
-        pointer-events: none;
-        transition:
-          opacity 0.2s ease,
-          transform 0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
-      }
-
-      .user-menu.is-open .user-dropdown {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-      }
-
-      .user-dropdown-header {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 18px;
-        border-bottom: 1px solid #e2e8f0;
-      }
-
-      .user-dropdown-avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 52px;
-        height: 52px;
-        border-radius: 9999px;
-        background: linear-gradient(145deg, #dbeafe, #eff6ff);
-        color: #2563eb;
-        font-size: 24px;
-      }
-
-      .user-dropdown-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 18px;
-        font-size: 17px;
-        font-weight: 500;
-        color: #334155;
-        transition: all 0.18s ease;
-      }
-
-      .user-dropdown-item:hover {
-        background: rgba(241, 245, 249, 0.9);
-        color: #1e293b;
-      }
-
-      .user-dropdown-item i {
-        width: 24px;
-        text-align: center;
-        color: #64748b;
-      }
-
-      .user-dropdown-divider {
-        border-top: 1px solid #e2e8f0;
-      }
-
-      .user-dropdown-item--logout {
-        color: #b91c1c;
-      }
-
-      .user-dropdown-item--logout i {
-        color: #dc2626;
-      }
-
-      @media (max-width: 767px) {
-        .user-menu-trigger {
-          height: 40px;
-          width: 40px;
-        }
-
-        .user-avatar-shell {
-          width: 30px;
-          height: 30px;
-        }
-      }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -379,79 +230,49 @@
               <i class="fas fa-bell text-slate-600"></i>
             </button>
 
-            <!-- Profile Icon Mobile -->
-            <a
-              href="halaman_profile.html"
-              class="md:hidden inline-flex items-center justify-center user-menu-trigger"
-              aria-label="Buka Profil"
+            <!-- Profile Icon (Mobile) / Sign In Button (Tablet+) -->
+            <div
+              class="md:hidden relative flex size-10 rounded-full items-center justify-center glass-btn hover:bg-slate-100/50 transition cursor-pointer"
             >
-              <span class="user-avatar-shell">
-                <i class="fas fa-user user-avatar-icon"></i>
-                <span class="user-online-dot" aria-hidden="true"></span>
-              </span>
-            </a>
-
-            <!-- User Dropdown Desktop -->
-            <div class="hidden md:block user-menu" data-user-menu>
-              <button
-                type="button"
-                class="inline-flex items-center justify-center user-menu-trigger"
-                data-user-menu-toggle
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="Buka menu akun"
-              >
-                <span class="user-avatar-shell">
-                  <i class="fas fa-user user-avatar-icon"></i>
-                  <span class="user-online-dot" aria-hidden="true"></span>
-                </span>
-              </button>
-
-              <div
-                class="user-dropdown"
-                data-user-menu-dropdown
-                role="menu"
-                aria-label="Menu akun pengguna"
-              >
-                <div class="user-dropdown-header">
-                  <div class="user-dropdown-avatar">
-                    <i class="fas fa-user"></i>
-                  </div>
-                  <div>
-                    <p class="text-[20px] font-semibold text-slate-800 leading-none" data-user-name>
-                      Nama Pembeli
-                    </p>
-                  </div>
-                </div>
-
-                <a href="halaman_profile.html" class="user-dropdown-item" role="menuitem">
-                  <i class="fa-regular fa-user"></i>
-                  <span>Akun Saya</span>
-                </a>
-                <a href="halaman_my_transaction.html" class="user-dropdown-item" role="menuitem">
-                  <i class="fa-solid fa-receipt"></i>
-                  <span>Pesanan Saya</span>
-                </a>
-                <a href="halaman_edit_profile.html" class="user-dropdown-item" role="menuitem">
-                  <i class="fa-solid fa-gear"></i>
-                  <span>Settings</span>
-                </a>
-
-                <div class="user-dropdown-divider"></div>
-
-                <a
-                  href="login.html"
-                  class="user-dropdown-item user-dropdown-item--logout"
-                  role="menuitem"
-                >
-                  <i class="fa-solid fa-right-from-bracket"></i>
-                  <span>Log Out</span>
-                </a>
-              </div>
+              <i class="fas fa-bell text-slate-600 text-base"></i>
             </div>
+
+            <!-- Sign In Button Desktop -->
+            <a
+              href="login.html"
+              class="hidden md:flex gap-2 items-center justify-center px-4 lg:px-6 py-2 lg:py-3 bg-blue-600 hover:bg-blue-700 rounded-lg md:rounded-xl text-white text-xs md:text-sm font-semibold transition"
+            >
+              <i class="fas fa-user text-sm"></i>
+              <span class="hidden lg:inline">Sign In/Register</span>
+            </a>
           </div>
         </div>
 
+        <nav
+          class="navbar-secondary hidden lg:flex items-center gap-6 flex-wrap pb-2"
+        >
+          <a
+            href="index.html"
+            class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition"
+          >
+            <i class="fas fa-home text-base"></i>
+            <span class="text-sm font-semibold">Beranda</span>
+          </a>
+          <a
+            href="halaman_my_transaction.html"
+            class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition"
+          >
+            <i class="fas fa-receipt text-base"></i>
+            <span class="text-sm font-semibold">Pesanan</span>
+          </a>
+          <button
+            type="button"
+            class="group flex items-center gap-2 text-slate-700 hover:text-blue-600 transition"
+          >
+            <i class="fas fa-question-circle text-base"></i>
+            <span class="text-sm font-semibold">Tentang Kami</span>
+          </button>
+        </nav>
       </div>
     </header>
 
@@ -1883,8 +1704,6 @@
       const mobileBottomNav = document.querySelector(
         "[data-mobile-bottom-nav]",
       );
-      const userMenu = document.querySelector("[data-user-menu]");
-      const userMenuToggle = userMenu?.querySelector("[data-user-menu-toggle]");
 
       // Scroll event: shrink navbar + show/hide secondary nav
       window.addEventListener("scroll", () => {
@@ -1957,43 +1776,6 @@
       };
       syncMobileBottomPadding();
       window.addEventListener("resize", syncMobileBottomPadding);
-
-      // Desktop user dropdown toggle
-      if (userMenu && userMenuToggle) {
-        const closeUserMenu = () => {
-          userMenu.classList.remove("is-open");
-          userMenuToggle.setAttribute("aria-expanded", "false");
-        };
-
-        const openUserMenu = () => {
-          userMenu.classList.add("is-open");
-          userMenuToggle.setAttribute("aria-expanded", "true");
-        };
-
-        userMenuToggle.addEventListener("click", (event) => {
-          event.stopPropagation();
-          const isOpen = userMenu.classList.contains("is-open");
-          if (isOpen) {
-            closeUserMenu();
-            return;
-          }
-          openUserMenu();
-        });
-
-        document.addEventListener("click", (event) => {
-          if (userMenu.contains(event.target)) return;
-          closeUserMenu();
-        });
-
-        document.addEventListener("keydown", (event) => {
-          if (event.key !== "Escape") return;
-          closeUserMenu();
-        });
-
-        userMenu.querySelectorAll("a").forEach((item) => {
-          item.addEventListener("click", closeUserMenu);
-        });
-      }
     </script>
   </body>
 </html>
