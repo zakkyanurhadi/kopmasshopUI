@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var menuItems = [
     // ── Dashboard ───────────────────────────────────────────────
     {
-      label: 'Dashboard',
+      label: 'Dasbor',
       href: 'dashboard.html',
       iconDefault: 'home-black.svg',
       iconActive: 'home-blue-fill.svg',
@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Store ─────────────────────────────────────────────
     {
-      label: 'Manage Store',
+      label: 'Kelola Toko',
       iconDefault: 'bag-2-black.svg',
       type: 'accordion',
       id: 'acc-store',
       children: [
         // === Admin children ===
         {
-          label: 'List Store',
+          label: 'Daftar Toko',
           href: 'store-list.html',
           iconDefault: 'shop-grey.svg',
           iconActive: 'shop-blue-fill.svg',
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
           relatedPages: ['store-create.html', 'store-detail.html', 'store-edit.html']
         },
         {
-          label: 'List Transaction',
+          label: 'Daftar Transaksi',
           href: 'transaction-list.html',
           iconDefault: 'stickynote-grey.svg',
           iconActive: 'stickynote-blue-fill.svg',
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // === Seller children ===
         {
-          label: 'Profile',
+          label: 'Profil',
           href: 'store-profile.html',
           iconDefault: 'shop-grey.svg',
           iconActive: 'shop-blue-fill.svg',
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
           visibleFor: ['seller']
         },
         {
-          label: 'Payment',
+          label: 'Pembayaran',
           href: 'store-payment-method.html',
           iconDefault: 'wallet-grey.svg',
           iconActive: 'wallet-blue-fill.svg',
@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Product ───────────────────────────────────────────
     {
-      label: 'Manage Product',
+      label: 'Kelola Produk',
       iconDefault: 'box-black.svg',
       type: 'accordion',
       id: 'acc-product',
       children: [
         {
-          label: 'Categories',
+          label: 'Kategori',
           href: 'category-list.html',
           iconDefault: 'bag-grey.svg',
           iconActive: 'bag-blue-fill.svg',
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
           relatedPages: ['category-create.html', 'category-detail.html', 'category-edit.html']
         },
         {
-          label: 'Products',
+          label: 'Produk',
           href: 'product-list.html',
           iconDefault: 'bag-grey.svg',
           iconActive: 'bag-blue-fill.svg',
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Orders (seller) ───────────────────────────────────
     {
-      label: 'Manage Orders',
+      label: 'Kelola Pesanan',
       href: 'manage-orders.html',
       iconDefault: 'stickynote-grey.svg',
       iconActive: 'stickynote-blue-fill.svg',
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Sales Report (seller) ────────────────────────────────────
     {
-      label: 'Sales Report',
+      label: 'Laporan Penjualan',
       href: 'sales-report.html',
       iconDefault: 'presention-chart-grey.svg',
       iconActive: 'presention-chart-blue.svg',
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Wallet ────────────────────────────────────────────
     {
-      label: 'Manage Wallet',
+      label: 'Kelola Dompet',
       href: 'manage-wallet.html',
       iconDefault: 'wallet-2-black.svg',
       iconActive: 'wallet-3-blue-fill.svg',
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Users (admin only) ────────────────────────────────
     {
-      label: 'Manage Users',
+      label: 'Kelola Pengguna',
       href: 'manage-users.html',
       iconDefault: 'profile-2user-black.svg',
       iconActive: 'profile-2user-blue-fill.svg',
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Manage Reviews (admin only) ──────────────────────────────
     {
-      label: 'Manage Reviews',
+      label: 'Kelola Ulasan',
       href: 'manage-reviews.html',
       iconDefault: 'stickynote-grey.svg',
       iconActive: 'stickynote-blue-fill.svg',
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ── Settings ─────────────────────────────────────────────────
     {
-      label: 'Settings',
+      label: 'Pengaturan',
       href: 'settings.html',
       iconDefault: 'setting-2-grey.svg',
       iconActive: 'setting-2-grey.svg',
@@ -331,8 +331,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  var roleName = role === 'admin' ? 'Admin' : 'Seller';
-  var userName = role === 'admin' ? 'Admin User' : 'Seller User';
+  var roleName = role === 'admin' ? 'Admin' : 'Penjual';
+  var userName = role === 'admin' ? 'Pengguna Admin' : 'Pengguna Penjual';
 
   /* ── Inline SVG icons for the navbar ─────────────────────── */
   var svgHamburger = '<svg class="size-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>';
@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
     '</div>' +
     /* Menu */
     '<div class="flex flex-col flex-1 overflow-y-auto hide-scrollbar px-5 py-6">' +
-      '<p class="text-[11px] font-bold uppercase tracking-widest text-custom-grey/60 mb-4 pl-5">Main Menu</p>' +
+      '<p class="text-[11px] font-bold uppercase tracking-widest text-custom-grey/60 mb-4 pl-5">Menu Utama</p>' +
       '<ul class="flex flex-col gap-[6px]">' + sidebarMenuHtml + '</ul>' +
     '</div>' +
   '</aside>' +
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
       '<button id="btn-hamburger" onclick="openSidebar()" class="lg:hidden flex items-center justify-center size-11 rounded-xl hover:bg-gray-100 transition-300 text-gray-600 shrink-0">' + svgHamburger + '</button>' +
       '<div class="flex-1 min-w-0 flex items-center gap-3">' +
         '<div class="min-w-0 hidden sm:flex flex-col">' +
-          '<p class="text-[11px] tracking-wide uppercase text-custom-grey">Current Page</p>' +
+          '<p class="text-[11px] tracking-wide uppercase text-custom-grey">Halaman Saat Ini</p>' +
           '<p class="text-[15px] font-semibold text-custom-black truncate">' + pageTitle + '</p>' +
         '</div>' +
       '</div>' +
@@ -486,11 +486,11 @@ document.addEventListener('DOMContentLoaded', function () {
               '</div>' +
             '</div>' +
             '<div class="py-1">' +
-              '<a href="#" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgUser + ' My Profile</a>' +
-              '<a href="#" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgSettings + ' Settings</a>' +
+              '<a href="#" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgUser + ' Profil Saya</a>' +
+              '<a href="#" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgSettings + ' Pengaturan</a>' +
             '</div>' +
             '<div class="border-t border-gray-100 pt-1">' +
-              '<a href="../login.html" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgLogout + ' Log Out</a>' +
+              '<a href="../login.html" class="flex items-center gap-3 px-5 py-3 text-[15px] text-gray-700 hover:bg-gray-50 transition-300">' + svgLogout + ' Keluar</a>' +
             '</div>' +
           '</div>' +
         '</div>' +
