@@ -20,6 +20,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.head.appendChild(connectorStyle);
   }
 
+  /* ── Inject sidebar active-state CSS globally ──────────── */
+  var sidebarActiveStyleId = 'sidebar-active-state-style';
+  if (!document.getElementById(sidebarActiveStyleId)) {
+    var sidebarActiveStyle = document.createElement('style');
+    sidebarActiveStyle.id = sidebarActiveStyleId;
+    sidebarActiveStyle.textContent = '' +
+      '.sidebar-item.active{background-color:rgba(16,83,213,0.1);}' +
+      '.sidebar-item.active .sidebar-label{color:#1053d5;}' +
+      '.sidebar-item.active .icon-default{opacity:0;}' +
+      '.sidebar-item.active .icon-active{opacity:1;}' +
+      '.sidebar-item.active .active-bar{display:flex;}';
+    document.head.appendChild(sidebarActiveStyle);
+  }
+
   /* ── Sidebar menu items ─────────────────────────────────── */
   //
   // visibleFor: array of roles yang boleh lihat item ini.
@@ -138,20 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
       visibleFor: ['seller']
     },
 
-    // ── Manage Wallet ────────────────────────────────────────────
-    {
-      label: 'Kelola Dompet',
-      href: 'manage-wallet.html',
-      iconDefault: 'wallet-2-black.svg',
-      iconActive: 'wallet-3-blue-fill.svg',
-      type: 'link',
-      visibleFor: ['admin'],
-      relatedPages: [
-        'store-balance-list.html', 'store-balance-detail.html',
-        'my-store-balance.html', 'withdrawal-list.html',
-        'withdrawal-create.html', 'withdrawal-detail.html'
-      ]
-    },
 
     // ── Manage Users (admin only) ────────────────────────────────
     {
@@ -164,9 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
       relatedPages: ['user-list.html']
     },
 
-    // ── Manage Reviews (admin only) ──────────────────────────────
+    // ── List Reviews (admin only) ──────────────────────────────
     {
-      label: 'Kelola Ulasan',
+      label: 'List Ulasan',
       href: 'manage-reviews.html',
       iconDefault: 'stickynote-grey.svg',
       iconActive: 'stickynote-blue-fill.svg',
@@ -179,7 +179,17 @@ document.addEventListener('DOMContentLoaded', function () {
       label: 'Pengaturan',
       href: 'settings.html',
       iconDefault: 'setting-2-grey.svg',
-      iconActive: 'setting-2-grey.svg',
+      iconActive: 'setting-2-blue-fill.svg',
+      type: 'link',
+      visibleFor: ['admin']
+    },
+
+    // ── Manage Content (admin only) ─────────────────────────────
+    {
+      label: 'Kelola Konten',
+      href: 'manage-content.html',
+      iconDefault: 'map-grey.svg',
+      iconActive: 'map-blue-fill.svg',
       type: 'link',
       visibleFor: ['admin']
     }
